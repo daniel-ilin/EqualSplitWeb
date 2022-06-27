@@ -1,0 +1,15 @@
+.sidebar {
+  width: 100%;  
+  height: 100%;
+  background-color: #ebeef3;
+  display: flex;
+  flex-direction: column;  
+}
+
+.sidebar-bottom {
+  border-right: 1px solid #dedede;
+  height: 100%;
+  margin-top: -1rem;
+  display: flex;
+  flex-direction: column;  
+}

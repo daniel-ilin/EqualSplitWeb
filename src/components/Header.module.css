@@ -1,0 +1,64 @@
+.header {
+  background: #007aff;
+  color: white;
+  height: 55px;
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0rem;
+  align-items: center;
+  z-index: 8;
+}
+
+.header h4 {
+  margin-top: 6px;
+  transform: translateX(-120%);
+}
+
+.logout-button {
+  color: white;
+  background: transparent;
+  border: none;
+  font-size: larger;
+  margin-right: 14px;
+  padding: 0.2rem 1rem 0.2rem 1rem;
+  border-radius: 1.2rem;
+  transition: all 0.2s ease-out;
+}
+
+.logout-button:hover {
+  background-color: #0067dc;
+}
+
+.modal-open {
+  animation: openModal 100ms ease-out forwards;
+}
+
+.modal-closed {
+  animation: closeModal 100ms ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 1198px) {
+  .header h4 {
+    transform: translateX(0%);
+  }
+}

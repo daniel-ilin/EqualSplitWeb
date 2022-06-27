@@ -1,0 +1,561 @@
+{
+  "activeUser": {
+    "id": "e4faaa6e02bc053050cb841b4dd07f87",
+    "name": "Daniel",
+    "email": "ilinedv@gmail.com"
+  },
+  "sessions": [
+    {
+      "id": "f507f25f2de485f741743bc3a86855d1",
+      "name": "Session 1",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HWHF29",
+      "users": [
+        {
+          "userid": "e4faaa6e02bc053050cb841b4dd07f87",
+          "username": "Daniel",
+          "transactions": [
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-08T00:00:00.000Z",
+              "id": "9408efe7867a56d3f9137415f3f8b9f4",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Annoushesha",
+              "amount": "4500"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-14T00:00:00.000Z",
+              "id": "643d443113bf6940944c987908ad4c82",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Indian",
+              "amount": "7200"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-14T00:00:00.000Z",
+              "id": "8e4f21e0782442342681a7e6aad8ed8a",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader hoeees",
+              "amount": "8700"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-16T00:00:00.000Z",
+              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "AMC",
+              "amount": "4400"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-19T00:00:00.000Z",
+              "id": "d96c1f5f64f0f4b8f38b374800519d86",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "3005"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-25T00:00:00.000Z",
+              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "3200"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-26T00:00:00.000Z",
+              "id": "a5a0534e518254bee7bc40714313d362",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Hoe’s",
+              "amount": "8000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-26T00:00:00.000Z",
+              "id": "b1cf8a790e45f493d2526bed3ac5cc68",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Panera",
+              "amount": "1700"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-02T00:00:00.000Z",
+              "id": "ab87d69720c9ef4a99c9e80711cd612c",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Hoe’s",
+              "amount": "6000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-04T00:00:00.000Z",
+              "id": "acf7251b7558f252a96e4abe0fd79be5",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Bark-it Basket",
+              "amount": "5000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-06T00:00:00.000Z",
+              "id": "c02e8487c25b3aae9d61ad5b456fea7b",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target cleaning stuff",
+              "amount": "5000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-12T00:00:00.000Z",
+              "id": "b6e8b8530538b385f15b62aaa0caf9ac",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "13600"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-12T00:00:00.000Z",
+              "id": "3b89aca12279f9d72694da3a806f5816",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Kiwi house warming",
+              "amount": "3000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-18T00:00:00.000Z",
+              "id": "61bb8f2395657b67c38186d323f080d1",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "2000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-18T00:00:00.000Z",
+              "id": "446f47d061dfee3d062fa71f09e1c4c6",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Beatrice",
+              "amount": "2500"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-21T00:00:00.000Z",
+              "id": "e3cad198044276b55ae5959e4a8d51c9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joe’s",
+              "amount": "5245"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507f25f2de485f741743bc3a8685757",
+      "name": "Session 2",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [
+        {
+          "userid": "e4faaa6e02bc053050cb841b4dd07f87",
+          "username": "Daniel",
+          "transactions": [
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-08T00:00:00.000Z",
+              "id": "4d6f94d677ca7370aa8fe91086a3dff9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Chip and Jo mirror",
+              "amount": "6300"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-08T00:00:00.000Z",
+              "id": "9408efe7867a56d3f9137415f3f8b9f4",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Annoushesha",
+              "amount": "4500"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-14T00:00:00.000Z",
+              "id": "643d443113bf6940944c987908ad4c82",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Indian",
+              "amount": "7200"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-14T00:00:00.000Z",
+              "id": "8e4f21e0782442342681a7e6aad8ed8a",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader hoeees",
+              "amount": "8700"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-16T00:00:00.000Z",
+              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "AMC",
+              "amount": "4400"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-19T00:00:00.000Z",
+              "id": "d96c1f5f64f0f4b8f38b374800519d86",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "3005"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-25T00:00:00.000Z",
+              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "3200"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-26T00:00:00.000Z",
+              "id": "a5a0534e518254bee7bc40714313d362",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Hoe’s",
+              "amount": "8000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-26T00:00:00.000Z",
+              "id": "b1cf8a790e45f493d2526bed3ac5cc68",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Panera",
+              "amount": "1700"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-02T00:00:00.000Z",
+              "id": "ab87d69720c9ef4a99c9e80711cd612c",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Hoe’s",
+              "amount": "6000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-04T00:00:00.000Z",
+              "id": "acf7251b7558f252a96e4abe0fd79be5",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Bark-it Basket",
+              "amount": "5000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-06T00:00:00.000Z",
+              "id": "c02e8487c25b3aae9d61ad5b456fea7b",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target cleaning stuff",
+              "amount": "5000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-12T00:00:00.000Z",
+              "id": "b6e8b8530538b385f15b62aaa0caf9ac",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "13600"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-12T00:00:00.000Z",
+              "id": "3b89aca12279f9d72694da3a806f5816",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Kiwi house warming",
+              "amount": "3000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-18T00:00:00.000Z",
+              "id": "61bb8f2395657b67c38186d323f080d1",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "2000"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-18T00:00:00.000Z",
+              "id": "446f47d061dfee3d062fa71f09e1c4c6",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Beatrice",
+              "amount": "2500"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-21T00:00:00.000Z",
+              "id": "e3cad198044276b55ae5959e4a8d51c9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joe’s",
+              "amount": "5245"
+            }
+          ]
+        },
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-07T00:00:00.000Z",
+              "id": "266ace7eeaea989169d8dc31568d3cc5",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Internet",
+              "amount": "7400"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-14T00:00:00.000Z",
+              "id": "1126441e420f4cef286026f95cca3140",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Mexican",
+              "amount": "2500"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-16T00:00:00.000Z",
+              "id": "e38620b0dc833705ff60271f9daef662",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Drinks amc",
+              "amount": "1300"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-22T00:00:00.000Z",
+              "id": "cbd7dcbd42fc01411dd75eb863515948",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Melatonin gummies",
+              "amount": "2300"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-04-30T00:00:00.000Z",
+              "id": "10bdcf45a1f5685021844aa438e58a2f",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Shoe rack and curtains ",
+              "amount": "15000"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-29T00:00:00.000Z",
+              "id": "9d99f469613acef928d6e94a6ff2c3d9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Vineyard",
+              "amount": "6600"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "8c1d5da393c2b8ecb8539e6348242eb7",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "8311"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Fancy cheese",
+              "amount": "3200"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-04T00:00:00.000Z",
+              "id": "b02f0b24f5ac6d33cd72153def8a3ffb",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joes",
+              "amount": "12300"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-07T00:00:00.000Z",
+              "id": "b437c67bb6928411adefe0e72bcaabce",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joe’s",
+              "amount": "10900"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-08T00:00:00.000Z",
+              "id": "db8377244b6007f20abc5c62e35ef2c4",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Internet",
+              "amount": "7400"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-13T00:00:00.000Z",
+              "id": "6b76ba8e8fa636ca0a44f707e1c7318d",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Groceries ",
+              "amount": "2500"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-15T00:00:00.000Z",
+              "id": "24c6e64f30c6072a643f47db18dcee11",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Wegman groceries",
+              "amount": "10100"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-17T00:00:00.000Z",
+              "id": "b3cda38901cf6f4d441ea5446b705fe9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader joes",
+              "amount": "4643"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507f25f2de485f741743bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [
+        {
+          "userid": "e4faaa6e02bc053050cb841b4dd07f87",
+          "username": "Daniel",
+          "transactions": [
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-16T00:00:00.000Z",
+              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "AMC",
+              "amount": "4400"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-19T00:00:00.000Z",
+              "id": "d96c1f5f64f0f4b8f38b374800519d86",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "3005"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-25T00:00:00.000Z",
+              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "3200"
+            },
+            {
+              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+              "date": "2022-06-21T00:00:00.000Z",
+              "id": "e3cad198044276b55ae5959e4a8d51c9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joe’s",
+              "amount": "5245"
+            }
+          ]
+        },
+        {
+          "userid": "e4fbbb6e02bc053050cb841b4dd07f87",
+          "username": "Allan",
+          "transactions": [
+            {
+              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-16T00:00:00.000Z",
+              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "AMC",
+              "amount": "4400"
+            },
+            {
+              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-19T00:00:00.000Z",
+              "id": "d96c1f5f64f0f4b8f38b374800519d86",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Electricity",
+              "amount": "3005"
+            },
+            {
+              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
+              "date": "2022-05-25T00:00:00.000Z",
+              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Target",
+              "amount": "3200"
+            }
+          ]
+        },
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Fancy cheese",
+              "amount": "3200"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-04T00:00:00.000Z",
+              "id": "b02f0b24f5ac6d33cd72153def8a3ffb",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joes",
+              "amount": "12300"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-05-07T00:00:00.000Z",
+              "id": "b437c67bb6928411adefe0e72bcaabce",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader Joe’s",
+              "amount": "10900"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-08T00:00:00.000Z",
+              "id": "db8377244b6007f20abc5c62e35ef2c4",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Internet",
+              "amount": "7400"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-13T00:00:00.000Z",
+              "id": "6b76ba8e8fa636ca0a44f707e1c7318d",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Groceries ",
+              "amount": "2500"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-15T00:00:00.000Z",
+              "id": "24c6e64f30c6072a643f47db18dcee11",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Wegman groceries",
+              "amount": "10100"
+            },
+            {
+              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
+              "date": "2022-06-17T00:00:00.000Z",
+              "id": "b3cda38901cf6f4d441ea5446b705fe9",
+              "sessionid": "f507f25f2de485f741743bc3a86855d1",
+              "description": "Trader joes",
+              "amount": "4643"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+
+

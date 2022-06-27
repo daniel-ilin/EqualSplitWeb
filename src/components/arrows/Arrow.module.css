@@ -1,0 +1,25 @@
+.right {
+  border: solid #b6b6b6;
+  width: 2px;
+  height: 2px;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.left {
+  border: solid #b6b6b6;
+  width: 2px;
+  height: 2px;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+}

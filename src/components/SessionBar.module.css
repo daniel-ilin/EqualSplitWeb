@@ -1,0 +1,37 @@
+.sidebar {
+  width: 300px;
+  min-width: 250px;
+  height: 100%;
+  background-color: #f4f5f7;
+  border-left: 1px solid #b6b6b6;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1400px) {
+  .sidebar {
+    width: 250px;
+  }
+}
+
+.sidebar-bottom {
+  height: 100%;
+  border-right: 1px solid #b6b6b6;
+  display: flex;
+  flex-direction: column;
+  margin-top: -1rem;
+}
+
+.btn {
+  background-color: transparent;
+  color: #007aff;
+  border: 0;
+  margin-top: 0.4rem;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 250ms;
+}
+
+.btn:hover {
+  color: #7ab6ff;
+}
