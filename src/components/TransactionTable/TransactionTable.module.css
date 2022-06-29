@@ -1,0 +1,21 @@
+.transactions {
+  width: 100%;
+  height: 100%;
+  overflow: scroll;  
+}
+
+.transactions ul {
+  margin: 0;
+  padding: 0;  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.spacer {
+  width: 100%;
+  height: 10px;
+  background: none;
+}

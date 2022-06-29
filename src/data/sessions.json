@@ -416,79 +416,11 @@
       ]
     },
     {
-      "id": "f507f25f2de485f741743bc3a1238757",
+      "id": "f507f25f1232de485f741743bc3a1238757",
       "name": "Session 3",
       "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
       "sessioncode": "HH11HH",
-      "users": [
-        {
-          "userid": "e4faaa6e02bc053050cb841b4dd07f87",
-          "username": "Daniel",
-          "transactions": [
-            {
-              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-16T00:00:00.000Z",
-              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "AMC",
-              "amount": "4400"
-            },
-            {
-              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-19T00:00:00.000Z",
-              "id": "d96c1f5f64f0f4b8f38b374800519d86",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Electricity",
-              "amount": "3005"
-            },
-            {
-              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-25T00:00:00.000Z",
-              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Target",
-              "amount": "3200"
-            },
-            {
-              "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
-              "date": "2022-06-21T00:00:00.000Z",
-              "id": "e3cad198044276b55ae5959e4a8d51c9",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Trader Joe’s",
-              "amount": "5245"
-            }
-          ]
-        },
-        {
-          "userid": "e4fbbb6e02bc053050cb841b4dd07f87",
-          "username": "Allan",
-          "transactions": [
-            {
-              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-16T00:00:00.000Z",
-              "id": "6c0e5b85c51f41c5421ce3140c8ed7ee",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "AMC",
-              "amount": "4400"
-            },
-            {
-              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-19T00:00:00.000Z",
-              "id": "d96c1f5f64f0f4b8f38b374800519d86",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Electricity",
-              "amount": "3005"
-            },
-            {
-              "ownerid": "e4fbbb6e02bc053050cb841b4dd07f87",
-              "date": "2022-05-25T00:00:00.000Z",
-              "id": "dec8f652114cf26ae5ea762f5d26f8c8",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Target",
-              "amount": "3200"
-            }
-          ]
-        },
+      "users": [        
         {
           "userid": "b82d19612ec83ad04cc4ff033323bbc4",
           "username": "Lau",
@@ -500,54 +432,116 @@
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
               "description": "Fancy cheese",
               "amount": "3200"
-            },
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507123f25f1232de485f741743bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [        
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
             {
               "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-06-04T00:00:00.000Z",
-              "id": "b02f0b24f5ac6d33cd72153def8a3ffb",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Trader Joes",
-              "amount": "12300"
-            },
+              "description": "Fancy cheese",
+              "amount": "3200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f50123117f25f1232de485f741743bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [        
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
             {
               "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-05-07T00:00:00.000Z",
-              "id": "b437c67bb6928411adefe0e72bcaabce",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Trader Joe’s",
-              "amount": "10900"
-            },
+              "description": "Fancy cheese",
+              "amount": "3200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507f25f1232de485f741734343443bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [        
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
             {
               "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-06-08T00:00:00.000Z",
-              "id": "db8377244b6007f20abc5c62e35ef2c4",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Internet",
-              "amount": "7400"
-            },
+              "description": "Fancy cheese",
+              "amount": "3200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507f25f1232de485f756456441743bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [        
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
             {
               "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-06-13T00:00:00.000Z",
-              "id": "6b76ba8e8fa636ca0a44f707e1c7318d",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Groceries ",
-              "amount": "2500"
-            },
+              "description": "Fancy cheese",
+              "amount": "3200"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "f507f25f12345452de485f741743bc3a1238757",
+      "name": "Session 3",
+      "ownerid": "e4faaa6e02bc053050cb841b4dd07f87",
+      "sessioncode": "HH11HH",
+      "users": [        
+        {
+          "userid": "b82d19612ec83ad04cc4ff033323bbc4",
+          "username": "Lau",
+          "transactions": [
             {
               "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-06-15T00:00:00.000Z",
-              "id": "24c6e64f30c6072a643f47db18dcee11",
+              "date": "2022-06-02T00:00:00.000Z",
+              "id": "6585104134ae7adf973f73959f829c0f",
               "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Wegman groceries",
-              "amount": "10100"
-            },
-            {
-              "ownerid": "b82d19612ec83ad04cc4ff033323bbc4",
-              "date": "2022-06-17T00:00:00.000Z",
-              "id": "b3cda38901cf6f4d441ea5446b705fe9",
-              "sessionid": "f507f25f2de485f741743bc3a86855d1",
-              "description": "Trader joes",
-              "amount": "4643"
+              "description": "Fancy cheese",
+              "amount": "3200"
             }
           ]
         }

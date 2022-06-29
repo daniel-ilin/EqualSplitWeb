@@ -1,0 +1,54 @@
+.item-frame {
+  width: auto;
+  max-width: 90%;
+  min-width: 60%;
+  position: relative;
+  min-height: 75px;
+  border: 1px solid #dedede;
+  background-color: white;
+  margin: 0.6rem 0rem 0.6rem 0rem;
+  display: flex;
+  align-self: flex-end;
+  margin-right: 3%;
+  overflow: hidden;
+}
+
+.sent {
+  flex-direction: row;
+}
+
+.calculated {
+  display: flex;
+  align-self: flex-start;
+  border: 1px solid #dedede;
+  background-color: white;
+  min-width: 200px;
+  width: auto;
+  max-width: 90%;
+  min-width: 40%;
+  min-height: 60px;
+  margin-left: 3%;
+  align-items: center;
+}
+
+.item-frame h4 {
+  font-weight: 300;
+  font-size: larger;
+}
+
+.item-frame h3 {
+  font-weight: 500;
+  font-size: larger;
+}
+
+.item-frame li {
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  list-style-type: none;
+}

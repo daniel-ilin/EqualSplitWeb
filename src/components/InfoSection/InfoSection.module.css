@@ -1,0 +1,44 @@
+.whole {
+  width: 94%;
+  height: 120px;
+  padding-top: 9px;
+  align-self: center;
+  border-bottom: 1px solid #dedede;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.section {
+  display: flex;
+  min-width: 50%;
+  flex-direction: column;
+}
+
+.section h2 {
+  font-weight: 400;
+  padding-left: 6px;
+}
+
+.section h4 {
+  font-weight: 300;
+  padding-left: 6px;
+}
+
+.bar-wrapper {
+  width: 30%;
+  position: absolute;
+  right: 40px;
+  top: 16px;
+  height: 30px;
+  border: 1px solid blue;
+}
+
+.container {
+  height: 30px;
+  background-color: pink;
+}
+
+.barCompleted {  
+  background-color: lightblue;
+}
