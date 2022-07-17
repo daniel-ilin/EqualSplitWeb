@@ -1,8 +1,8 @@
-import { formatCurrency } from "../utilities/formatCurrency";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import styles from "./SessionTab.module.css";
-import personIcon from "../imgs/person-icon.png"; // relative path to image
-import { useSelectSession } from "../context/SessionContext";
-import arrowsStyles from "./arrows/Arrow.module.css";
+import personIcon from "../../imgs/person-icon.png"; // relative path to image
+import { useSelectSession } from "../../context/SessionContext";
+import arrowsStyles from ".././arrows/Arrow.module.css";
 
 type SessionTabProps = {
   session: Session;

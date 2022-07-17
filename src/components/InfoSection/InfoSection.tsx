@@ -1,30 +1,30 @@
 import styles from "./InfoSection.module.css";
-import data from "../../data/sessions.json";
+
 import { useSelectSession } from "../../context/SessionContext";
 import { useMemo } from "react";
-import React from "react";
-
-import ProgressBar from "@ramonak/react-progress-bar";
+import { useUserDataModelContext } from "../../context/UserDataModelContext";
 
 export const InfoSection = () => {
+  const { getCurrentModel } = useUserDataModelContext();
   const { getActiveSession, getActiveUser } = useSelectSession();
 
   const userId = useMemo(() => getActiveUser(), [getActiveUser]);
   const sessionId = useMemo(() => getActiveSession(), [getActiveSession]);
+  const data = getCurrentModel();
 
   return (
     <>
       <div className={styles.whole}>
         <span className={styles.section}>
           <h2>
-            {
+            {data.sessions !== undefined &&
               data.sessions
                 .find((session) => session.id === sessionId)
-                ?.users.find((user) => user.userid === userId)?.username
-            }
+                ?.users.find((user) => user.userid === userId)?.username}
           </h2>
           <h4>
-            {data.sessions.find((session) => session.id === sessionId)?.name}
+            {data.sessions !== undefined &&
+              data.sessions.find((session) => session.id === sessionId)?.name}
           </h4>
         </span>
         <span>

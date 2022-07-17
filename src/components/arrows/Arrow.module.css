@@ -23,3 +23,12 @@
   transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
+
+.bottom {
+  border: solid #b6b6b6;  
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}

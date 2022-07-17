@@ -1,0 +1,92 @@
+.card {
+  width: 400px;
+  height: auto;
+  background-color: white;
+  z-index: 11;
+  padding: 1.4rem;
+  border-radius: 2px;
+}
+
+.v-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.v-group input {
+  border: 1px solid #b6b6b6;
+  height: 34px;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  padding-left: 0.4rem;
+}
+
+.v-group h2 {
+  font-weight: 600;
+  font-size: xx-large;
+  color: #007aff;
+}
+
+.v-group p {
+  color: #747474;
+  font-weight: 400;
+  font-size: larger;
+  padding-top: 0.4rem;
+  padding-bottom: 1.4rem;
+}
+
+.h-group {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 0.2rem;
+}
+
+.h-group button {
+  width: 48%;
+  height: 36px;
+  border-radius: 6px;
+}
+
+.cancel {
+  background-color: transparent;
+  border: 1.4px solid #b6b6b6;
+  color: #808080;
+}
+
+.cancel:hover {
+  background-color: #f8f8f8;
+}
+
+.confirm {
+  background-color: #007aff;
+  color: white;
+  border: none;
+}
+
+.confirm:hover {
+  background-color: #0067dc;
+}
+
+.centerblock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.4rem;
+}
+
+.centerblock button {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+  border: none;
+}
+
+.centerblock button h3 {
+  font-size: small;
+  font-weight: 500;
+}
+
+.centerblock button h4 {
+  font-size: small;
+  color: #484848;
+  font-weight: 300;
+}

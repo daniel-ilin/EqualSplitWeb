@@ -1,0 +1,41 @@
+.inputholder {
+  width: 40%;
+  min-width: 10rem;
+  height: 35px;
+  position: relative;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.inputholder h5 {
+  z-index: 2;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+  font-weight: 300;
+  color: #888888;
+  font-size: medium;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+
+.inputting h5 {
+  color: black;  
+}
+
+.amount-hidden {
+  border-radius: 0;
+  border: none;
+  outline: none;
+  color: transparent;
+  white-space: nowrap;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-left: 0.5rem;
+  z-index: 1;
+  caret-color: black;
+}

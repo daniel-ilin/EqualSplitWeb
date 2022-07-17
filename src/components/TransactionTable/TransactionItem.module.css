@@ -10,11 +10,17 @@
   display: flex;
   align-self: flex-end;
   margin-right: 3%;
-  overflow: hidden;
+  margin-left: 3%;
+  overflow: visible;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
 .sent {
   flex-direction: row;
+}
+
+.sentReversed {
+  align-self: flex-start;
 }
 
 .calculated {
@@ -29,6 +35,10 @@
   min-height: 60px;
   margin-left: 3%;
   align-items: center;
+}
+
+.calculatedReversed {
+  align-self: flex-end;
 }
 
 .item-frame h4 {
@@ -51,4 +61,39 @@
   justify-content: space-between;
   flex-direction: row;
   list-style-type: none;
+}
+
+.itemarrow {
+  right: 12px;
+  top: 8px;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.modal-open {
+  animation: openModal 100ms ease-out forwards;
+}
+
+.modal-closed {
+  animation: closeModal 100ms ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

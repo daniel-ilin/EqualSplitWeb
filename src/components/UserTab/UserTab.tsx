@@ -1,7 +1,7 @@
-import { useSelectSession } from "../context/SessionContext";
-import { formatCurrency } from "../utilities/formatCurrency";
+import { useSelectSession } from "../../context/SessionContext";
+import { formatCurrency } from "../../utilities/formatCurrency";
 import styles from "./UserTab.module.css";
-import arrowsStyles from "./arrows/Arrow.module.css";
+import arrowsStyles from ".././arrows/Arrow.module.css";
 
 type UserTabProps = {
   user: User;

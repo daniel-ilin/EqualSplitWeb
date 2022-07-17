@@ -1,21 +1,35 @@
-.user-tab {
-  display: flex;
-  height: 60px;
+.session-tab {
+  display: flex;  
+  height: auto;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  background-color: transparent;
+  background-color: white;
   border-bottom: 1px solid #dedede;
-  border-right: 1px solid #dedede;
+  border-right: 1px solid #b6b6b6;
   color: black;
-  padding: 0.4rem 0 0.4rem 1rem;
+  padding: 0.4rem 0 0rem 1rem;
   margin-left: -2rem;
   cursor: pointer;
   transition: background-color 150ms;
 }
 
-.user-tab:hover {
-  background-color: #f2f2f2;
+.session-tab:hover {
+  background-color: #f5f6f8;
+}
+
+.active {
+  background-color: #ebeef3;
+  border-right: none;
+  border-bottom: 1px solid #b6b6b6;
+}
+
+.users-closed {
+  border-right: 1px solid #b6b6b6;
+}
+
+.active:hover {
+  background-color: #ebeef3;
 }
 
 .spacer-container {
@@ -30,39 +44,24 @@
   transform: translateX(2%);
 }
 
-.active {
-  background-color: #f5f6f8;
-  border-right: none;
-}
-
-.active:hover {
-  background-color: #f5f6f8;
-}
-
-.user-tab h2 {
+.session-tab h1 {
   background-color: transparent;
   margin: 0 0 0.3rem 0;
-  font-size: medium;
+  font-size: large;
 }
 
-.user-tab p {
-  background-color: transparent;
-  margin: 0 0 0.3rem 0;
-  font-size: small;
-  color: #747474;
-}
-
-.user-info {
+.session-info {
   background-color: transparent;
   display: flex;
   align-items: flex-start;
+  margin-bottom: -13.8px;
 }
 
-.user-info p {
+.session-info p {
   background-color: transparent;
 }
 
-.user-info-item {
+.session-info-item {
   background-color: none;
   margin: 0 0.8rem 0 0;
 }

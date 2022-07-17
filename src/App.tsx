@@ -1,46 +1,35 @@
-import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import { SessionBar } from "./components/SessionBar";
+import { Suspense } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import styles from "./App.module.css";
 import { SessionContextProvider } from "./context/SessionContext";
-import { Header } from "./components/Header";
-import { ActiveSessionContainer } from "./components/ActiveSessionContainer/ActiveSessionContainer";
+import LoadingSpinner from "./components/Spinner/LoadingSpinner";
+import { Home } from "./pages/Home";
+import { LoginPage } from "./pages/LoginPage";
+import { UserDataModelContextProvider } from "./context/UserDataModelContext";
+import { ModalContextProvider } from "./context/ModalContext";
 
 function App() {
-  const [usersBarVisible, setUsersBarVisible] = useState(false);
-
-  const setUsersBarVisibleHandler = (val: boolean) => {
-    setUsersBarVisible(val)
-  };
-
-  const switchUsersBarVisibleHandler = () => {
-    setUsersBarVisible((currentVal) => {
-      console.log(JSON.stringify(!currentVal));
-      return !currentVal;
-    });
-  };
-
   return (
     <>
-      <SessionContextProvider>
-        <Container className={styles.custom}>
-          <div className={styles.wrapper}>
-            <Header></Header>
-            <div className={styles.overall}>
-              <div style={{ zIndex: 2 }}>
-                <SessionBar
-                  setUsersBarVisible={switchUsersBarVisibleHandler}
-                  usersBarVisible={usersBarVisible}
-                />
-              </div>
-              <ActiveSessionContainer
-                setUsersBarVisible={setUsersBarVisibleHandler}
-                usersBarVisible={usersBarVisible}
-              />
-            </div>
-          </div>
-        </Container>
-      </SessionContextProvider>
+      <ModalContextProvider>
+        <SessionContextProvider>
+          <UserDataModelContextProvider>
+            <Suspense
+              fallback={
+                <div className={styles.centered}>
+                  <LoadingSpinner />
+                </div>
+              }
+            >
+              <Routes>
+                <Route path="/" element={<Navigate to="/home" />} />
+                <Route path="/login" element={<LoginPage />}></Route>
+                <Route path="/home" element={<Home />}></Route>
+              </Routes>
+            </Suspense>
+          </UserDataModelContextProvider>
+        </SessionContextProvider>
+      </ModalContextProvider>
     </>
   );
 }

@@ -29,13 +29,11 @@ export const SessionContextProvider = (props: SessionContextProviderProps) => {
     ""
   );
 
-  const setActiveSession = (id: string) => {
-    console.log("Set active session");
+  const setActiveSession = (id: string) => {    
     setSelectedSession(id);
   };
 
-  const setActiveUser = (id: string) => {
-    console.log("Set active user");
+  const setActiveUser = (id: string) => {    
     setSelectedUser(id);
   };
 

@@ -1,18 +1,45 @@
+import { useState } from "react";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalType } from "../../types/ModalType";
 import styles from "./DropDownMenuMobile.module.css";
 
-export const DropDownMenuMobile = () => {
+type DropDownMenuMobileProps = {
+  hideMenuHandler: () => void;
+};
+
+export const DropDownMenuMobile = (props: DropDownMenuMobileProps) => {
+  const { toggleModal } = useModalContext();
+
+  // const [modalType, setModalType] = useState<ModalType>(ModalType.addSession)
+
+  const createSessionHandler = () => {        
+    props.hideMenuHandler();
+    toggleModal(ModalType.createSession);
+  };
+
+  const joinSessionHandler = () => {    
+    props.hideMenuHandler();
+    toggleModal(ModalType.joinSession);
+  };
+
+  const profileHandler = () => {    
+    props.hideMenuHandler();
+    toggleModal(ModalType.profile);
+  };
+
   return (
     <>
+      <div className={styles.backdrop} onClick={props.hideMenuHandler} />
       <div className={styles.menu}>
-        <button>Create Session</button>
+        <button onClick={createSessionHandler}>Create Session</button>
 
         <div className={styles.divider} />
 
-        <button>Join Session</button>
+        <button onClick={joinSessionHandler}>Join Session</button>
 
         <div className={styles.divider} />
 
-        <button>Profile</button>
+        <button onClick={profileHandler}>Profile</button>
       </div>
     </>
   );

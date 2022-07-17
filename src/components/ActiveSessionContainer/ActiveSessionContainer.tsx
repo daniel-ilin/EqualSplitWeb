@@ -1,6 +1,6 @@
 import { useSelectSession } from "../../context/SessionContext";
-import { ActiveSession } from "../ActiveSession";
-import { SessionUsersBar } from "../SessionUsersBar";
+import { ActiveSession } from "../ActiveSession/ActiveSession";
+import { SessionUsersBar } from "../SessionUsersBar/SessionUsersBar";
 import styles from "./ActiveSessionContainer.module.css";
 import CSSTransition from "react-transition-group/CSSTransition";
 import { useEffect } from "react";
@@ -15,7 +15,7 @@ export const ActiveSessionContainer = (props: ActiveSessionContainerProps) => {
   const { getActiveUser } = useSelectSession();
 
   useEffect(() => {
-    setUsersBarVisible(getActiveUser() !== "");
+    setUsersBarVisible(getActiveUser() !== "");    
   }, []);
 
   return (

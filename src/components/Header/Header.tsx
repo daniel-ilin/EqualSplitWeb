@@ -1,8 +1,8 @@
 import { useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
-import { DotsButton } from "./DotsButton/DotsButton";
-import { DropDownMenu } from "./DropDownMenu/DropDownMenu";
-import { DropDownMenuMobile } from "./DropDownMenu/DropDownMenuMobile";
+import { DotsButton } from ".././DotsButton/DotsButton";
+import { DropDownMenu } from ".././DropDownMenu/DropDownMenu";
+import { DropDownMenuMobile } from ".././DropDownMenu/DropDownMenuMobile";
 import styles from "./Header.module.css";
 
 export const Header = () => {
@@ -28,7 +28,7 @@ export const Header = () => {
           exitActive: styles["modal-closed"],
         }}
       >
-        <DropDownMenuMobile />
+        <DropDownMenuMobile hideMenuHandler={menuExpandedHandler} />
       </CSSTransition>
       <div className={styles.header}>
         <DotsButton
