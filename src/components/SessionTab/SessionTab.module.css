@@ -1,6 +1,7 @@
 .session-tab {
-  display: flex;  
-  height: auto;
+  display: flex;
+  width: 100% + 2rem;
+  height: 60px;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
@@ -11,7 +12,7 @@
   padding: 0.4rem 0 0rem 1rem;
   margin-left: -2rem;
   cursor: pointer;
-  transition: background-color 150ms;
+  transition: background-color 150ms;  
 }
 
 .session-tab:hover {
@@ -38,6 +39,7 @@
   flex-direction: row;
   justify-content: space-between;
   transition: all 150ms;
+  overflow: hidden;
 }
 
 .inactive-translate:hover {
@@ -47,7 +49,7 @@
 .session-tab h1 {
   background-color: transparent;
   margin: 0 0 0.3rem 0;
-  font-size: large;
+  font-size: large;  
 }
 
 .session-info {
@@ -64,4 +66,44 @@
 .session-info-item {
   background-color: none;
   margin: 0 0.8rem 0 0;
+}
+
+.itemarrow {
+  position: relative;
+  margin-right: 1.4rem;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.4px;
+  height: 18px;
+  width: 18px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.modal-open {
+  animation: openModal 100ms ease-out forwards;
+}
+
+.modal-closed {
+  animation: closeModal 100ms ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

@@ -1,14 +1,41 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useLoginContext } from "../../context/LoginContext";
+import apiService from "../../utilities/APIService";
 import styles from "./LoginCard.module.css";
+import { useNavigate } from "react-router-dom";
 
 type LoginCardProps = {
   changeRegisterShowingHandler: () => void;
 };
 
 export const LoginCard = (props: LoginCardProps) => {
-  const sessionNameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const confirmButtonHandler = () => {};
+  const { setLoginState } = useLoginContext();
+
+  const [errorShowing, setErrorShowing] = useState(false);
+
+  const navigate = useNavigate();
+
+  const confirmButtonHandler = async () => {
+    if (
+      emailRef.current?.value !== undefined &&
+      passwordRef.current?.value !== undefined
+    ) {
+      try {
+        await apiService.login(
+          emailRef.current?.value,
+          passwordRef.current?.value
+        );
+        setErrorShowing(false);
+        setLoginState(true);
+        navigate("/home");
+      } catch (error) {        
+        setErrorShowing(true);
+      }
+    }
+  };
 
   return (
     <>
@@ -18,11 +45,11 @@ export const LoginCard = (props: LoginCardProps) => {
           <p>Login</p>
           <input
             placeholder="Email"
-            ref={sessionNameRef}
+            ref={emailRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                emailRef.current?.value !== undefined &&
+                emailRef.current?.value.length > 30
               ) {
                 event.preventDefault();
               }
@@ -30,11 +57,11 @@ export const LoginCard = (props: LoginCardProps) => {
           />
           <input
             placeholder="Password"
-            ref={sessionNameRef}
+            ref={passwordRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                passwordRef.current?.value !== undefined &&
+                passwordRef.current?.value.length > 30
               ) {
                 event.preventDefault();
               }
@@ -53,9 +80,21 @@ export const LoginCard = (props: LoginCardProps) => {
           </button>
         </span>
         <div className={styles.centerblock}>
+          {errorShowing && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "0.6rem",
+                position: "fixed",
+                marginTop: "-1.8rem",
+              }}
+            >
+              Wrong email/password
+            </p>
+          )}
           <button>
             <h4>Forgot your password?</h4>
-            <h3>Reset Password</h3>
+            <h3>Reset password</h3>
           </button>
         </div>
       </div>

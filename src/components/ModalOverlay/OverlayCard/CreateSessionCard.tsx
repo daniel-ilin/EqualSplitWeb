@@ -30,17 +30,23 @@ export const CreateSessionCard = () => {
   };
 
   const confirmButtonHandler = async () => {
-    console.log("Confirm handler running!");
-    if (sessionNameRef.current !== null) {
-      const response = await apiService.postSession(
-        sessionNameRef.current?.value
-      );
-      toggleModal(getModalState().modalState.modalType);
-      if (response.error !== undefined) {
-        return;
-      }
+    try {
+      if (
+        sessionNameRef.current !== null &&
+        sessionNameRef.current.value.length > 0
+      ) {
+        const response = await apiService.postSession(
+          sessionNameRef.current?.value
+        );
+        toggleModal(getModalState().modalState.modalType);
+        if (response.error !== undefined) {
+          return;
+        }
 
-      sendGetDataRequest();
+        sendGetDataRequest();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -5,7 +5,7 @@ import styles from "./LoginPage.module.css";
 
 export const LoginPage = () => {
   const [registerShowing, setRegisterShowing] = useState(false);
-
+  
   const changeRegisterShowingHandler = () => {
     setRegisterShowing((prev) => {
       return !prev;

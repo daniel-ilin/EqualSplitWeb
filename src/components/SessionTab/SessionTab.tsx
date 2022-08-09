@@ -3,6 +3,9 @@ import styles from "./SessionTab.module.css";
 import personIcon from "../../imgs/person-icon.png"; // relative path to image
 import { useSelectSession } from "../../context/SessionContext";
 import arrowsStyles from ".././arrows/Arrow.module.css";
+import { useState } from "react";
+import { SessionMenu } from "./SessionMenu/SessionMenu";
+import CSSTransition from "react-transition-group/CSSTransition";
 
 type SessionTabProps = {
   session: Session;
@@ -23,18 +26,42 @@ const getTotalSessionAmount = (users: User[]) => {
 };
 
 export const SessionTab = (props: SessionTabProps) => {
+  const [menuExpanded, setMenuExpanded] = useState(false);
+
   const { setActiveSession, removeActiveUser } = useSelectSession();
+
+  const [arrowShowing, setArrowShowing] = useState(false);
 
   const { session, isActive, setUsersBarVisible, usersBarVisible } = props;
 
-  const arrowCSS = usersBarVisible && isActive ? "left" : "right";
+  const mouseEnterHandler = () => {
+    setArrowShowing(true);
+  };
+
+  const mouseLeaveHandler = () => {
+    setArrowShowing(false);
+  };
+
+  const dropDownMenuHandler = () => {
+    setMenuExpanded((prevState) => {
+      return !prevState;
+    });
+  };
+
+  const showMenuHandler = () => {
+    setMenuExpanded((prevState) => {
+      return !prevState;
+    });
+  };
 
   return (
     <>
       <li
+        onMouseEnter={mouseEnterHandler}
+        onMouseLeave={mouseLeaveHandler}
         onClick={() => {
           setActiveSession(session.id);
-          (isActive || !usersBarVisible) && setUsersBarVisible();
+          !usersBarVisible && setUsersBarVisible();
           !isActive && removeActiveUser();
         }}
         className={
@@ -50,8 +77,9 @@ export const SessionTab = (props: SessionTabProps) => {
               : `${styles["spacer-container"]} ${styles["inactive-translate"]}`
           }
         >
-          <div>
+          <div style={{ width: "80%", overflow: "hidden" }}>
             <h1>{session.name}</h1>
+
             <div className={styles["session-info"]}>
               <span>
                 <img
@@ -72,8 +100,29 @@ export const SessionTab = (props: SessionTabProps) => {
               <p>{formatCurrency(getTotalSessionAmount(session.users))}</p>
             </div>
           </div>
-          <i className={arrowsStyles[arrowCSS]}></i>
+          {arrowShowing && (
+            <div className={styles.itemarrow} onClick={dropDownMenuHandler}>
+              <i className={arrowsStyles.bottom} />
+            </div>
+          )}
         </div>
+        <CSSTransition
+          in={menuExpanded}
+          mountOnEnter={true}
+          unmountOnExit={true}
+          timeout={100}
+          classNames={{
+            enter: "",
+            enterActive: styles["modal-open"],
+            exit: "",
+            exitActive: styles["modal-closed"],
+          }}
+        >
+          <SessionMenu
+            hideMenuHandler={showMenuHandler}
+            session={session}
+          />
+        </CSSTransition>
       </li>
     </>
   );

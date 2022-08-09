@@ -2,6 +2,7 @@ import styles from "./TransactionMenu.module.css";
 
 type TransactionMenuProps = {
   hideMenuHandler: () => void;
+  deleteTransactionHandler: () => void;
 };
 
 export const TransactionMenu = (props: TransactionMenuProps) => {
@@ -14,7 +15,7 @@ export const TransactionMenu = (props: TransactionMenuProps) => {
 
           <div className={styles.divider} />
 
-          <button>Delete</button>
+          <button onClick={props.deleteTransactionHandler}>Delete</button>
         </div>
       </div>
     </>

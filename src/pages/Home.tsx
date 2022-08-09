@@ -17,21 +17,18 @@ export const Home = () => {
 
   const { getModalState } = useModalContext();
 
-  const fetchAllData = () => {
-    async function fetchData() {
+  const fetchAllData = async () => {
+    try {
       const response = await apiService.getAllUserData();
       if (response !== null) {
-        setCurrentModel(response);
+        setCurrentModel(response);        
       }
-    }
-    try {
-      fetchData();
     } catch (error) {
       console.log(error);
     }
   };
 
-  useInterval(fetchAllData, 5000);
+  useInterval(fetchAllData, 1000);
 
   useEffect(() => {
     fetchAllData();
@@ -67,7 +64,7 @@ export const Home = () => {
           </div>
         </div>
         {/* <div className={styles.backdrop}></div> */}
-      </Container>      
+      </Container>
     </>
   );
 };

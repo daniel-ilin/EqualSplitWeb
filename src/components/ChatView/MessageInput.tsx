@@ -19,12 +19,11 @@ export const MessageInput = () => {
 
   const { getActiveSession, getActiveUser } = useSelectSession();
 
-  const descriptionRef = useRef<HTMLInputElement>(null);  
+  const descriptionRef = useRef<HTMLInputElement>(null);
   const [moneyAmount, setMoneyAmount] = useState(0);
 
   const updateAmountHandler = (amount: number) => {
-    setMoneyAmount(amount)
-    console.log(moneyAmount);
+    setMoneyAmount(amount);
   };
 
   const addTransactionHandler = async () => {
@@ -34,21 +33,23 @@ export const MessageInput = () => {
         ? ""
         : descriptionRef.current?.value;
     const money = moneyAmount;
-    console.log(money);
     const activeUser = getActiveUser();
+    try {
+      const response = await apiService.addTransaction(
+        sessionid,
+        description,
+        money,
+        activeUser
+      );
 
-    const response = await apiService.addTransaction(
-      sessionid,
-      description,
-      money,
-      activeUser
-    );
+      if (response.error !== undefined) {
+        return;
+      }
 
-    if (response.error !== undefined) {
-      return;
+      sendGetDataRequest();
+    } catch (error) {
+      console.log(error);
     }
-
-    sendGetDataRequest();
   };
 
   useEffect(() => {

@@ -21,6 +21,11 @@ interface ApiReponse {
   error: ?string;
 }
 
+interface TokensResponse {
+  accessToken: string;
+  refreshToken: string;
+}
+
 interface UserData {
   activeUser: ActiveUser;
   sessions: [Session];

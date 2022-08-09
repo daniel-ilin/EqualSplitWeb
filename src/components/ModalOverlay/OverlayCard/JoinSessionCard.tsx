@@ -30,17 +30,20 @@ export const JoinSessionCard = () => {
   };
 
   const confirmButtonHandler = async () => {
-    console.log("Confirm handler running!");
-    if (sessionCodeRef.current !== null) {
-      const response = await apiService.joinSession(
-        sessionCodeRef.current.value
-      );
-      toggleModal(getModalState().modalState.modalType);
-      if (response.error !== undefined) {
-        return;
-      }
+    try {
+      if (sessionCodeRef.current !== null) {
+        const response = await apiService.joinSession(
+          sessionCodeRef.current.value
+        );
+        toggleModal(getModalState().modalState.modalType);
+        if (response.error !== undefined) {
+          return;
+        }
 
-      sendGetDataRequest();
+        sendGetDataRequest();
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 

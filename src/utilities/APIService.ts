@@ -5,10 +5,6 @@ const axios = require("axios").default;
 
 class APIService {
   async getAccessToken() {
-    const refreshToken =
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoiNGVlZjMwNjZkZmVlNTc4M2Y0ZGNiMDM3ZjZmMzFhYWEiLCJlbWFpbCI6InRlc3QxIiwiaWF0IjoxNjU3OTgyMjYxLCJleHAiOjE3NTI2NTUwNjF9.TMLZHHS2A6Rg7QxPM3g2ZThzc7RRho4zCWluYWXAw-A";
-    Cookies.set("refresh-token", refreshToken);
-
     let config = {
       headers: {
         "x-auth-token": `${Cookies.get("refresh-token")}`,
@@ -21,7 +17,6 @@ class APIService {
     );
 
     if (result.data.error !== undefined) {
-      console.log(result.data.error);
       throw new Error(result.data.error || "Could not get the token");
     }
     Cookies.set("access-token", result.data.accessToken);
@@ -60,6 +55,7 @@ class APIService {
     }
 
     const result = (await response.json()) as UserData;
+
     return result;
   }
 
@@ -95,6 +91,48 @@ class APIService {
 
       const response = await fetch(endpoint, {
         method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not get user data.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async deleteTransaction(id: string, sessionid: string) {
+    const endpoint = `${Constants.API_ADDRESS}/transaction`;
+    const accessToken = Cookies.get("access-token");
+
+    const body = JSON.stringify({
+      id: id,
+      sessionid: sessionid      
+    });
+
+    const response = await fetch(endpoint, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "delete",
         headers: {
           "Content-Type": "application/json",
           "x-auth-token": `${accessToken}`,
@@ -189,6 +227,207 @@ class APIService {
       return result;
     } else if (!response.ok) {
       throw new Error("Could not get user data.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async login(email: string, password: string) {
+    const endpoint = `${Constants.API_ADDRESS}/login`;
+
+    const body = JSON.stringify({
+      email: email,
+      password: password,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      const result = (await response.json()) as ApiReponse;
+      throw new Error(result.error || "Could not login");
+    } else {
+      const result = (await response.json()) as TokensResponse;
+      Cookies.set("refresh-token", result.refreshToken);
+      Cookies.set("access-token", result.accessToken);
+      return result;
+    }
+  }
+
+  async logout() {
+    const endpoint = `${Constants.API_ADDRESS}/logout`;
+
+    const response = await fetch(endpoint, {
+      method: "delete",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${Cookies.get("refresh-token")}`,
+      },
+      credentials: "include",
+    });
+
+    Cookies.remove("access-token");
+    Cookies.remove("refresh-token");
+
+    if (!response.ok) {
+      const result = (await response.json()) as ApiReponse;
+      throw new Error(result.error || "Could not logout");
+    }
+  }
+
+  async changeUsername(newname: string) {
+    const accessToken = Cookies.get("access-token");
+
+    const endpoint = `${Constants.API_ADDRESS}/users`;
+
+    const body = JSON.stringify({
+      newname: newname,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not get user data.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async register(name: string, email: string, password: string) {
+    const endpoint = `${Constants.API_ADDRESS}/register`;
+
+    const body = JSON.stringify({
+      name: name,
+      email: email,
+      password: password,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: body,
+    });
+
+    if (!response.ok) {
+      throw new Error("Could not register.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async deleteSession(id: string) {
+    const endpoint = `${Constants.API_ADDRESS}/session`;
+
+    const accessToken = Cookies.get("access-token");
+
+    const body = JSON.stringify({
+      sessionid: id,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not delete session.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async removeUser(userid: string, sessionid: string) {
+    const endpoint = `${Constants.API_ADDRESS}/session/user`;
+
+    const accessToken = Cookies.get("access-token");
+
+    const body = JSON.stringify({
+      targetid: userid,
+      sessionid: sessionid,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not delete session.");
     }
 
     const result = (await response.json()) as ApiReponse;

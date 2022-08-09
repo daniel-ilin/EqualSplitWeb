@@ -28,7 +28,7 @@ export const ActiveSession = () => {
     <>
       <div className={styles["session-frame"]}>
         <InfoSection></InfoSection>
-        <TransactionTable></TransactionTable>
+        <TransactionTable editable={editable}></TransactionTable>
         {editable && <MessageInput></MessageInput>}
       </div>
     </>

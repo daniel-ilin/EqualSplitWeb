@@ -6,7 +6,11 @@ import { CalculatedTransactionItem } from "./CalculatedTransactionItem";
 import { TransactionItem } from "./TransactionItem";
 import styles from "./TransactionTable.module.css";
 
-export const TransactionTable = () => {
+type TransactionTableProps = {
+  editable: boolean;
+};
+
+export const TransactionTable = (props: TransactionTableProps) => {
   const { getActiveSession, getActiveUser } = useSelectSession();
 
   const { getCurrentModel } = useUserDataModelContext();
@@ -61,6 +65,7 @@ export const TransactionTable = () => {
               key={transaction.id}
               calculated={false}
               switchScrollStateHandler={switchScrollStateHandler}
+              editable={props.editable}              
             ></TransactionItem>
           ))}
           <li className={styles.spacer}></li>
@@ -73,7 +78,7 @@ export const TransactionTable = () => {
                   transaction={calculatedTransaction}
                   calculated={true}
                   key={calculatedTransaction.id}
-                  calculatedUsers={calculatedUsers}
+                  calculatedUsers={calculatedUsers}                  
                 />
               ))}
           <li className={styles.spacer}></li>

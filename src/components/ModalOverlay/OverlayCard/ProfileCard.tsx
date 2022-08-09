@@ -1,27 +1,13 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useModalContext } from "../../../context/ModalContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
-import useHttp from "../../../hooks/use-http";
 import apiService from "../../../utilities/APIService";
 import styles from "./ProfileCard.module.css";
 
 export const ProfileCard = () => {
   const { getModalState, toggleModal } = useModalContext();
 
-  const {
-    sendRequest: sendGetDataRequest,
-    status: getDataStatus,
-    data: userData,
-    error: getDataError,
-  } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
-
-  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
-
-  useEffect(() => {
-    if (userData !== null) {
-      setCurrentModel(userData);
-    }
-  }, [userData, setCurrentModel]);
+  const { getCurrentModel } = useUserDataModelContext();
 
   const userDataModel = getCurrentModel().activeUser;
 
@@ -32,17 +18,18 @@ export const ProfileCard = () => {
   };
 
   const confirmButtonHandler = async () => {
-    console.log("Confirm handler running!");
-    if (profileNameRef.current !== null) {
-      const response = await apiService.postSession(
-        profileNameRef.current?.value
-      );
-      toggleModal(getModalState().modalState.modalType);
-      if (response.error !== undefined) {
-        return;
+    try {
+      if (profileNameRef.current !== null) {
+        const response = await apiService.changeUsername(
+          profileNameRef.current.value
+        );
+        toggleModal(getModalState().modalState.modalType);
+        if (response.error !== undefined) {
+          return;
+        }
       }
-
-      sendGetDataRequest();
+    } catch (error) {
+      console.log(error);
     }
   };
 

@@ -7,16 +7,18 @@ import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
 import { TransactionMenu } from "./TransactionMenu/TransactionMenu";
 import CSSTransition from "react-transition-group/CSSTransition";
+import apiService from "../../utilities/APIService";
 
 type TransactionItemProps = {
   transaction: Transaction;
   calculated: boolean;
   switchScrollStateHandler: () => void;
+  editable: boolean;
 };
 
 export const TransactionItem = (props: TransactionItemProps) => {
   const { getCurrentModel } = useUserDataModelContext();
-  const { getActiveUser } = useSelectSession();
+  const { getActiveUser, getActiveSession } = useSelectSession();
 
   const [arrowShowing, setArrowShowing] = useState(false);
   const [menuExpanded, setMenuExpanded] = useState(false);
@@ -32,7 +34,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
     : `${styles["item-frame"]} ${styles["sent"]} ${styles["sentReversed"]}`;
 
   const mouseEnterHandler = () => {
-    setArrowShowing(true);
+    props.editable && setArrowShowing(true);
   };
 
   const mouseLeaveHandler = () => {
@@ -44,6 +46,10 @@ export const TransactionItem = (props: TransactionItemProps) => {
     setMenuExpanded((prevState) => {
       return !prevState;
     });
+  };
+
+  const deleteTransaction = () => {
+    apiService.deleteTransaction(props.transaction.id, getActiveSession());
   };
 
   return (
@@ -85,7 +91,10 @@ export const TransactionItem = (props: TransactionItemProps) => {
             exitActive: styles["modal-closed"],
           }}
         >
-          <TransactionMenu hideMenuHandler={showMenuHandler} />
+          <TransactionMenu
+            hideMenuHandler={showMenuHandler}
+            deleteTransactionHandler={deleteTransaction}
+          />
         </CSSTransition>
       </div>
     </>

@@ -22,10 +22,19 @@ export const InfoSection = () => {
                 .find((session) => session.id === sessionId)
                 ?.users.find((user) => user.userid === userId)?.username}
           </h2>
-          <h4>
-            {data.sessions !== undefined &&
-              data.sessions.find((session) => session.id === sessionId)?.name}
-          </h4>
+          <span style={{ display: "flex", flexDirection: "row" }}>
+            <h4>
+              {data.sessions !== undefined &&
+                data.sessions.find((session) => session.id === sessionId)?.name}
+            </h4>
+            <h4 style={{ fontWeight: "500" }}>
+              {data.sessions !== undefined &&
+                `(${
+                  data.sessions.find((session) => session.id === sessionId)
+                    ?.sessioncode
+                })`}
+            </h4>
+          </span>
         </span>
         <span>
           {/* <ProgressBar

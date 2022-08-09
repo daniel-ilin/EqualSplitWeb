@@ -1,14 +1,35 @@
 import styles from "./RegisterCard.module.css";
 import { useRef } from "react";
+import apiService from "../../utilities/APIService";
 
 type RegisterCardProps = {
   changeRegisterShowingHandler: () => void;
 };
 
 export const RegisterCard = (props: RegisterCardProps) => {
-  const sessionNameRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
-  const confirmButtonHandler = () => {};
+  const confirmButtonHandler = async () => {
+    if (
+      nameRef.current?.value === undefined ||
+      emailRef.current?.value === undefined ||
+      passwordRef.current?.value === undefined
+    ) {
+      return;
+    }
+    try {
+      const response = await apiService.register(
+        nameRef.current?.value,
+        emailRef.current?.value,
+        passwordRef.current?.value
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -18,11 +39,11 @@ export const RegisterCard = (props: RegisterCardProps) => {
           <p>Register</p>
           <input
             placeholder="Email"
-            ref={sessionNameRef}
+            ref={emailRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                emailRef.current?.value !== undefined &&
+                emailRef.current?.value.length > 30
               ) {
                 event.preventDefault();
               }
@@ -30,11 +51,11 @@ export const RegisterCard = (props: RegisterCardProps) => {
           />
           <input
             placeholder="Name"
-            ref={sessionNameRef}
+            ref={nameRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                nameRef.current?.value !== undefined &&
+                nameRef.current?.value.length > 30
               ) {
                 event.preventDefault();
               }
@@ -42,11 +63,11 @@ export const RegisterCard = (props: RegisterCardProps) => {
           />
           <input
             placeholder="Password"
-            ref={sessionNameRef}
+            ref={passwordRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                passwordRef.current?.value !== undefined &&
+                passwordRef.current?.value.length > 30
               ) {
                 event.preventDefault();
               }
@@ -67,7 +88,7 @@ export const RegisterCard = (props: RegisterCardProps) => {
         <div className={styles.centerblock}>
           <button>
             <h4>Forgot your password?</h4>
-            <h3>Reset Password</h3>
+            <h3>Reset password</h3>
           </button>
         </div>
       </div>
