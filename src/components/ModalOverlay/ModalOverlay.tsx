@@ -1,7 +1,5 @@
-import { ReactElement, ReactNode, useEffect, useRef } from "react";
 import { useModalContext } from "../../context/ModalContext";
 import styles from "./ModalOverlay.module.css";
-import { ModalType } from "../../types/ModalType";
 import { CreateSessionCard } from "./OverlayCard/CreateSessionCard";
 import { JoinSessionCard } from "./OverlayCard/JoinSessionCard";
 import { ProfileCard } from "./OverlayCard/ProfileCard";

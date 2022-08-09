@@ -1,6 +1,6 @@
 import { createContext, ReactElement, useContext, useState } from "react";
 
-type LoginContext = {
+type LoginContextType = {
   getLoginState: () => boolean;
   setLoginState: (arg0: boolean) => void;
 };
@@ -9,7 +9,7 @@ type LoginContextProviderProps = {
   children: ReactElement;
 };
 
-const LoginContext = createContext({} as LoginContext);
+const LoginContext = createContext({} as LoginContextType);
 
 export const useLoginContext = () => {
   return useContext(LoginContext);

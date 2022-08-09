@@ -12,7 +12,7 @@ type ModalReducerType = {
   modalType: ModalType | null;
 };
 
-type ModalContext = {
+type ModalContextType = {
   getModalState: () => { modalVisible: boolean; modalState: ModalReducerType };
   toggleModal: (arg0: ModalType | null) => void;
 };
@@ -21,7 +21,7 @@ type ModalContextProvideProps = {
   children: ReactElement;
 };
 
-const ModalContext = createContext({} as ModalContext);
+const ModalContext = createContext({} as ModalContextType);
 
 export const useModalContext = () => {
   return useContext(ModalContext);

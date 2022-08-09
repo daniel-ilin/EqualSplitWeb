@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useModalContext } from "../../context/ModalContext";
 import { ModalType } from "../../types/ModalType";
 import styles from "./DropDownMenuMobile.module.css";

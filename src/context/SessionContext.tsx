@@ -5,7 +5,7 @@ type SessionContextProviderProps = {
   children: ReactNode;
 };
 
-type SessionContext = {
+type SessionContextType = {
   setActiveSession: (id: string) => void;
   setActiveUser: (id: string) => void;
   getActiveSession: () => string;
@@ -13,7 +13,7 @@ type SessionContext = {
   removeActiveUser: () => void;
 };
 
-const SessionContext = createContext({} as SessionContext);
+const SessionContext = createContext({} as SessionContextType);
 
 export const useSelectSession = () => {
   return useContext(SessionContext);

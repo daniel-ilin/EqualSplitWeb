@@ -11,10 +11,8 @@ export const MessageInput = () => {
   const { setCurrentModel } = useUserDataModelContext();
 
   const {
-    sendRequest: sendGetDataRequest,
-    status: getDataStatus,
-    data: userData,
-    error: getDataError,
+    sendRequest: sendGetDataRequest,    
+    data: userData,    
   } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
 
   const { getActiveSession, getActiveUser } = useSelectSession();
