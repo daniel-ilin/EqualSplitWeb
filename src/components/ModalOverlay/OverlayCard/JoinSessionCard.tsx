@@ -9,10 +9,8 @@ export const JoinSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
 
   const {
-    sendRequest: sendGetDataRequest,
-    status: getDataStatus,
-    data: userData,
-    error: getDataError,
+    sendRequest: sendGetDataRequest,    
+    data: userData,    
   } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
 
   const { setCurrentModel } = useUserDataModelContext();

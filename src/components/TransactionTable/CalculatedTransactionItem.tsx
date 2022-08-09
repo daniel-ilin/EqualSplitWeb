@@ -30,11 +30,11 @@ export const CalculatedTransactionItem = (
         )?.name
       : "";
 
-  let owned = false;
+  // let owned = false;
 
-  if (getCurrentModel().activeUser !== undefined) {
-    owned = getActiveUser() === getCurrentModel().activeUser.id;
-  }
+  // if (getCurrentModel().activeUser !== undefined) {
+  //   owned = getActiveUser() === getCurrentModel().activeUser.id;
+  // }
 
   let style = `${styles["item-frame"]} ${styles["calculated"]}`;
 

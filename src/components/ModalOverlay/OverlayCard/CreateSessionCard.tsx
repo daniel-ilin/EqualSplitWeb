@@ -10,9 +10,7 @@ export const CreateSessionCard = () => {
 
   const {
     sendRequest: sendGetDataRequest,
-    status: getDataStatus,
-    data: userData,
-    error: getDataError,
+    data: userData,    
   } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
 
   const { setCurrentModel } = useUserDataModelContext();
