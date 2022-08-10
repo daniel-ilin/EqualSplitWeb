@@ -21,14 +21,16 @@ export const Home = () => {
     try {
       const response = await apiService.getAllUserData();
       if (response !== null) {
-        setCurrentModel(response);        
+        setCurrentModel(response);
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  useInterval(fetchAllData, 1000);
+  useInterval(() => {
+    fetchAllData();
+  }, 1000);
 
   useEffect(() => {
     fetchAllData();
