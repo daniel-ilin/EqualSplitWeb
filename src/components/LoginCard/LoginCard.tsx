@@ -31,7 +31,7 @@ export const LoginCard = (props: LoginCardProps) => {
         setErrorShowing(false);
         setLoginState(true);
         navigate("/home");
-      } catch (error) {        
+      } catch (error) {
         setErrorShowing(true);
       }
     }
@@ -56,6 +56,7 @@ export const LoginCard = (props: LoginCardProps) => {
             }}
           />
           <input
+            type="password"
             placeholder="Password"
             ref={passwordRef}
             onKeyPress={(event) => {

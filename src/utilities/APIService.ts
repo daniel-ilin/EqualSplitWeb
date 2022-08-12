@@ -257,6 +257,7 @@ class APIService {
       const result = (await response.json()) as TokensResponse;
       Cookies.set("refresh-token", result.refreshToken);
       Cookies.set("access-token", result.accessToken);
+      
       return result;
     }
   }
