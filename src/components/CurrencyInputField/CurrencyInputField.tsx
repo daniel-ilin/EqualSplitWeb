@@ -1,9 +1,10 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import styles from "./CurrencyInputField.module.css";
 
 type CurrencyInputFieldProps = {
   updateAmount: (amount: number) => void;
+  moneyAmount: number;
 };
 
 export const CurrencyInputField = (props: CurrencyInputFieldProps) => {
@@ -27,6 +28,19 @@ export const CurrencyInputField = (props: CurrencyInputFieldProps) => {
       props.updateAmount(+moneyAmountRef.current.value);
     }
   };
+
+  useEffect(() => {
+    if (!moneyAmountRef.current) return;
+    if (
+      props.moneyAmount === undefined ||
+      props.moneyAmount === null ||
+      props.moneyAmount === 0
+    ) {
+      setMoneyInputting("");
+      setMoneyAmountDisplay("$0.00");
+      moneyAmountRef.current.value = "";
+    }
+  }, [props.moneyAmount]);
 
   return (
     <>

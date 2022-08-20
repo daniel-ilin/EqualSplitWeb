@@ -10,10 +10,9 @@ import styles from "./MessageInput.module.css";
 export const MessageInput = () => {
   const { setCurrentModel } = useUserDataModelContext();
 
-  const {
-    sendRequest: sendGetDataRequest,    
-    data: userData,    
-  } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
+  const { sendRequest: sendGetDataRequest, data: userData } = useHttp<
+    UserData | undefined
+  >(apiService.getAllUserData, false);
 
   const { getActiveSession, getActiveUser } = useSelectSession();
 
@@ -58,14 +57,17 @@ export const MessageInput = () => {
 
   const submitHandler = (event: { preventDefault: () => void }) => {
     event.preventDefault();
+    if (!descriptionRef.current) return;
     addTransactionHandler();
+    descriptionRef.current.value = "";
+    setMoneyAmount(0);
   };
 
   return (
     <>
       <div className={styles["whole-form"]}>
         <form onSubmit={submitHandler}>
-          <CurrencyInputField updateAmount={updateAmountHandler} />
+          <CurrencyInputField updateAmount={updateAmountHandler} moneyAmount={moneyAmount} />
           <input
             ref={descriptionRef}
             type="text"
