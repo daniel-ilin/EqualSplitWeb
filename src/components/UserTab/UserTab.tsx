@@ -10,7 +10,6 @@ import { useUserDataModelContext } from "../../context/UserDataModelContext";
 type UserTabProps = {
   user: User;
   isActive: boolean;
-  usersBarVisible: boolean;
 };
 
 const getTotalSpent = (user: User) => {

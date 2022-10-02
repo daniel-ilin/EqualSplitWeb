@@ -4,8 +4,7 @@ import { useSelectSession } from "../../context/SessionContext";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 
 type SessionBarProps = {
-  setUsersBarVisible: () => void;
-  usersBarVisible: boolean;
+  // setUsersBarVisible: () => void;
 };
 
 export const SessionBar = (props: SessionBarProps) => {
@@ -24,8 +23,6 @@ export const SessionBar = (props: SessionBarProps) => {
                 key={session.id}
                 session={session}
                 isActive={session.id === getActiveSession()}
-                setUsersBarVisible={props.setUsersBarVisible}
-                usersBarVisible={props.usersBarVisible}
               ></SessionTab>
             );
           })}

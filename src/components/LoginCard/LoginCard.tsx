@@ -6,11 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
 
-type LoginCardProps = {
-  changeRegisterShowingHandler: () => void;
-};
-
-export const LoginCard = (props: LoginCardProps) => {
+export const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
@@ -93,8 +89,8 @@ export const LoginCard = (props: LoginCardProps) => {
             </p>
           )}
           <button className={styles.bottomText}>
-            <p className={styles.main}>Forgot your password?</p>
-            <p className={styles.secondary}>Reset password</p>
+            <p className={styles.secondary}>Forgot your password?</p>
+            <p className={styles.main}>Reset password</p>
           </button>
         </div>
       </div>

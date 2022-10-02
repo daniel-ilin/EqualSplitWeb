@@ -1,0 +1,72 @@
+@import "../../../styles/variables.scss";
+
+.container {
+    border: none;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    background-color: $background0-1;
+    color: $pale-blue;
+    padding: 6px;
+    margin: 0;
+    border-radius: 100px;
+}
+
+.titleContainer {
+    width: 50%;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    z-index: 2;
+
+    .title {
+        text-align: center;
+        width: 50%;
+        padding: 0;
+        margin: 0;
+        grid-column: 1;
+        grid-row: 1;
+
+        &.bold {
+            text-align: center;
+            grid-column: 1;
+            grid-row: 1;
+            font-weight: bold;
+            opacity: 0;
+        }
+    }
+
+    &.enabled {
+        .title {
+            opacity: 0;
+
+            &.bold {
+                opacity: 1;
+                color: $primary-title;
+            }
+        }
+    }
+}
+
+.switchSelector {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    border-radius: 100px;
+    background-color: $main-blue;
+    transition: left 100ms ease-out;
+    z-index: 1;
+
+    &.off {
+        left: 0;
+    }
+
+    &.on {
+        left: 50%;
+    }
+}

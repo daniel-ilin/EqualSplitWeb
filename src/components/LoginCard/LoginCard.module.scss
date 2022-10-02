@@ -9,10 +9,10 @@
   justify-content: center;
   background-color: white;
   z-index: 11;
-  padding: 20px;
+  padding: 26px;
   border-radius: 12px;
   background-color: $background2;
-  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.4);  
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.4);
 
   & img {
     margin-top: 20px;
@@ -28,7 +28,7 @@
 
 .v-group input {
   color: $primary-title;
-  border: 2px solid $primary-title;
+  border: 2px solid $tertiary-title;
   background-color: $background2;
   border-radius: 8px;
   margin-bottom: 1rem;
@@ -94,12 +94,13 @@
   font-weight: 500;
   margin: 0;
   margin-bottom: 10px;
+  color: $secondary-title;
 }
 
 .centerblock button.bottomText p.secondary {
   font-size: 14px;
   margin: 0;
-  margin-bottom: 14px;
+  margin-bottom: 2px;
   color: $tertiary-title;
   font-weight: 300;
 }

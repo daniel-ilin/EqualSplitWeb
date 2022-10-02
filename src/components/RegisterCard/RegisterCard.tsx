@@ -1,45 +1,50 @@
-import styles from "./RegisterCard.module.scss";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useLoginContext } from "../../context/LoginContext";
 import apiService from "../../utilities/APIService";
+import styles from "./RegisterCard.module.scss";
+import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
+import logoPath from "../../imgs/equalsplit-logo.png";
 
-type RegisterCardProps = {
-  changeRegisterShowingHandler: () => void;
-};
-
-export const RegisterCard = (props: RegisterCardProps) => {
-  const { setLoader } = useLoader();
-  const nameRef = useRef<HTMLInputElement>(null);
+export const RegisterCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const usernameRef = useRef<HTMLInputElement>(null);
+
+  const { setLoginState } = useLoginContext();
+  const { setLoader } = useLoader();
+
+  const [errorShowing, setErrorShowing] = useState(false);
+
+  const navigate = useNavigate();
 
   const confirmButtonHandler = async () => {
     if (
-      nameRef.current?.value === undefined ||
-      emailRef.current?.value === undefined ||
-      passwordRef.current?.value === undefined
+      emailRef.current?.value !== undefined &&
+      passwordRef.current?.value !== undefined
     ) {
-      return;
-    }
-    try {
-      setLoader(true);
-      const response = await apiService.register(
-        nameRef.current?.value,
-        emailRef.current?.value,
-        passwordRef.current?.value
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+      try {
+        setLoader(true);
+        await apiService.login(
+          emailRef.current?.value,
+          passwordRef.current?.value
+        );
+
+        setErrorShowing(false);
+        setLoginState(true);
+        navigate("/home");
+      } catch (error) {
+        setErrorShowing(true);
+      }
     }
   };
 
   return (
     <>
       <div className={styles.card}>
+        <img src={logoPath} width={78} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
-          <h2>EqualSplit</h2>
-          <p>Register</p>
+          <h2>Sign Up</h2>
           <input
             placeholder="Email"
             ref={emailRef}
@@ -53,18 +58,7 @@ export const RegisterCard = (props: RegisterCardProps) => {
             }}
           />
           <input
-            placeholder="Name"
-            ref={nameRef}
-            onKeyPress={(event) => {
-              if (
-                nameRef.current?.value !== undefined &&
-                nameRef.current?.value.length > 30
-              ) {
-                event.preventDefault();
-              }
-            }}
-          />
-          <input
+            type="password"
             placeholder="Password"
             ref={passwordRef}
             onKeyPress={(event) => {
@@ -76,22 +70,41 @@ export const RegisterCard = (props: RegisterCardProps) => {
               }
             }}
           />
+          <input
+            type="text"
+            placeholder="Username"
+            ref={usernameRef}
+            onKeyPress={(event) => {
+              if (
+                passwordRef.current?.value !== undefined &&
+                passwordRef.current?.value.length > 30
+              ) {
+                event.preventDefault();
+              }
+            }}
+          />
         </span>
         <span className={styles["h-group"]}>
-          <button
-            className={styles.cancel}
-            onClick={props.changeRegisterShowingHandler}
-          >
-            Login
-          </button>
           <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Register
+            Sign Up
           </button>
         </span>
         <div className={styles.centerblock}>
-          <button>
-            <h4>Forgot your password?</h4>
-            <h3>Reset password</h3>
+          {errorShowing && (
+            <p
+              style={{
+                color: "red",
+                fontSize: "0.6rem",
+                position: "fixed",
+                marginTop: "-1.8rem",
+              }}
+            >
+              Wrong email/password
+            </p>
+          )}
+          <button className={styles.bottomText}>
+            <p className={styles.secondary}>Forgot your password?</p>
+            <p className={styles.main}>Reset password</p>
           </button>
         </div>
       </div>

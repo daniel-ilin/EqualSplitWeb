@@ -10,8 +10,6 @@ import CSSTransition from "react-transition-group/CSSTransition";
 type SessionTabProps = {
   session: Session;
   isActive: boolean;
-  setUsersBarVisible: () => void;
-  usersBarVisible: boolean;
 };
 
 const getTotalSessionAmount = (users: User[]) => {
@@ -32,7 +30,7 @@ export const SessionTab = (props: SessionTabProps) => {
 
   const [arrowShowing, setArrowShowing] = useState(false);
 
-  const { session, isActive, setUsersBarVisible, usersBarVisible } = props;
+  const { session, isActive } = props;
 
   const mouseEnterHandler = () => {
     setArrowShowing(true);
@@ -59,7 +57,7 @@ export const SessionTab = (props: SessionTabProps) => {
         onMouseLeave={mouseLeaveHandler}
         onClick={() => {
           setActiveSession(session.id);
-          !usersBarVisible && setUsersBarVisible();
+          // !usersBarVisible && setUsersBarVisible();
           !isActive && removeActiveUser();
         }}
         className={
@@ -70,7 +68,7 @@ export const SessionTab = (props: SessionTabProps) => {
       >
         <div
           className={
-            isActive && usersBarVisible
+            isActive
               ? `${styles["spacer-container"]}`
               : `${styles["spacer-container"]} ${styles["inactive-translate"]}`
           }

@@ -15,8 +15,6 @@ import apiService from "../utilities/APIService";
 import styles from "./Home.module.scss";
 
 export const Home = () => {
-  const [usersBarVisible, setUsersBarVisible] = useState(false);
-
   const { setCurrentModel } = useUserDataModelContext();
 
   const { getModalState } = useModalContext();
@@ -45,16 +43,6 @@ export const Home = () => {
     fetchAllData();
   }, [fetchAllData]);
 
-  const setUsersBarVisibleHandler = (val: boolean) => {
-    setUsersBarVisible(val);
-  };
-
-  const switchUsersBarVisibleHandler = () => {
-    setUsersBarVisible((currentVal) => {
-      return !currentVal;
-    });
-  };
-
   return (
     <>
       <Container className={styles.custom}>
@@ -62,16 +50,8 @@ export const Home = () => {
           {getModalState().modalVisible && <ModalOverlay />}
           <Header></Header>
           <div className={styles.overall}>
-            <SessionBar
-              setUsersBarVisible={switchUsersBarVisibleHandler}
-              usersBarVisible={usersBarVisible}
-            />
-            {getActiveSession() && (
-              <ActiveSessionContainer
-                setUsersBarVisible={setUsersBarVisibleHandler}
-                usersBarVisible={usersBarVisible}
-              />
-            )}
+            <SessionBar />
+            {getActiveSession() && <ActiveSessionContainer />}
           </div>
         </div>
         {isLoaderEnabled() && (

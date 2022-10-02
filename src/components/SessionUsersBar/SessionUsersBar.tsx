@@ -4,9 +4,7 @@ import styles from "./SessionUsersBar.module.scss";
 import { UserTab } from ".././UserTab/UserTab";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 
-type SessionUserBarProps = {
-  usersBarVisible: boolean;
-};
+type SessionUserBarProps = {};
 
 export const SessionUsersBar = (props: SessionUserBarProps) => {
   const { getCurrentModel } = useUserDataModelContext();
@@ -31,7 +29,6 @@ export const SessionUsersBar = (props: SessionUserBarProps) => {
         {selectedSessionUsers?.map((user) => {
           return (
             <UserTab
-              usersBarVisible={props.usersBarVisible}
               key={user.userid}
               user={user}
               isActive={user.userid === getActiveUser()}
