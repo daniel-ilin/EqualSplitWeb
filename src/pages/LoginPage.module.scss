@@ -1,13 +1,13 @@
 @import "../styles/variables.scss";
 
-.overall {  
+.overall {
   position: relative;
   width: 100vw;
   height: 100vh;
-  display: flex;  
+  display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $background1;  
+  background-color: $background1;
 }
 
 .vectorContainer {
@@ -15,12 +15,50 @@
   width: 100%;
   bottom: 0;
   left: 0;
+  z-index: 1;
 }
 
 .hContainer {
   display: flex;
   flex-direction: row;
+  position: relative;
   height: auto;
-  width: auto;  
+  width: auto;
+  align-items: center;
+  justify-content: space-between;
   padding: 10px;
+  z-index: 2;
+  width: 70%;
+  min-width: 600px;
+  max-width: 1000px;
+}
+
+.vContainer {
+  align-self: flex-start;
+  margin-top: 70px;  
+  color: $primary-title;
+  width: 460px;
+
+  h1 {
+    margin-bottom: 10px;
+    font-size: 54px;
+    font-weight: bold;
+  }
+
+  p {
+    font-size: 22px;
+    color: $primary-title;
+  }
+
+  p.subtitle {
+    margin-bottom: 40px;
+    color: $tertiary-title;
+  }
+}
+
+.appStoreLink {
+  position: absolute;
+  left: 40px;
+  bottom: 20px;
+  z-index: 100;
 }

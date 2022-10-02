@@ -45,7 +45,7 @@ export const LoginCard = (props: LoginCardProps) => {
   return (
     <>
       <div className={styles.card}>
-        <img src={logoPath} width={68} alt={"Logo"}></img>
+        <img src={logoPath} width={78} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
           <h2>Welcome Back</h2>
           <input
@@ -92,9 +92,9 @@ export const LoginCard = (props: LoginCardProps) => {
               Wrong email/password
             </p>
           )}
-          <button>
-            <h4>Forgot your password?</h4>
-            <h3>Reset password</h3>
+          <button className={styles.bottomText}>
+            <p className={styles.main}>Forgot your password?</p>
+            <p className={styles.secondary}>Reset password</p>
           </button>
         </div>
       </div>

@@ -9,6 +9,7 @@ import { useLoader } from "../context/LoadingContext";
 import { useModalContext } from "../context/ModalContext";
 import { useSelectSession } from "../context/SessionContext";
 import { useUserDataModelContext } from "../context/UserDataModelContext";
+import { ReactComponent as BacksplashVector } from "../imgs/back-vector.svg";
 import useInterval from "../hooks/useInterval";
 import apiService from "../utilities/APIService";
 import styles from "./Home.module.scss";
@@ -87,6 +88,9 @@ export const Home = () => {
             />
           </div>
         )}
+        <span className={styles.vectorContainer}>
+          <BacksplashVector width={"100%"} height={"100%"} />
+        </span>
       </Container>
     </>
   );
