@@ -6,7 +6,6 @@ import styles from "./TransactionItem.module.scss";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
 import { TransactionMenu } from "./TransactionMenu/TransactionMenu";
-import CSSTransition from "react-transition-group/CSSTransition";
 import apiService from "../../utilities/APIService";
 import { useLoader } from "../../context/LoadingContext";
 
@@ -93,12 +92,8 @@ export const TransactionItem = (props: TransactionItemProps) => {
             <i className={arrowsStyles.bottom} />
           </div>
         )}
-        <CSSTransition
-          in={menuExpanded}
-          mountOnEnter={true}
-          unmountOnExit={true}
-          timeout={0}
-        >
+
+        {menuExpanded && (
           <span style={{ position: "absolute", right: "0", top: "0" }}>
             <TransactionMenu
               hideMenuHandler={showMenuHandler}
@@ -106,7 +101,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
               transaction={props.transaction}
             />
           </span>
-        </CSSTransition>
+        )}
       </div>
     </>
   );

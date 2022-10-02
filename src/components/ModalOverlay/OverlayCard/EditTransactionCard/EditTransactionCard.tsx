@@ -54,12 +54,16 @@ export const EditTransactionCard = () => {
             <CurrencyInputField
               updateAmount={updateAmountHandler}
               moneyAmount={moneyAmount}
+              defaultValue={
+                +(getModalState().modalState.transaction?.amount ?? 0)
+              }
             />
           </span>
           <div style={{ width: "100%", height: "10px" }} />
           <input
             placeholder="Description"
             ref={descriptionRef}
+            defaultValue={getModalState().modalState.transaction?.description}
             onKeyPress={(event) => {
               if (
                 descriptionRef.current?.value !== undefined &&

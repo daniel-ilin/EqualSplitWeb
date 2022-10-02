@@ -32,7 +32,7 @@ export const MessageInput = () => {
         description,
         money,
         activeUser
-      );      
+      );
 
       if (response.error !== undefined) {
         return;

@@ -5,7 +5,6 @@ import { useSelectSession } from "../../context/SessionContext";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
 import { SessionMenu } from "./SessionMenu/SessionMenu";
-import CSSTransition from "react-transition-group/CSSTransition";
 
 type SessionTabProps = {
   session: Session;
@@ -102,16 +101,12 @@ export const SessionTab = (props: SessionTabProps) => {
             </div>
           )}
         </div>
-        <CSSTransition
-          in={menuExpanded}
-          mountOnEnter={true}
-          unmountOnExit={true}
-          timeout={0}
-        >
+
+        {menuExpanded && (
           <div style={{ position: "absolute", top: "24px", right: "120px" }}>
             <SessionMenu hideMenuHandler={hideMenuHandler} session={session} />
           </div>
-        </CSSTransition>
+        )}
       </li>
     </>
   );

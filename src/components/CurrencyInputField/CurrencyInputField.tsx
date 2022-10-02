@@ -6,6 +6,7 @@ import { CurrencyInputProps } from "react-currency-input-field/dist/components/C
 type CurrencyInputFieldProps = {
   updateAmount: (amount: number) => void;
   moneyAmount: number;
+  defaultValue?: number;
 };
 
 export const CurrencyInputField = (props: CurrencyInputFieldProps) => {

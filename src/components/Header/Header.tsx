@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CSSTransition from "react-transition-group/CSSTransition";
 import { useLoginContext } from "../../context/LoginContext";
 import apiService from "../../utilities/APIService";
 import { DotsButton } from ".././DotsButton/DotsButton";
@@ -33,20 +32,10 @@ export const Header = () => {
 
   return (
     <>
-      <CSSTransition
-        in={menuExpanded}
-        mountOnEnter={true}
-        unmountOnExit={true}
-        timeout={100}
-        classNames={{
-          enter: "",
-          enterActive: styles["modal-open"],
-          exit: "",
-          exitActive: styles["modal-closed"],
-        }}
-      >
+      {menuExpanded && (
         <DropDownMenuMobile hideMenuHandler={menuExpandedHandler} />
-      </CSSTransition>
+      )}
+
       <div className={styles.header}>
         <DotsButton
           onMenuExpanded={menuExpandedHandler}

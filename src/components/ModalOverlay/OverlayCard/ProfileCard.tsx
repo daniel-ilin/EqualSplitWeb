@@ -25,7 +25,7 @@ export const ProfileCard = () => {
         const response = await apiService.changeUsername(
           profileNameRef.current.value
         );
-        
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
@@ -60,7 +60,7 @@ export const ProfileCard = () => {
               marginTop: "0.8rem",
               color: "#747474",
             }}
-            value={userDataModel.email}
+            defaultValue={userDataModel.email}
           />
         </span>
         <span className={styles["h-group"]}>

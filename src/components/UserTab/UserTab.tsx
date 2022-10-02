@@ -3,7 +3,6 @@ import { formatCurrency } from "../../utilities/formatCurrency";
 import styles from "./UserTab.module.scss";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
-import CSSTransition from "react-transition-group/CSSTransition";
 import { UserMenu } from "./UserMenu/UserMenu";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 
@@ -92,27 +91,20 @@ export const UserTab = (props: UserTabProps) => {
           )}
         </div>
 
-        {(isThisActiveUser || isUserSessionOwner) && (
-          <CSSTransition
-            in={menuExpanded}
-            mountOnEnter={true}
-            unmountOnExit={true}
-            timeout={0}
+        {(isThisActiveUser || isUserSessionOwner) && menuExpanded && (
+          <div
+            style={{
+              position: "absolute",
+              zIndex: "10",
+              top: "26px",
+              right: "120px",
+            }}
           >
-            <div
-              style={{
-                position: "absolute",
-                zIndex: "10",
-                top: "26px",
-                right: "120px",
-              }}
-            >
-              <UserMenu
-                hideMenuHandler={hideMenuHandler}
-                userid={props.user.userid}
-              />
-            </div>
-          </CSSTransition>
+            <UserMenu
+              hideMenuHandler={hideMenuHandler}
+              userid={props.user.userid}
+            />
+          </div>
         )}
       </li>
     </>
