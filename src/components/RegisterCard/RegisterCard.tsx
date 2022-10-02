@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useLoginContext } from "../../context/LoginContext";
 import apiService from "../../utilities/APIService";
-import styles from "./RegisterCard.module.scss";
+import styles from "../LoginCard/LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
@@ -104,7 +104,6 @@ export const RegisterCard = () => {
           )}
           <button className={styles.bottomText}>
             <p className={styles.secondary}>Forgot your password?</p>
-            <p className={styles.main}>Reset password</p>
           </button>
         </div>
       </div>

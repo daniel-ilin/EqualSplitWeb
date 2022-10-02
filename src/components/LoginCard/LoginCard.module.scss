@@ -10,13 +10,16 @@
   background-color: white;
   z-index: 11;
   padding: 26px;
-  border-radius: 12px;
-  background-color: $background2;
+  border-radius: 28px;
+  background-color: $background1-2;
+  backdrop-filter: blur(4px);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.4);
 
   & img {
-    margin-top: 20px;
+    margin-top: 14px;
     margin-bottom: 30px;
+    border-radius: 50%;
+    box-shadow: 0px 2px 12px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -28,14 +31,14 @@
 
 .v-group input {
   color: $primary-title;
-  border: 2px solid $tertiary-title;
-  background-color: $background2;
+  border: 1px solid $tertiary-title;
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   margin-bottom: 1rem;
   padding-left: 10px;
   padding-top: 4px;
   padding-bottom: 4px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .v-group h2 {
@@ -43,7 +46,7 @@
   color: $primary-title;
   font-size: 30px;
   align-self: center;
-  margin-bottom: 40px;
+  margin-bottom: 28px;
 }
 
 .h-group {
@@ -57,7 +60,7 @@
 .h-group button {
   padding-top: 4px;
   padding-bottom: 4px;
-  font-size: 22px;
+  font-size: 20px;
   border-radius: 8px;
 }
 
@@ -70,6 +73,7 @@
   color: white;
   border: none;
   width: 100%;
+  margin-top: 10px;
 }
 
 .confirm:hover {
@@ -80,13 +84,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 2.6rem;
+  margin-top: 14px;
 }
 
 .centerblock button {
   background-color: transparent;
   color: $primary-title;
   border: none;
+}
+
+.centerblock button.bottomText:hover {
+  opacity: 0.7;
 }
 
 .centerblock button.bottomText p.main {

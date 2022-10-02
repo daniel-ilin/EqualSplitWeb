@@ -70,27 +70,29 @@ export const LoginCard = () => {
             }}
           />
         </span>
+        {errorShowing && (
+          <p
+            style={{
+              color: "pink",
+              fontSize: "11px",
+              position: "relative",
+              height: "0px",
+              margin: "0",
+              bottom: "10px",
+              padding: "0",
+            }}
+          >
+            Wrong email/password
+          </p>
+        )}
         <span className={styles["h-group"]}>
           <button className={styles.confirm} onClick={confirmButtonHandler}>
             Login
           </button>
         </span>
         <div className={styles.centerblock}>
-          {errorShowing && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "0.6rem",
-                position: "fixed",
-                marginTop: "-1.8rem",
-              }}
-            >
-              Wrong email/password
-            </p>
-          )}
           <button className={styles.bottomText}>
             <p className={styles.secondary}>Forgot your password?</p>
-            <p className={styles.main}>Reset password</p>
           </button>
         </div>
       </div>
