@@ -3,7 +3,7 @@ import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 
 import apiService from "../../../utilities/APIService";
-import styles from "./JoinSessionCard.module.scss";
+import styles from "./OverlayCards.module.scss";
 
 export const JoinSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
@@ -22,7 +22,7 @@ export const JoinSessionCard = () => {
         const response = await apiService.joinSession(
           sessionCodeRef.current.value
         );
-        
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;

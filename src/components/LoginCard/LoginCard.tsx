@@ -4,6 +4,7 @@ import apiService from "../../utilities/APIService";
 import styles from "./LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
+import logoPath from "../../imgs/equalsplit-logo.png";
 
 type LoginCardProps = {
   changeRegisterShowingHandler: () => void;
@@ -31,7 +32,7 @@ export const LoginCard = (props: LoginCardProps) => {
           emailRef.current?.value,
           passwordRef.current?.value
         );
-        
+
         setErrorShowing(false);
         setLoginState(true);
         navigate("/home");
@@ -44,9 +45,9 @@ export const LoginCard = (props: LoginCardProps) => {
   return (
     <>
       <div className={styles.card}>
+        <img src={logoPath} width={68} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
-          <h2>EqualSplit</h2>
-          <p>Login</p>
+          <h2>Welcome Back</h2>
           <input
             placeholder="Email"
             ref={emailRef}
@@ -74,12 +75,6 @@ export const LoginCard = (props: LoginCardProps) => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button
-            className={styles.cancel}
-            onClick={props.changeRegisterShowingHandler}
-          >
-            Register
-          </button>
           <button className={styles.confirm} onClick={confirmButtonHandler}>
             Login
           </button>

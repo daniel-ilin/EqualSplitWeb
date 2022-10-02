@@ -3,7 +3,7 @@ import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 import apiService from "../../../utilities/APIService";
-import styles from "./ProfileCard.module.scss";
+import styles from "./OverlayCards.module.scss";
 
 export const ProfileCard = () => {
   const { getModalState, toggleModal } = useModalContext();

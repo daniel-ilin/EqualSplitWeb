@@ -3,7 +3,7 @@ import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 
 import apiService from "../../../utilities/APIService";
-import styles from "./CreateSessionCard.module.scss";
+import styles from "./OverlayCards.module.scss";
 
 export const CreateSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();

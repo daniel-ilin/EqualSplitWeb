@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { LoginCard } from "../components/LoginCard/LoginCard";
 import { RegisterCard } from "../components/RegisterCard/RegisterCard";
-import styles from "./LoginPage.module.css";
+import { ReactComponent as BacksplashVector } from "../imgs/back-vector.svg";
+import styles from "./LoginPage.module.scss";
 
 export const LoginPage = () => {
   const [registerShowing, setRegisterShowing] = useState(false);
@@ -15,22 +16,20 @@ export const LoginPage = () => {
   return (
     <>
       <div className={styles.overall}>
-        <div>
-          <h1>EqualSplit</h1>
-          <p>
-            Welcome to EqualSplit! I made this app to bookkeep and quickly sort
-            your finances with your friends. Whether it is long-term
-          </p>
+        <div className={styles.hContainer}>
+          {!registerShowing ? (
+            <LoginCard
+              changeRegisterShowingHandler={changeRegisterShowingHandler}
+            />
+          ) : (
+            <RegisterCard
+              changeRegisterShowingHandler={changeRegisterShowingHandler}
+            />
+          )}
         </div>
-        {!registerShowing ? (
-          <LoginCard
-            changeRegisterShowingHandler={changeRegisterShowingHandler}
-          />
-        ) : (
-          <RegisterCard
-            changeRegisterShowingHandler={changeRegisterShowingHandler}
-          />
-        )}
+        <span className={styles.vectorContainer}>
+          <BacksplashVector width={"100%"} height={"100%"} />
+        </span>
       </div>
     </>
   );

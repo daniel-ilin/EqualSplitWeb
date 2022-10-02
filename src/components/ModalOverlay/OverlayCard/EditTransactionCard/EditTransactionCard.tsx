@@ -3,7 +3,7 @@ import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
 import apiService from "../../../../utilities/APIService";
 import { CurrencyInputField } from "../../../CurrencyInputField/CurrencyInputField";
-import styles from "./EditTransactionCard.module.scss";
+import styles from "../OverlayCards.module.scss";
 
 export const EditTransactionCard = () => {
   const { toggleModal, getModalState } = useModalContext();

@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
 import apiService from "../../../../utilities/APIService";
-import styles from "./EditSessionCard.module.scss";
+import styles from "../OverlayCards.module.scss";
 
 export const EditSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
