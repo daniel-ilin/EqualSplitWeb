@@ -13,15 +13,18 @@ import { ReactComponent as BacksplashVector } from "../imgs/back-vector.svg";
 import useInterval from "../hooks/useInterval";
 import apiService from "../utilities/APIService";
 import styles from "./Home.module.scss";
+import { PrimaryButton } from "../components/Buttons/PrimaryButton/PrimaryButton";
+import { SecondaryButton } from "../components/Buttons/SecondaryButton/SecondaryButton";
+import { ModalType } from "../types/ModalType";
 
 export const Home = () => {
-  const { setCurrentModel } = useUserDataModelContext();
-
-  const { getModalState } = useModalContext();
-
-  const { isLoaderEnabled, setLoader } = useLoader();
+  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
 
   const { getActiveSession } = useSelectSession();
+
+  const { getModalState, toggleModal } = useModalContext();
+
+  const { isLoaderEnabled, setLoader } = useLoader();
 
   const fetchAllData = useCallback(async () => {
     try {
@@ -43,6 +46,17 @@ export const Home = () => {
     fetchAllData();
   }, [fetchAllData]);
 
+  const sessionsExist =
+    getCurrentModel().sessions && getCurrentModel().sessions.length > 0;
+
+  const joinSessionHandler = () => {
+    toggleModal({ modalType: ModalType.joinSession });
+  };
+
+  const createSessionHandler = () => {
+    toggleModal({ modalType: ModalType.createSession });
+  };
+
   return (
     <>
       <Container className={styles.custom}>
@@ -50,8 +64,36 @@ export const Home = () => {
           {getModalState().modalVisible && <ModalOverlay />}
           <Header></Header>
           <div className={styles.overall}>
-            <SessionBar />
-            {getActiveSession() && <ActiveSessionContainer />}
+            {sessionsExist && <SessionBar />}
+            {sessionsExist && getActiveSession() && <ActiveSessionContainer />}
+            {!sessionsExist && (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  width: "100%",
+                }}
+              >
+                <span
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    alignSelf: "center",
+                  }}
+                >
+                  <PrimaryButton onClickHandler={createSessionHandler}>
+                    Create Session
+                  </PrimaryButton>
+                  <p className={styles.orText}>or</p>
+                  <SecondaryButton onClickHandler={joinSessionHandler}>
+                    Join Session
+                  </SecondaryButton>
+                </span>
+              </div>
+            )}
           </div>
         </div>
         {isLoaderEnabled() && (

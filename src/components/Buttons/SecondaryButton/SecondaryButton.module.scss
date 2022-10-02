@@ -1,0 +1,21 @@
+@import "../../../styles/variables.scss";
+
+.secondaryButton {
+    padding: 10px;
+    padding-left: 42px;
+    padding-right: 42px;
+    margin: 0;
+    background-color: none;
+    background: none;
+    border: 2px solid $line3;
+    color: $primary-title;
+    font-size: 18px;
+    font-weight: normal;
+    width: 100%;
+    height: auto;
+    border-radius: 16px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

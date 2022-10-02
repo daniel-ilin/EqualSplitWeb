@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
+import { useSelectSession } from "../../../context/SessionContext";
 
 import apiService from "../../../utilities/APIService";
 import styles from "./OverlayCards.module.scss";
@@ -8,6 +9,7 @@ import styles from "./OverlayCards.module.scss";
 export const CreateSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
+  const { setActiveSession, setActiveUser } = useSelectSession();
 
   const sessionNameRef = useRef<HTMLInputElement>(null);
 
@@ -22,14 +24,17 @@ export const CreateSessionCard = () => {
         sessionNameRef.current.value.length > 0
       ) {
         setLoader(true);
-        const response = await apiService.postSession(
+        const response: any = await apiService.postSession(
           sessionNameRef.current?.value
         );
-        
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
+
+        setActiveSession(response.sessionid);
+        setActiveUser(response.ownerid);
       }
     } catch (error) {
       console.log(error);

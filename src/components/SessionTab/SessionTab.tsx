@@ -84,7 +84,7 @@ export const SessionTab = (props: SessionTabProps) => {
                     height: "16px",
                     objectFit: "fill",
                     marginTop: "-25%",
-                    marginRight: "0.3rem",
+                    marginRight: "5px",
                   }}
                   alt="People:"
                 ></img>

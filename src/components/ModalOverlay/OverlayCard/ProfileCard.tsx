@@ -57,7 +57,7 @@ export const ProfileCard = () => {
           <input
             style={{
               pointerEvents: "none",
-              marginTop: "0.8rem",
+              marginTop: "13px",
               color: "#747474",
             }}
             defaultValue={userDataModel.email}

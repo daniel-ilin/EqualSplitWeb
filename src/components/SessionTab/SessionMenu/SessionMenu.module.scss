@@ -17,18 +17,18 @@
 .menu button {
   border: none;
   background: none;
-  color: $primary-title;
-  padding: 0.2rem 1rem 0.2rem 1rem;
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
+  color: $primary-title;  
+  padding: 4px 16px 4px 16px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   transition: all 0.2s ease-out;
   font-size: medium;
-  border-radius: 1.2rem;  
+  border-radius: 16px;   
 }
 
 .menu button:hover {
   color: white;
-  border-radius: 1.2rem;
+  border-radius: 16px;
   background-color: $selection-blue;
 }
 

@@ -90,18 +90,6 @@ export const RegisterCard = () => {
           </button>
         </span>
         <div className={styles.centerblock}>
-          {errorShowing && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "0.6rem",
-                position: "fixed",
-                marginTop: "-1.8rem",
-              }}
-            >
-              Wrong email/password
-            </p>
-          )}
           <button className={styles.bottomText}>
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
