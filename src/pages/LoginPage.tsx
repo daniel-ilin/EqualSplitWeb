@@ -29,7 +29,11 @@ export const LoginPage = () => {
               </p>
             </span>
             <div className={styles.appStoreButton}>
-              <a href={"https://apps.apple.com/us/app/equalsplit/id1596676542"}>
+              <a
+                href={"https://apps.apple.com/us/app/equalsplit/id1596676542"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <img
                   width={"120px"}
                   className={styles.appStoreLink}
