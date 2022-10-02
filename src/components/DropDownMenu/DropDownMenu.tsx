@@ -1,20 +1,20 @@
 import { useModalContext } from "../../context/ModalContext";
 import { ModalType } from "../../types/ModalType";
-import styles from "./DropDownMenu.module.css";
+import styles from "./DropDownMenu.module.scss";
 
 export const DropDownMenu = () => {
   const { toggleModal } = useModalContext();
 
   const joinSessionHandler = () => {
-    toggleModal(ModalType.joinSession);
+    toggleModal({ modalType: ModalType.joinSession });
   };
 
   const createSessionHandler = () => {
-    toggleModal(ModalType.createSession);
+    toggleModal({ modalType: ModalType.createSession });
   };
 
   const profileHandler = () => {
-    toggleModal(ModalType.profile);
+    toggleModal({ modalType: ModalType.profile });
   };
 
   return (

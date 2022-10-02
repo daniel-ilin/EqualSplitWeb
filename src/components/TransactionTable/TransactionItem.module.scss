@@ -1,11 +1,13 @@
+@import "../../styles/variables.scss";
+
 .item-frame {
   width: auto;
   max-width: 90%;
   min-width: 60%;
   position: relative;
   min-height: 75px;
-  border: 1px solid #dedede;
-  background-color: white;
+  border: 1px solid $line1;
+  background-color: $background2-3;
   margin: 0.6rem 0rem 0.6rem 0rem;
   display: flex;
   align-self: flex-end;
@@ -27,8 +29,8 @@
 .calculated {
   display: flex;
   align-self: flex-start;
-  border: 1px solid #dedede;
-  background-color: white;
+  border: 1px solid $line2;
+  background-color: $background2-3;
   min-width: 200px;
   width: auto;
   max-width: 90%;
@@ -71,6 +73,10 @@
   display: flex;
   flex-direction: row;
   cursor: pointer;
+}
+
+.date {
+  color: $tertiary-title;
 }
 
 .modal-open {

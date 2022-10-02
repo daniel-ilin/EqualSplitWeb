@@ -1,19 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
+import { useLoader } from "../../context/LoadingContext";
 import { useSelectSession } from "../../context/SessionContext";
-import { useUserDataModelContext } from "../../context/UserDataModelContext";
-import useHttp from "../../hooks/use-http";
 import apiService from "../../utilities/APIService";
 import { CurrencyInputField } from "../CurrencyInputField/CurrencyInputField";
 
-import styles from "./MessageInput.module.css";
+import styles from "./MessageInput.module.scss";
 
 export const MessageInput = () => {
-  const { setCurrentModel } = useUserDataModelContext();
-
-  const { sendRequest: sendGetDataRequest, data: userData } = useHttp<
-    UserData | undefined
-  >(apiService.getAllUserData, false);
-
+  const { setLoader } = useLoader();
   const { getActiveSession, getActiveUser } = useSelectSession();
 
   const descriptionRef = useRef<HTMLInputElement>(null);
@@ -32,28 +26,21 @@ export const MessageInput = () => {
     const money = moneyAmount;
     const activeUser = getActiveUser();
     try {
+      setLoader(true);
       const response = await apiService.addTransaction(
         sessionid,
         description,
         money,
         activeUser
-      );
+      );      
 
       if (response.error !== undefined) {
         return;
       }
-
-      sendGetDataRequest();
     } catch (error) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (userData !== null) {
-      setCurrentModel(userData);
-    }
-  }, [userData, setCurrentModel]);
 
   const submitHandler = (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -67,7 +54,12 @@ export const MessageInput = () => {
     <>
       <div className={styles["whole-form"]}>
         <form onSubmit={submitHandler}>
-          <CurrencyInputField updateAmount={updateAmountHandler} moneyAmount={moneyAmount} />
+          <span style={{ width: "40%" }}>
+            <CurrencyInputField
+              updateAmount={updateAmountHandler}
+              moneyAmount={moneyAmount}
+            />
+          </span>
           <input
             ref={descriptionRef}
             type="text"

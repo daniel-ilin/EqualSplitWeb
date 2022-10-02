@@ -1,8 +1,6 @@
-import { Suspense, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
-import styles from "./App.module.css";
 import { SessionContextProvider } from "./context/SessionContext";
-import LoadingSpinner from "./components/Spinner/LoadingSpinner";
 import { Home } from "./pages/Home";
 import { LoginPage } from "./pages/LoginPage";
 import { UserDataModelContextProvider } from "./context/UserDataModelContext";
@@ -10,6 +8,7 @@ import { ModalContextProvider } from "./context/ModalContext";
 import { useLoginContext } from "./context/LoginContext";
 import Cookies from "js-cookie";
 import apiService from "./utilities/APIService";
+import { LoadingContextProvider } from "./context/LoadingContext";
 
 function App() {
   const { getLoginState, setLoginState } = useLoginContext();
@@ -46,13 +45,7 @@ function App() {
       <ModalContextProvider>
         <SessionContextProvider>
           <UserDataModelContextProvider>
-            <Suspense
-              fallback={
-                <div className={styles.centered}>
-                  <LoadingSpinner />
-                </div>
-              }
-            >
+            <LoadingContextProvider>
               <Routes>
                 {getLoginState() === false && (
                   <Route path="/" element={<Navigate to="/login" />} />
@@ -67,7 +60,7 @@ function App() {
                   <Route path="/home" element={<Home />}></Route>
                 )}
               </Routes>
-            </Suspense>
+            </LoadingContextProvider>
           </UserDataModelContextProvider>
         </SessionContextProvider>
       </ModalContextProvider>

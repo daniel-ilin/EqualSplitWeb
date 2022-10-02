@@ -1,9 +1,11 @@
+@import "../../../styles/variables.scss";
+
 .card {
   width: 400px;
   height: auto;
-  background-color: white;
+  background-color: $background1;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.194);
-  border: 1px solid #b6b6b6;
+  border: 1px solid $line3;
   z-index: 11;
   padding: 1.4rem;
   border-radius: 4px;
@@ -15,10 +17,27 @@
 }
 
 .v-group input {
-  border: 1px solid #b6b6b6;
+  border: 1px solid $line2;
+  background-color: $background0-1;
   height: 34px;
   padding-left: 0.4rem;
   border-radius: 4px;
+  color: $primary-title;
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $tertiary-title;
+  }
+
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: $tertiary-title;
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: $tertiary-title;
+  }
 }
 
 .v-group h2 {
@@ -27,7 +46,7 @@
 }
 
 .v-group p {
-  color: #747474;
+  color: $tertiary-title;
   font-weight: "400";
   font-size: medium;
 }
@@ -47,20 +66,21 @@
 
 .cancel {
   background-color: transparent;
-  border: 1.4px solid #b6b6b6;
-  color: #808080;
+  border: 1.4px solid $line3;
+  background-color: $background2-3;
+  color: $secondary-title;
 }
 
 .cancel:hover {
-  background-color: #f8f8f8;
+  background-color: $background2;
 }
 
 .confirm {
-  background-color: #007aff;
+  background-color: $button-blue;
   color: white;
   border: none;
 }
 
 .confirm:hover {
-  background-color: #0067dc;
+  background-color: $selection-blue;
 }

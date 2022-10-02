@@ -2,12 +2,13 @@ import { useSelectSession } from "../../context/SessionContext";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
 import { formatDate } from "../../utilities/formatDate";
-import styles from "./TransactionItem.module.css";
+import styles from "./TransactionItem.module.scss";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
 import { TransactionMenu } from "./TransactionMenu/TransactionMenu";
 import CSSTransition from "react-transition-group/CSSTransition";
 import apiService from "../../utilities/APIService";
+import { useLoader } from "../../context/LoadingContext";
 
 type TransactionItemProps = {
   transaction: Transaction;
@@ -19,7 +20,7 @@ type TransactionItemProps = {
 export const TransactionItem = (props: TransactionItemProps) => {
   const { getCurrentModel } = useUserDataModelContext();
   const { getActiveUser, getActiveSession } = useSelectSession();
-
+  const { setLoader } = useLoader();
   const [arrowShowing, setArrowShowing] = useState(false);
   const [menuExpanded, setMenuExpanded] = useState(false);
 
@@ -49,6 +50,7 @@ export const TransactionItem = (props: TransactionItemProps) => {
   };
 
   const deleteTransaction = () => {
+    setLoader(true);
     apiService.deleteTransaction(props.transaction.id, getActiveSession());
   };
 
@@ -61,13 +63,25 @@ export const TransactionItem = (props: TransactionItemProps) => {
       >
         <li>
           <span>
-            <h3>{props.transaction.description}</h3>
-            <h4>{formatDate(new Date(props.transaction.date))}</h4>
+            <h3
+              style={{
+                overflow: "hidden",
+                overflowWrap: "anywhere",
+                whiteSpace: "normal",
+                height: "auto",
+                marginBottom: "10px",
+              }}
+            >
+              {props.transaction.description}
+            </h3>
+            <h4 className={styles.date}>
+              {formatDate(new Date(props.transaction.date))}
+            </h4>
           </span>
           <span
             style={{
-              position: "absolute",
-              right: "10px",
+              position: "relative",
+              marginLeft: "10px",
               alignSelf: "center",
             }}
           >
@@ -83,18 +97,15 @@ export const TransactionItem = (props: TransactionItemProps) => {
           in={menuExpanded}
           mountOnEnter={true}
           unmountOnExit={true}
-          timeout={100}
-          classNames={{
-            enter: "",
-            enterActive: styles["modal-open"],
-            exit: "",
-            exitActive: styles["modal-closed"],
-          }}
+          timeout={0}
         >
-          <TransactionMenu
-            hideMenuHandler={showMenuHandler}
-            deleteTransactionHandler={deleteTransaction}
-          />
+          <span style={{ position: "absolute", right: "0", top: "0" }}>
+            <TransactionMenu
+              hideMenuHandler={showMenuHandler}
+              deleteTransactionHandler={deleteTransaction}
+              transaction={props.transaction}
+            />
+          </span>
         </CSSTransition>
       </div>
     </>

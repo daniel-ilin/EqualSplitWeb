@@ -4,6 +4,7 @@ import { TransactionTable } from ".././TransactionTable/TransactionTable";
 import { InfoSection } from ".././InfoSection/InfoSection";
 import { useSelectSession } from "../../context/SessionContext";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
+import { findOwers } from "../../utilities/Calculator";
 
 export const ActiveSession = () => {
   const { getActiveUser, getActiveSession } = useSelectSession();
@@ -24,11 +25,23 @@ export const ActiveSession = () => {
         )?.ownerid;
   }
 
+  const data = getCurrentModel();
+
+  const session =
+    data.sessions !== undefined
+      ? data.sessions.find((session) => session.id === getActiveSession())
+      : undefined;
+
+  const calculatedUsers = session !== undefined ? findOwers(session) : [];
+
   return (
     <>
       <div className={styles["session-frame"]}>
-        <InfoSection></InfoSection>
-        <TransactionTable editable={editable}></TransactionTable>
+        <InfoSection calculatedUsers={calculatedUsers}></InfoSection>
+        <TransactionTable
+          editable={editable}
+          calculatedUsers={calculatedUsers}
+        ></TransactionTable>
         {editable && <MessageInput></MessageInput>}
       </div>
     </>

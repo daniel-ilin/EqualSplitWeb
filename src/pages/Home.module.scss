@@ -1,0 +1,35 @@
+@import "../styles/variables.scss";
+
+.wrapper {
+  margin-top: 1rem;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.194);
+  color: $primary-title;
+}
+
+.overall {
+  border-right: 1px solid $line1;
+  border-bottom: 1px solid $line1;
+  background-color: $background1;
+  display: flex;
+  height: 89vh;
+  min-height: 400px;
+  z-index: 2;  
+}
+
+.custom {
+  min-width: 950px;
+  overflow: scroll;
+  z-index: 2;
+}
+
+.backdrop {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%;
+}

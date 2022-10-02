@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import { useLoginContext } from "../../context/LoginContext";
 import apiService from "../../utilities/APIService";
-import styles from "./LoginCard.module.css";
+import styles from "./LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useLoader } from "../../context/LoadingContext";
 
 type LoginCardProps = {
   changeRegisterShowingHandler: () => void;
@@ -13,6 +14,7 @@ export const LoginCard = (props: LoginCardProps) => {
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const { setLoginState } = useLoginContext();
+  const { setLoader } = useLoader();
 
   const [errorShowing, setErrorShowing] = useState(false);
 
@@ -24,10 +26,12 @@ export const LoginCard = (props: LoginCardProps) => {
       passwordRef.current?.value !== undefined
     ) {
       try {
+        setLoader(true);
         await apiService.login(
           emailRef.current?.value,
           passwordRef.current?.value
         );
+        
         setErrorShowing(false);
         setLoginState(true);
         navigate("/home");

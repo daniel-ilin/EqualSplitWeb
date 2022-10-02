@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .button-container {
   background-color: transparent;
   display: none;
@@ -15,11 +17,11 @@
 }
 
 .button-container:hover {
-  background-color: #0067dc;
+  background-color: $selection-blue;
 }
 
 .active {
-  background-color: #0067dc;
+  background-color: $selection-blue;
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
 }

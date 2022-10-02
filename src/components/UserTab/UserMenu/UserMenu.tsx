@@ -1,7 +1,9 @@
 import { useSelectSession } from "../../../context/SessionContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
+import OutsideClickHandler from "react-outside-click-handler";
 import apiService from "../../../utilities/APIService";
-import styles from "./UserMenu.module.css";
+import styles from "./UserMenu.module.scss";
+import { useLoader } from "../../../context/LoadingContext";
 
 type UserMenuProps = {
   hideMenuHandler: () => void;
@@ -10,6 +12,8 @@ type UserMenuProps = {
 
 export const UserMenu = (props: UserMenuProps) => {
   const { getCurrentModel } = useUserDataModelContext();
+  const { setLoader } = useLoader();
+  const { setActiveUser } = useSelectSession();
 
   const isThisActiveUser = getCurrentModel().activeUser.id === props.userid;
 
@@ -17,11 +21,13 @@ export const UserMenu = (props: UserMenuProps) => {
 
   const removeUserHandler = async () => {
     try {
+      setLoader(true);
       const response = await apiService.removeUser(
         props.userid,
         getActiveSession()
       );
-      console.log(response.message);
+      isThisActiveUser && setActiveUser("");
+      isThisActiveUser && console.log(response.message);
     } catch (error) {
       console.log(error);
     }
@@ -29,8 +35,7 @@ export const UserMenu = (props: UserMenuProps) => {
 
   return (
     <>
-      <div style={{ position: "relative", zIndex: "10" }}>
-        <div className={styles.backdrop} onClick={props.hideMenuHandler} />
+      <OutsideClickHandler onOutsideClick={() => props.hideMenuHandler()}>
         <div className={styles.menu}>
           {isThisActiveUser ? (
             <button onClick={removeUserHandler}>Leave</button>
@@ -38,7 +43,7 @@ export const UserMenu = (props: UserMenuProps) => {
             <button onClick={removeUserHandler}>Remove</button>
           )}
         </div>
-      </div>
+      </OutsideClickHandler>
     </>
   );
 };

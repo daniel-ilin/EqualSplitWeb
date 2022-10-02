@@ -8,13 +8,21 @@ import {
 import { ModalType } from "../types/ModalType";
 import { modalReducer } from "./helpers/modalReducer";
 
+interface UseModalArgs {
+  modalType: ModalType | null;
+  session?: Session;
+  transaction?: Transaction;
+}
+
 type ModalReducerType = {
   modalType: ModalType | null;
+  session?: Session;
+  transaction?: Transaction;
 };
 
 type ModalContextType = {
   getModalState: () => { modalVisible: boolean; modalState: ModalReducerType };
-  toggleModal: (arg0: ModalType | null) => void;
+  toggleModal: (arg0: UseModalArgs | null) => void;
 };
 
 type ModalContextProvideProps = {
@@ -38,10 +46,14 @@ export const ModalContextProvider = (props: ModalContextProvideProps) => {
     return { modalVisible, modalState };
   };
 
-  const toggleModal = (type: ModalType | null) => {
+  const toggleModal = (payload: UseModalArgs | null) => {
     setModalVisible((prev) => {
-      if (!prev === true && type !== null) {
-        dispatch({ type: type });
+      if (!prev === true && payload && payload?.modalType !== null) {
+        dispatch({
+          type: payload.modalType,
+          session: payload.session,
+          transaction: payload.transaction,
+        });
       }
       return !prev;
     });

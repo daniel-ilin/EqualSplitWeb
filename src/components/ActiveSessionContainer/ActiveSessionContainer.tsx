@@ -15,7 +15,7 @@ export const ActiveSessionContainer = (props: ActiveSessionContainerProps) => {
   const { getActiveUser } = useSelectSession();
 
   useEffect(() => {
-    setUsersBarVisible(getActiveUser() !== "");    
+    setUsersBarVisible(getActiveUser() !== "");
   }, []);
 
   return (
@@ -34,14 +34,12 @@ export const ActiveSessionContainer = (props: ActiveSessionContainerProps) => {
       >
         <>
           <div className={styles["active-session-container"]}>
-            <span style={{ minWidth: "250px", width: "30%", float: "left" }}>
+            <span style={{ width: "30%" }}>
               <SessionUsersBar usersBarVisible={usersBarVisible} />
             </span>
-            {getActiveUser() !== "" && (
-              <span style={{ width: "70%", overflow: "hidden" }}>
-                <ActiveSession></ActiveSession>
-              </span>
-            )}
+            <span style={{ width: "70%" }}>
+              {getActiveUser() !== "" && <ActiveSession></ActiveSession>}
+            </span>
           </div>
         </>
       </CSSTransition>

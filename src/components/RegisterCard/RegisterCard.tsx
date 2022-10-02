@@ -1,12 +1,14 @@
-import styles from "./RegisterCard.module.css";
+import styles from "./RegisterCard.module.scss";
 import { useRef } from "react";
 import apiService from "../../utilities/APIService";
+import { useLoader } from "../../context/LoadingContext";
 
 type RegisterCardProps = {
   changeRegisterShowingHandler: () => void;
 };
 
 export const RegisterCard = (props: RegisterCardProps) => {
+  const { setLoader } = useLoader();
   const nameRef = useRef<HTMLInputElement>(null);
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -20,6 +22,7 @@ export const RegisterCard = (props: RegisterCardProps) => {
       return;
     }
     try {
+      setLoader(true);
       const response = await apiService.register(
         nameRef.current?.value,
         emailRef.current?.value,

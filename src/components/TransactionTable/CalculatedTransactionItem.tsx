@@ -1,7 +1,5 @@
-import { useSelectSession } from "../../context/SessionContext";
-import { useUserDataModelContext } from "../../context/UserDataModelContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
-import styles from "./TransactionItem.module.css";
+import styles from "./TransactionItem.module.scss";
 
 type CalculatedTransactionItemProps = {
   transaction: CalculatedTransaction;
@@ -13,9 +11,6 @@ type CalculatedTransactionItemProps = {
 export const CalculatedTransactionItem = (
   props: CalculatedTransactionItemProps
 ) => {
-  const { getCurrentModel } = useUserDataModelContext();
-  const { getActiveUser } = useSelectSession();
-
   const receiver =
     props.transaction.receiverid !== null
       ? props.calculatedUsers.find(

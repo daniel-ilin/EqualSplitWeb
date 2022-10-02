@@ -1,6 +1,8 @@
 import { useModalContext } from "../../context/ModalContext";
 import styles from "./ModalOverlay.module.css";
 import { CreateSessionCard } from "./OverlayCard/CreateSessionCard";
+import { EditSessionCard } from "./OverlayCard/EditSessionCard/EditSessionCard";
+import { EditTransactionCard } from "./OverlayCard/EditTransactionCard/EditTransactionCard";
 import { JoinSessionCard } from "./OverlayCard/JoinSessionCard";
 import { ProfileCard } from "./OverlayCard/ProfileCard";
 
@@ -8,13 +10,15 @@ const MODAL_STATES = {
   0: <CreateSessionCard />,
   1: <JoinSessionCard />,
   2: <ProfileCard />,
+  3: <EditTransactionCard />,
+  4: <EditSessionCard />,
 };
 
 export const ModalOverlay = () => {
   const { getModalState, toggleModal } = useModalContext();
 
   const hideModalHandler = () => {
-    toggleModal(getModalState().modalState.modalType);
+    toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
   const modalType = getModalState().modalState.modalType;

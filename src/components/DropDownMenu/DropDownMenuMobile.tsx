@@ -1,6 +1,6 @@
 import { useModalContext } from "../../context/ModalContext";
 import { ModalType } from "../../types/ModalType";
-import styles from "./DropDownMenuMobile.module.css";
+import styles from "./DropDownMenuMobile.module.scss";
 
 type DropDownMenuMobileProps = {
   hideMenuHandler: () => void;
@@ -11,19 +11,19 @@ export const DropDownMenuMobile = (props: DropDownMenuMobileProps) => {
 
   // const [modalType, setModalType] = useState<ModalType>(ModalType.addSession)
 
-  const createSessionHandler = () => {        
+  const createSessionHandler = () => {
     props.hideMenuHandler();
-    toggleModal(ModalType.createSession);
+    toggleModal({ modalType: ModalType.createSession });
   };
 
-  const joinSessionHandler = () => {    
+  const joinSessionHandler = () => {
     props.hideMenuHandler();
-    toggleModal(ModalType.joinSession);
+    toggleModal({ modalType: ModalType.joinSession });
   };
 
-  const profileHandler = () => {    
+  const profileHandler = () => {
     props.hideMenuHandler();
-    toggleModal(ModalType.profile);
+    toggleModal({ modalType: ModalType.profile });
   };
 
   return (

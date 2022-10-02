@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
-import { formatCurrency } from "../../utilities/formatCurrency";
-import styles from "./CurrencyInputField.module.css";
+import { useEffect, useState } from "react";
+import styles from "./CurrencyInputField.module.scss";
+import CurrencyInput from "react-currency-input-field";
+import { CurrencyInputProps } from "react-currency-input-field/dist/components/CurrencyInputProps";
 
 type CurrencyInputFieldProps = {
   updateAmount: (amount: number) => void;
@@ -8,68 +9,50 @@ type CurrencyInputFieldProps = {
 };
 
 export const CurrencyInputField = (props: CurrencyInputFieldProps) => {
-  const moneyAmountRef = useRef<HTMLInputElement>(null);
+  const limit = 999999999;
+  const prefix = "$";
 
-  const [moneyAmountDisplay, setMoneyAmountDisplay] = useState("$0.00");
-  const [moneyInputting, setMoneyInputting] = useState("");
-
-  const changeAmountHandler = () => {
-    if (
-      moneyAmountRef.current === undefined ||
-      moneyAmountRef.current === null ||
-      moneyAmountRef.current.value === ""
-    ) {
-      setMoneyInputting("");
-      setMoneyAmountDisplay("$0.00");
-      props.updateAmount(0);
-    } else {
-      setMoneyInputting("inputting");
-      setMoneyAmountDisplay(formatCurrency(+moneyAmountRef.current.value));
-      props.updateAmount(+moneyAmountRef.current.value);
-    }
-  };
+  const [value, setValue] = useState<string | number>("");
 
   useEffect(() => {
-    if (!moneyAmountRef.current) return;
-    if (
-      props.moneyAmount === undefined ||
-      props.moneyAmount === null ||
-      props.moneyAmount === 0
-    ) {
-      setMoneyInputting("");
-      setMoneyAmountDisplay("$0.00");
-      moneyAmountRef.current.value = "";
+    let newVal = parseFloat(`${value}`) * 100;
+    props.updateAmount(newVal);
+  }, [props, value]);
+
+  const handleOnValueChange: CurrencyInputProps["onValueChange"] = (
+    value,
+    _
+  ): void => {
+    if (!value) {
+      setValue("");
+      return;
     }
-  }, [props.moneyAmount]);
+
+    if (Number(value) > limit) {
+      setValue(value);
+      return;
+    }
+
+    setValue(value);
+  };
 
   return (
     <>
-      <div className={`${styles.inputholder} ${styles[`${moneyInputting}`]}`}>
-        <input
-          className={styles["amount-hidden"]}
-          onKeyPress={(event) => {
-            if (!/[0-9]/.test(event.key)) {
-              event.preventDefault();
-            }
-            if (
-              /[0]/.test(event.key) &&
-              moneyAmountRef.current?.value.length === 0
-            ) {
-              event.preventDefault();
-            }
-
-            if (
-              moneyAmountRef.current?.value !== undefined &&
-              moneyAmountRef.current?.value.length > 11
-            ) {
-              event.preventDefault();
-            }
-          }}
-          onChange={() => changeAmountHandler()}
-          ref={moneyAmountRef}
-        ></input>
-        <h5>{moneyAmountDisplay}</h5>
-      </div>
+      <CurrencyInput
+        id="validationCustom01"
+        name="input-1"
+        value={value}
+        className={styles.input}
+        onValueChange={handleOnValueChange}
+        placeholder="$0.00"
+        prefix={prefix}
+        step={1}
+        onKeyPress={(event) => {
+          if (value !== undefined && value > 999999999) {
+            event.preventDefault();
+          }
+        }}
+      />
     </>
   );
 };

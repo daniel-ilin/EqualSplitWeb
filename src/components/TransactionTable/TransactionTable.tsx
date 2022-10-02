@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import { useSelectSession } from "../../context/SessionContext";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
-import { findOwers } from "../../utilities/Calculator";
 import { CalculatedTransactionItem } from "./CalculatedTransactionItem";
 import { TransactionItem } from "./TransactionItem";
 import styles from "./TransactionTable.module.css";
 
 type TransactionTableProps = {
   editable: boolean;
+  calculatedUsers: CalculatedPerson[];
 };
 
 export const TransactionTable = (props: TransactionTableProps) => {
   const { getActiveSession, getActiveUser } = useSelectSession();
 
   const { getCurrentModel } = useUserDataModelContext();
+
+  let { calculatedUsers } = props;
 
   const data = getCurrentModel();
 
@@ -29,19 +31,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
     }
   }, []);
 
-  const session =
-    data.sessions !== undefined
-      ? data.sessions.find((session) => session.id === getActiveSession())
-      : undefined;
-
   const transactions =
     data.sessions !== undefined
       ? data.sessions
           .find((session) => session.id === getActiveSession())
           ?.users.find((user) => user.userid === getActiveUser())?.transactions
       : [];
-
-  const calculatedUsers = session !== undefined ? findOwers(session) : [];
 
   const owed =
     calculatedUsers !== undefined &&
@@ -65,10 +60,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
               key={transaction.id}
               calculated={false}
               switchScrollStateHandler={switchScrollStateHandler}
-              editable={props.editable}              
+              editable={props.editable}
             ></TransactionItem>
           ))}
-          <li className={styles.spacer}></li>
+          <li>
+            <div className={styles.spacer}></div>
+          </li>
           {calculatedUsers !== undefined &&
             calculatedUsers
               .find((user) => user.id === getActiveUser())
@@ -78,10 +75,12 @@ export const TransactionTable = (props: TransactionTableProps) => {
                   transaction={calculatedTransaction}
                   calculated={true}
                   key={calculatedTransaction.id}
-                  calculatedUsers={calculatedUsers}                  
+                  calculatedUsers={calculatedUsers}
                 />
               ))}
-          <li className={styles.spacer}></li>
+          <li>
+            <div className={`${styles["spacer"]} ${styles["tall"]}`}></div>
+          </li>
         </ul>
       </div>
     </>

@@ -6,7 +6,7 @@ import apiService from "../../utilities/APIService";
 import { DotsButton } from ".././DotsButton/DotsButton";
 import { DropDownMenu } from ".././DropDownMenu/DropDownMenu";
 import { DropDownMenuMobile } from ".././DropDownMenu/DropDownMenuMobile";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 
 export const Header = () => {
   const [menuExpanded, setMenuExpanded] = useState(false);

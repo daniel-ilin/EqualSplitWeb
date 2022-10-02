@@ -1,5 +1,5 @@
 import { SessionTab } from ".././SessionTab/SessionTab";
-import styles from "./SessionBar.module.css";
+import styles from "./SessionBar.module.scss";
 import { useSelectSession } from "../../context/SessionContext";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 

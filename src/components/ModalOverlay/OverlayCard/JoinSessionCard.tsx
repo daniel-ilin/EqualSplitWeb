@@ -1,44 +1,32 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
-import { useUserDataModelContext } from "../../../context/UserDataModelContext";
-import useHttp from "../../../hooks/use-http";
+
 import apiService from "../../../utilities/APIService";
-import styles from "./JoinSessionCard.module.css";
+import styles from "./JoinSessionCard.module.scss";
 
 export const JoinSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
-
-  const {
-    sendRequest: sendGetDataRequest,    
-    data: userData,    
-  } = useHttp<UserData | undefined>(apiService.getAllUserData, false);
-
-  const { setCurrentModel } = useUserDataModelContext();
-
-  useEffect(() => {
-    if (userData !== null) {
-      setCurrentModel(userData);
-    }
-  }, [userData, setCurrentModel]);
+  const { setLoader } = useLoader();
 
   const sessionCodeRef = useRef<HTMLInputElement>(null);
 
   const cancelButtonHandler = () => {
-    toggleModal(getModalState().modalState.modalType);
+    toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
   const confirmButtonHandler = async () => {
     try {
       if (sessionCodeRef.current !== null) {
+        setLoader(true);
         const response = await apiService.joinSession(
           sessionCodeRef.current.value
         );
-        toggleModal(getModalState().modalState.modalType);
+        
+        toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
-
-        sendGetDataRequest();
       }
     } catch (error) {
       console.log(error);

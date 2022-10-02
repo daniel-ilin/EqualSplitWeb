@@ -1,5 +1,7 @@
+@import "../../styles/variables.scss";
+
 .header {
-  background: #007aff;
+  background: $main-blue;
   color: white;
   height: 55px;
   position: relative;
@@ -28,7 +30,7 @@
 }
 
 .logout-button:hover {
-  background-color: #0067dc;
+  background-color: $selection-blue;
 }
 
 .modal-open {
@@ -44,7 +46,7 @@
     opacity: 0;
   }
   100% {
-    opacity: 1;    
+    opacity: 1;
   }
 }
 
@@ -53,7 +55,7 @@
     opacity: 1;
   }
   100% {
-    opacity: 0;    
+    opacity: 0;
   }
 }
 

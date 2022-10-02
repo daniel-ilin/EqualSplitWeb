@@ -1,4 +1,4 @@
-import styles from "./DotsButton.module.css";
+import styles from "./DotsButton.module.scss";
 
 type DotsButtonProps = {
   onMenuExpanded: () => void;

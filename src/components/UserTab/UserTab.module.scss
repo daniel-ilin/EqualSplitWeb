@@ -1,0 +1,127 @@
+@import "../../styles/variables.scss";
+
+.user-tab {
+  display: flex;
+  width: auto;
+  height: auto;
+  min-height: 60px;
+  flex-direction: column;
+  position: relative;
+  justify-content: space-between;
+  align-items: flex-start;
+  background-color: transparent;
+  border-bottom: 1px solid $line1;
+  border-right: 1px solid $line1;
+  color: $primary-title;
+  padding: 0.4rem 0 0rem 1rem;
+  margin-left: -2rem;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.user-tab:hover {
+  background-color: $background1;
+}
+
+.spacer-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: all 150ms;
+}
+
+.inactive-translate:hover {
+  transform: translateX(2%);
+}
+
+.active {
+  background-color: $background1;
+  border-right: none;
+}
+
+.active:hover {
+  background-color: $background1;
+}
+
+.hstack {
+  display: flex;
+  flex-direction: row;
+}
+
+.user-tab h2 {
+  background-color: transparent;
+  margin: 0 0 0.3rem 0;
+  font-size: medium;
+}
+
+.user-tab h5 {
+  background-color: transparent;
+  margin: 0.1rem 0rem 0rem 0.3rem;
+  color: $secondary-title;
+  font-weight: 400;
+  font-size: smaller;
+}
+
+.user-tab p {
+  background-color: transparent;
+  margin: 0 0 0.3rem 0;
+  color: $secondary-title;
+  font-weight: "400";
+  font-size: "0.9rem";
+}
+
+.user-info {
+  background-color: transparent;
+  display: flex;
+  align-items: flex-start;
+}
+
+.user-info p {
+  background-color: transparent;
+}
+
+.user-info-item {
+  background-color: none;
+  margin: 0 0.8rem 0 0;
+}
+
+.itemarrow {
+  margin-right: 1.4rem;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 3.4px;
+  height: 18px;
+  width: 18px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.modal-open {
+  animation: openModal 100ms ease-out forwards;
+}
+
+.modal-closed {
+  animation: closeModal 100ms ease-out forwards;
+}
+
+@keyframes openModal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes closeModal {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

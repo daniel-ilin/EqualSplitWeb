@@ -1,6 +1,6 @@
 import { useSelectSession } from "../../context/SessionContext";
 import { formatCurrency } from "../../utilities/formatCurrency";
-import styles from "./UserTab.module.css";
+import styles from "./UserTab.module.scss";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
 import CSSTransition from "react-transition-group/CSSTransition";
@@ -50,15 +50,11 @@ export const UserTab = (props: UserTabProps) => {
   };
 
   const dropDownMenuHandler = () => {
-    setMenuExpanded((prevState) => {
-      return !prevState;
-    });
+    setMenuExpanded(true);
   };
 
-  const showMenuHandler = () => {
-    setMenuExpanded((prevState) => {
-      return !prevState;
-    });
+  const hideMenuHandler = () => {
+    setMenuExpanded(false);
   };
 
   return (
@@ -102,18 +98,21 @@ export const UserTab = (props: UserTabProps) => {
             in={menuExpanded}
             mountOnEnter={true}
             unmountOnExit={true}
-            timeout={100}
-            classNames={{
-              enter: "",
-              enterActive: styles["modal-open"],
-              exit: "",
-              exitActive: styles["modal-closed"],
-            }}
+            timeout={0}
           >
-            <UserMenu
-              hideMenuHandler={showMenuHandler}
-              userid={props.user.userid}
-            />
+            <div
+              style={{
+                position: "absolute",
+                zIndex: "10",
+                top: "26px",
+                right: "120px",
+              }}
+            >
+              <UserMenu
+                hideMenuHandler={hideMenuHandler}
+                userid={props.user.userid}
+              />
+            </div>
           </CSSTransition>
         )}
       </li>

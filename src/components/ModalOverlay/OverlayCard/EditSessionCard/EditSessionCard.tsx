@@ -1,11 +1,10 @@
 import { useRef } from "react";
-import { useLoader } from "../../../context/LoadingContext";
-import { useModalContext } from "../../../context/ModalContext";
+import { useLoader } from "../../../../context/LoadingContext";
+import { useModalContext } from "../../../../context/ModalContext";
+import apiService from "../../../../utilities/APIService";
+import styles from "./EditSessionCard.module.scss";
 
-import apiService from "../../../utilities/APIService";
-import styles from "./CreateSessionCard.module.scss";
-
-export const CreateSessionCard = () => {
+export const EditSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
 
@@ -17,12 +16,15 @@ export const CreateSessionCard = () => {
 
   const confirmButtonHandler = async () => {
     try {
+      let id = getModalState().modalState.session?.id;
       if (
         sessionNameRef.current !== null &&
-        sessionNameRef.current.value.length > 0
+        sessionNameRef.current.value.length > 0 &&
+        id
       ) {
         setLoader(true);
-        const response = await apiService.postSession(
+        const response = await apiService.renameSession(
+          id,
           sessionNameRef.current?.value
         );
         

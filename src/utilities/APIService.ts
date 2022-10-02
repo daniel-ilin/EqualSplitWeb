@@ -101,7 +101,7 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not get user data.");
+      throw new Error("Could not add transaction.");
     }
 
     const result = (await response.json()) as ApiReponse;
@@ -114,7 +114,7 @@ class APIService {
 
     const body = JSON.stringify({
       id: id,
-      sessionid: sessionid      
+      sessionid: sessionid,
     });
 
     const response = await fetch(endpoint, {
@@ -143,7 +143,7 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not get user data.");
+      throw new Error("Could not delete transaction.");
     }
 
     const result = (await response.json()) as ApiReponse;
@@ -184,7 +184,7 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not get user data.");
+      throw new Error("Could not post session.");
     }
 
     const result = (await response.json()) as ApiReponse;
@@ -226,7 +226,7 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not get user data.");
+      throw new Error("Could not join session.");
     }
 
     const result = (await response.json()) as ApiReponse;
@@ -257,7 +257,7 @@ class APIService {
       const result = (await response.json()) as TokensResponse;
       Cookies.set("refresh-token", result.refreshToken);
       Cookies.set("access-token", result.accessToken);
-      
+
       return result;
     }
   }
@@ -318,7 +318,7 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not get user data.");
+      throw new Error("Could not change username.");
     }
 
     const result = (await response.json()) as ApiReponse;
@@ -428,7 +428,93 @@ class APIService {
       const result = (await response.json()) as ApiReponse;
       return result;
     } else if (!response.ok) {
-      throw new Error("Could not delete session.");
+      throw new Error("Could not remove user.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async changeTransaction(id: string, amount: number, description: string) {
+    const endpoint = `${Constants.API_ADDRESS}/transaction`;
+    const accessToken = Cookies.get("access-token");
+
+    const body = JSON.stringify({
+      id: id,
+      description: description,
+      amount: amount,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not change transaction.");
+    }
+
+    const result = (await response.json()) as ApiReponse;
+    return result;
+  }
+
+  async renameSession(id: string, name: string) {
+    const endpoint = `${Constants.API_ADDRESS}/session`;
+
+    const accessToken = Cookies.get("access-token");
+
+    const body = JSON.stringify({
+      sessionid: id,
+      name: name,
+    });
+
+    const response = await fetch(endpoint, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-auth-token": `${accessToken}`,
+      },
+      body: body,
+    });
+
+    if (response.status === 401) {
+      await apiService.getAccessToken();
+
+      const accessToken = Cookies.get("access-token");
+
+      const response = await fetch(endpoint, {
+        method: "put",
+        headers: {
+          "Content-Type": "application/json",
+          "x-auth-token": `${accessToken}`,
+        },
+        body: body,
+      });
+
+      const result = (await response.json()) as ApiReponse;
+      return result;
+    } else if (!response.ok) {
+      throw new Error("Could not rename session.");
     }
 
     const result = (await response.json()) as ApiReponse;

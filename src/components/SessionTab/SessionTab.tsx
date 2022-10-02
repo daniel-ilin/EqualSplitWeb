@@ -1,5 +1,5 @@
 import { formatCurrency } from "../../utilities/formatCurrency";
-import styles from "./SessionTab.module.css";
+import styles from "./SessionTab.module.scss";
 import personIcon from "../../imgs/person-icon.png"; // relative path to image
 import { useSelectSession } from "../../context/SessionContext";
 import arrowsStyles from ".././arrows/Arrow.module.css";
@@ -48,10 +48,8 @@ export const SessionTab = (props: SessionTabProps) => {
     });
   };
 
-  const showMenuHandler = () => {
-    setMenuExpanded((prevState) => {
-      return !prevState;
-    });
+  const hideMenuHandler = () => {
+    setMenuExpanded(false);
   };
 
   return (
@@ -110,18 +108,11 @@ export const SessionTab = (props: SessionTabProps) => {
           in={menuExpanded}
           mountOnEnter={true}
           unmountOnExit={true}
-          timeout={100}
-          classNames={{
-            enter: "",
-            enterActive: styles["modal-open"],
-            exit: "",
-            exitActive: styles["modal-closed"],
-          }}
+          timeout={0}
         >
-          <SessionMenu
-            hideMenuHandler={showMenuHandler}
-            session={session}
-          />
+          <div style={{ position: "absolute", top: "24px", right: "120px" }}>
+            <SessionMenu hideMenuHandler={hideMenuHandler} session={session} />
+          </div>
         </CSSTransition>
       </li>
     </>

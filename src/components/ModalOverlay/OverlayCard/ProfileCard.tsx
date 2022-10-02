@@ -1,12 +1,13 @@
 import { useRef } from "react";
+import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 import apiService from "../../../utilities/APIService";
-import styles from "./ProfileCard.module.css";
+import styles from "./ProfileCard.module.scss";
 
 export const ProfileCard = () => {
   const { getModalState, toggleModal } = useModalContext();
-
+  const { setLoader } = useLoader();
   const { getCurrentModel } = useUserDataModelContext();
 
   const userDataModel = getCurrentModel().activeUser;
@@ -14,16 +15,18 @@ export const ProfileCard = () => {
   const profileNameRef = useRef<HTMLInputElement>(null);
 
   const cancelButtonHandler = () => {
-    toggleModal(getModalState().modalState.modalType);
+    toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
   const confirmButtonHandler = async () => {
     try {
       if (profileNameRef.current !== null) {
+        setLoader(true);
         const response = await apiService.changeUsername(
           profileNameRef.current.value
         );
-        toggleModal(getModalState().modalState.modalType);
+        
+        toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }

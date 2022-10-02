@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelectSession } from "../../context/SessionContext";
-import styles from "./SessionUsersBar.module.css";
+import styles from "./SessionUsersBar.module.scss";
 import { UserTab } from ".././UserTab/UserTab";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
 

@@ -1,3 +1,5 @@
+@import "../../styles/variables.scss";
+
 .card {
   width: 400px;
   height: 29rem;
@@ -24,7 +26,7 @@
 .v-group h2 {
   font-weight: 600;
   font-size: xx-large;
-  color: #007aff;
+  color: $main-blue;
 }
 
 .v-group p {
