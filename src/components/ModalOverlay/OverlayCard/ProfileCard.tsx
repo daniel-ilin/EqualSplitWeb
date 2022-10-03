@@ -8,7 +8,7 @@ import styles from "./OverlayCards.module.scss";
 export const ProfileCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
-  const { getCurrentModel } = useUserDataModelContext();
+  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
 
   const userDataModel = getCurrentModel().activeUser;
 
@@ -26,12 +26,17 @@ export const ProfileCard = () => {
           profileNameRef.current.value
         );
 
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
       }
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };

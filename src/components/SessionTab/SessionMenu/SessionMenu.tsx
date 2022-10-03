@@ -14,7 +14,7 @@ type SessionMenuProps = {
 
 export const SessionMenu = (props: SessionMenuProps) => {
   const { setLoader } = useLoader();
-  const { getCurrentModel } = useUserDataModelContext();
+  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
   const { toggleModal } = useModalContext();
   const { setActiveUser } = useSelectSession();
 
@@ -27,7 +27,12 @@ export const SessionMenu = (props: SessionMenuProps) => {
       const response = await apiService.deleteSession(props.session.id);
       setActiveUser("");
       console.log(response.message);
+
+      const userData = await apiService.getAllUserData();
+      setLoader(false);
+      setCurrentModel(userData);
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };
@@ -41,7 +46,12 @@ export const SessionMenu = (props: SessionMenuProps) => {
       );
       setActiveUser("");
       console.log(response.message);
+
+      const userData = await apiService.getAllUserData();
+      setLoader(false);
+      setCurrentModel(userData);
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };

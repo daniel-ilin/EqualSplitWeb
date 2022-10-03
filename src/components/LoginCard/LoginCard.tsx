@@ -5,10 +5,12 @@ import styles from "./LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
+import { useUserDataModelContext } from "../../context/UserDataModelContext";
 
 export const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const { setCurrentModel } = useUserDataModelContext();
 
   const { setLoginState } = useLoginContext();
   const { setLoader } = useLoader();
@@ -32,7 +34,12 @@ export const LoginCard = () => {
         setErrorShowing(false);
         setLoginState(true);
         navigate("/home");
+
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
       } catch (error) {
+        setLoader(false);
         setErrorShowing(true);
       }
     }
@@ -73,12 +80,12 @@ export const LoginCard = () => {
         {errorShowing && (
           <p
             style={{
-              color: "pink",
+              color: "#ffa7a2",
               fontSize: "11px",
               position: "relative",
               height: "0px",
               margin: "0",
-              bottom: "10px",
+              bottom: "12px",
               padding: "0",
             }}
           >

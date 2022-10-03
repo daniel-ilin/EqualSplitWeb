@@ -17,7 +17,7 @@ type TransactionItemProps = {
 };
 
 export const TransactionItem = (props: TransactionItemProps) => {
-  const { getCurrentModel } = useUserDataModelContext();
+  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
   const { getActiveUser, getActiveSession } = useSelectSession();
   const { setLoader } = useLoader();
   const [arrowShowing, setArrowShowing] = useState(false);
@@ -48,9 +48,21 @@ export const TransactionItem = (props: TransactionItemProps) => {
     });
   };
 
-  const deleteTransaction = () => {
-    setLoader(true);
-    apiService.deleteTransaction(props.transaction.id, getActiveSession());
+  const deleteTransaction = async () => {
+    try {
+      setLoader(true);
+      await apiService.deleteTransaction(
+        props.transaction.id,
+        getActiveSession()
+      );
+
+      const userData = await apiService.getAllUserData();
+      setLoader(false);
+      setCurrentModel(userData);
+    } catch (error) {
+      setLoader(false);
+      console.log(error);
+    }
   };
 
   return (

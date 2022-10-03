@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { Container } from "react-bootstrap";
 import { Oval } from "react-loader-spinner";
 import { ActiveSessionContainer } from "../components/ActiveSessionContainer/ActiveSessionContainer";
@@ -24,23 +24,23 @@ export const Home = () => {
 
   const { getModalState, toggleModal } = useModalContext();
 
-  const { isLoaderEnabled, setLoader } = useLoader();
+  const { isLoaderEnabled } = useLoader();
 
   const fetchAllData = useCallback(async () => {
     try {
       const response = await apiService.getAllUserData();
       if (response !== null) {
-        setLoader(false);
         setCurrentModel(response);
       }
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useInterval(() => {
     fetchAllData();
-  }, 1000);
+  }, 10000);
 
   useEffect(() => {
     fetchAllData();

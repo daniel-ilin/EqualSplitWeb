@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
+import { useUserDataModelContext } from "../../../../context/UserDataModelContext";
 import apiService from "../../../../utilities/APIService";
 import { CurrencyInputField } from "../../../CurrencyInputField/CurrencyInputField";
 import styles from "../OverlayCards.module.scss";
@@ -9,6 +10,7 @@ export const EditTransactionCard = () => {
   const { toggleModal, getModalState } = useModalContext();
   const [moneyAmount, setMoneyAmount] = useState(0);
   const { setLoader } = useLoader();
+  const { setCurrentModel } = useUserDataModelContext();
   const descriptionRef = useRef<HTMLInputElement>(null);
 
   const cancelButtonHandler = () => {
@@ -34,12 +36,17 @@ export const EditTransactionCard = () => {
           descriptionRef.current.value
         );
 
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
       }
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };

@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
+import { useUserDataModelContext } from "../../../../context/UserDataModelContext";
 import apiService from "../../../../utilities/APIService";
 import styles from "../OverlayCards.module.scss";
 
 export const EditSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
+  const { setCurrentModel } = useUserDataModelContext();
 
   const sessionNameRef = useRef<HTMLInputElement>(null);
 
@@ -27,13 +29,18 @@ export const EditSessionCard = () => {
           id,
           sessionNameRef.current?.value
         );
-        
+
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
       }
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };

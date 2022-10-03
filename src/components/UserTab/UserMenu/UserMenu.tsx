@@ -14,6 +14,7 @@ export const UserMenu = (props: UserMenuProps) => {
   const { getCurrentModel } = useUserDataModelContext();
   const { setLoader } = useLoader();
   const { setActiveUser } = useSelectSession();
+  const { setCurrentModel } = useUserDataModelContext();
 
   const isThisActiveUser = getCurrentModel().activeUser.id === props.userid;
 
@@ -28,7 +29,14 @@ export const UserMenu = (props: UserMenuProps) => {
       );
       isThisActiveUser && setActiveUser("");
       isThisActiveUser && console.log(response.message);
+
+      const userData = await apiService.getAllUserData();
+      if (userData !== null) {
+        setLoader(false);
+        setCurrentModel(userData);
+      }
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };
