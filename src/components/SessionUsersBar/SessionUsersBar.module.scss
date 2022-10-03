@@ -6,6 +6,7 @@
   background-color: $background2-3;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .sidebar-bottom {
@@ -15,4 +16,39 @@
   margin-top: -16px;
   display: flex;
   flex-direction: column;
+}
+
+.bottomButton {
+  background: none;
+  border: 2px solid $line2;
+  color: $primary-title;
+  font-size: 15px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+  width: auto;
+  align-self: center;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.vContainer {
+  background-color: $background2-3;
+  display: flex;
+  position: absolute;
+  padding-bottom: 20px;
+  bottom: 0;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  width: 99%;  
+
+  p {
+    color: $tertiary-title;
+    margin: 0;
+    margin-bottom: 4px;
+  }
 }

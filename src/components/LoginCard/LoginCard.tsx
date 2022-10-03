@@ -39,6 +39,7 @@ export const LoginCard = () => {
         setLoader(false);
         setCurrentModel(userData);
       } catch (error) {
+        console.log(JSON.stringify(error));
         setLoader(false);
         setErrorShowing(true);
       }

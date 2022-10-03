@@ -18,7 +18,7 @@ export const UserMenu = (props: UserMenuProps) => {
 
   const isThisActiveUser = getCurrentModel().activeUser.id === props.userid;
 
-  const { getActiveSession } = useSelectSession();
+  const { getActiveSession, setActiveSession } = useSelectSession();
 
   const removeUserHandler = async () => {
     try {
@@ -27,7 +27,8 @@ export const UserMenu = (props: UserMenuProps) => {
         props.userid,
         getActiveSession()
       );
-      isThisActiveUser && setActiveUser("");
+      setActiveUser("");
+      isThisActiveUser && setActiveSession("");
       isThisActiveUser && console.log(response.message);
 
       const userData = await apiService.getAllUserData();

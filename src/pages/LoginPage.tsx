@@ -20,27 +20,28 @@ export const LoginPage = () => {
       <div className={styles.overall}>
         <div className={styles.hContainer}>
           <span className={styles.vContainer}>
-            <span>
+            <div className={styles.textContainer}>
               <h1>EqualSplit</h1>
               <p className={styles.subtitle}>Web Version</p>
               <p>
                 Keep track of your group expenses and quickly sort them in the
                 simplest way!
               </p>
-            </span>
-            <div className={styles.appStoreButton}>
-              <a
-                href={"https://apps.apple.com/us/app/equalsplit/id1596676542"}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img
-                  width={"120px"}
-                  className={styles.appStoreLink}
-                  src={appStorePath}
-                  alt={"Appstore"}
-                />
-              </a>
+
+              <div className={styles.appStoreButton}>
+                <a
+                  href={"https://apps.apple.com/us/app/equalsplit/id1596676542"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    width={"120px"}
+                    className={styles.appStoreLink}
+                    src={appStorePath}
+                    alt={"Appstore"}
+                  />
+                </a>
+              </div>
             </div>
           </span>
 

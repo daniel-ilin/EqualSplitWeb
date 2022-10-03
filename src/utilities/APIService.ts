@@ -251,8 +251,8 @@ class APIService {
     });
 
     if (!response.ok) {
-      const result = (await response.json()) as ApiReponse;
-      throw new Error(result.error || "Could not login");
+      const result = await response.json();
+      throw new Error(result);
     } else {
       const result = (await response.json()) as TokensResponse;
       Cookies.set("refresh-token", result.refreshToken);
@@ -329,8 +329,8 @@ class APIService {
     const endpoint = `${Constants.API_ADDRESS}/register`;
 
     const body = JSON.stringify({
-      name: name,
       email: email,
+      name: name,
       password: password,
     });
 

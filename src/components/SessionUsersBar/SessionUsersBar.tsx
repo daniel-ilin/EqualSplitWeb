@@ -3,6 +3,7 @@ import { useSelectSession } from "../../context/SessionContext";
 import styles from "./SessionUsersBar.module.scss";
 import { UserTab } from ".././UserTab/UserTab";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
+import { PrimaryButton } from "../Buttons/PrimaryButton/PrimaryButton";
 
 type SessionUserBarProps = {};
 
@@ -14,29 +15,45 @@ export const SessionUsersBar = (props: SessionUserBarProps) => {
 
   const { getActiveSession, getActiveUser } = useSelectSession();
 
+  const currentSession =
+    sessions && sessions.find((session) => session.id === getActiveSession());
+
+  const copyTextHandler = () => {
+    if (currentSession?.sessioncode) {
+      navigator.clipboard.writeText(currentSession?.sessioncode);
+      alert("Copied the text: " + currentSession?.sessioncode);
+    }
+  };
+
   useEffect(() => {
-    const currentSessionId = getActiveSession();
-    sessions !== undefined &&
-      setSelectedSessionUsers(
-        sessions.find((session) => session.id === currentSessionId)?.users
-      );
-  }, [getActiveSession, sessions, setSelectedSessionUsers]);
+    currentSession && setSelectedSessionUsers(currentSession.users);
+  }, [currentSession]);
 
   return (
-    <div className={styles.sidebar}>
-      {/* <SessionHeader /> */}
-      <ul>
-        {selectedSessionUsers?.map((user) => {
-          return (
-            <UserTab
-              key={user.userid}
-              user={user}
-              isActive={user.userid === getActiveUser()}
-            ></UserTab>
-          );
-        })}
-      </ul>
-      <div className={styles["sidebar-bottom"]}></div>
-    </div>
+    <>
+      <div className={styles.sidebar}>
+        {/* <SessionHeader /> */}
+        <ul>
+          {selectedSessionUsers?.map((user) => {
+            return (
+              <UserTab
+                key={user.userid}
+                user={user}
+                isActive={user.userid === getActiveUser()}
+              ></UserTab>
+            );
+          })}
+        </ul>
+        <div className={styles["sidebar-bottom"]}></div>
+        {currentSession?.sessioncode && (
+          <div className={styles.vContainer}>
+            <p>{currentSession?.sessioncode}</p>
+            <button className={styles.bottomButton} onClick={copyTextHandler}>
+              Copy invite code
+            </button>
+          </div>
+        )}
+      </div>
+    </>
   );
 };

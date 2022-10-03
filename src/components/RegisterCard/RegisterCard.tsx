@@ -21,18 +21,17 @@ export const RegisterCard = () => {
   const confirmButtonHandler = async () => {
     if (
       emailRef.current?.value !== undefined &&
-      passwordRef.current?.value !== undefined
+      passwordRef.current?.value !== undefined &&
+      usernameRef.current?.value !== undefined
     ) {
       try {
         setLoader(true);
-        await apiService.login(
+        await apiService.register(
+          usernameRef.current?.value,
           emailRef.current?.value,
           passwordRef.current?.value
         );
-
         setErrorShowing(false);
-        setLoginState(true);
-        navigate("/home");
       } catch (error) {
         setErrorShowing(true);
       }
