@@ -1,86 +1,87 @@
 @import "../../../styles/variables.scss";
 
 .card {
-  width: 400px;
-  height: auto;
-  background-color: $background1;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.194);
-  border: 1px solid $line2;
-  z-index: 11;
-  padding: 22px;
-  border-radius: 8px;;
+    width: 400px;
+    height: auto;
+    background-color: $background1;
+    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.194);
+    border: 1px solid $line2;
+    z-index: 11;
+    padding: 22px;
+    border-radius: 8px;
 }
 
 .v-group {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .v-group input {
-  border: none;
-  background-color: $background0-1;
-  height: 34px;
-  padding-left: 10px;
-  border-radius: 8px;;
-  color: $primary-title;
+    border: none;
+    background-color: $background0-1;
+    height: 34px;
+    padding-left: 10px;
+    border-radius: 8px;
+    color: $primary-title;
 
-  &::placeholder {
-    /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: $tertiary-title;
-  }
+    &::placeholder {
+        /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: $tertiary-title;
+    }
 
-  &:-ms-input-placeholder {
-    /* Internet Explorer 10-11 */
-    color: $tertiary-title;
-  }
+    &:-ms-input-placeholder {
+        /* Internet Explorer 10-11 */
+        color: $tertiary-title;
+    }
 
-  &::-ms-input-placeholder {
-    /* Microsoft Edge */
-    color: $tertiary-title;
-  }
+    &::-ms-input-placeholder {
+        /* Microsoft Edge */
+        color: $tertiary-title;
+    }
 }
 
 .v-group h2 {
-  font-weight: "500";
-  font-size: x-large;
+    font-weight: "500";
+    font-size: x-large;
+    color: $primary-title;
 }
 
 .v-group p {
-  color: $tertiary-title;
-  font-weight: "400";
-  font-size: medium;
+    color: $tertiary-title;
+    font-weight: "400";
+    font-size: medium;
 }
 
 .h-group {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 20px;
 }
 
 .h-group button {
-  width: 48%;
-  height: 36px;
-  border-radius: 8px;;
+    width: 48%;
+    height: 36px;
+    border-radius: 8px;
 }
 
 .cancel {
-  background-color: transparent;
-  border: 1.4px solid $line3;
-  background-color: $background2-3;
-  color: $secondary-title;
+    background-color: transparent;
+    border: 1.4px solid $line3;
+    background-color: $background2-3;
+    color: $secondary-title;
 }
 
 .cancel:hover {
-  background-color: $background2;
+    background-color: $background2;
 }
 
 .confirm {
-  background-color: $button-blue;
-  color: white;
-  border: none;
+    background-color: $button-blue;
+    color: white;
+    border: none;
 }
 
 .confirm:hover {
-  background-color: $selection-blue;
+    background-color: $selection-blue;
 }

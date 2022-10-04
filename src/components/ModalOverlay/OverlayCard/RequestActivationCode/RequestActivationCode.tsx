@@ -25,10 +25,10 @@ export const RequestActivationCode = () => {
     <>
       <div className={styles.card}>
         <span className={styles["v-group"]}>
-          <h2>Create new session</h2>
-          <p>Enter new session name</p>
+          <h2>Password reset</h2>
+          <p>Enter your email for the reset link</p>
           <input
-            placeholder="Session Name"
+            placeholder="Email"
             ref={sessionNameRef}
             onKeyPress={(event) => {
               if (
@@ -45,7 +45,7 @@ export const RequestActivationCode = () => {
             Cancel
           </button>
           <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
+            Send Link
           </button>
         </span>
       </div>

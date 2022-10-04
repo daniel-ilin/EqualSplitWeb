@@ -25,10 +25,10 @@ export const EnterActivationCode = () => {
     <>
       <div className={styles.card}>
         <span className={styles["v-group"]}>
-          <h2>Create new session</h2>
-          <p>Enter new session name</p>
+          <h2>Enter your activation code</h2>
+          <p>Check your email for the code</p>
           <input
-            placeholder="Session Name"
+            placeholder="••••••"
             ref={sessionNameRef}
             onKeyPress={(event) => {
               if (

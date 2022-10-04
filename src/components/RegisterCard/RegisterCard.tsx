@@ -5,6 +5,8 @@ import styles from "../LoginCard/LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalType } from "../../types/ModalType";
 
 export const RegisterCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -13,7 +15,7 @@ export const RegisterCard = () => {
 
   const { setLoginState } = useLoginContext();
   const { setLoader } = useLoader();
-
+  const { toggleModal } = useModalContext();
   const [errorShowing, setErrorShowing] = useState(false);
 
   const navigate = useNavigate();
@@ -36,6 +38,10 @@ export const RegisterCard = () => {
         setErrorShowing(true);
       }
     }
+  };
+
+  const getCodeHandler = () => {
+    toggleModal({ modalType: ModalType.requestCode });
   };
 
   return (
@@ -89,7 +95,7 @@ export const RegisterCard = () => {
           </button>
         </span>
         <div className={styles.centerblock}>
-          <button className={styles.bottomText}>
+          <button className={styles.bottomText} onClick={getCodeHandler}>
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>

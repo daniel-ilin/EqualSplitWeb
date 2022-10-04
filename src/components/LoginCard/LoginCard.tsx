@@ -57,6 +57,10 @@ export const LoginCard = () => {
     }
   };
 
+  const getCodeHandler = () => {
+    toggleModal({ modalType: ModalType.requestCode });
+  };
+
   return (
     <>
       <div className={styles.card}>
@@ -110,7 +114,7 @@ export const LoginCard = () => {
           </button>
         </span>
         <div className={styles.centerblock}>
-          <button className={styles.bottomText}>
+          <button className={styles.bottomText} onClick={getCodeHandler}>
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>
