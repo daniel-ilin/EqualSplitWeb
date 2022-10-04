@@ -5,19 +5,17 @@ import { ReactComponent as BacksplashVector } from "../imgs/back-vector.svg";
 import appStorePath from "../imgs/appstore.svg";
 import styles from "./LoginPage.module.scss";
 import { ToggleSwitch } from "../components/LoginCard/ToggleSwitch/ToggleSwitch";
+import { ModalOverlay } from "../components/ModalOverlay/ModalOverlay";
+import { useModalContext } from "../context/ModalContext";
 
 export const LoginPage = () => {
   const [registerShowing, setRegisterShowing] = useState(false);
-
-  const changeRegisterShowingHandler = () => {
-    setRegisterShowing((prev) => {
-      return !prev;
-    });
-  };
+  const { getModalState } = useModalContext();
 
   return (
     <>
       <div className={styles.overall}>
+        {getModalState().modalVisible && <ModalOverlay />}
         <div className={styles.hContainer}>
           <span className={styles.vContainer}>
             <div className={styles.textContainer}>

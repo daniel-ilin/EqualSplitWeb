@@ -3,5 +3,7 @@ export enum ModalType {
   joinSession,
   profile,
   editTransaction,
-   editSession,
+  editSession,
+  requestCode,
+  activateCode,
 }

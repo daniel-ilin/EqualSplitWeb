@@ -1,7 +1,8 @@
+import createHttpError, { HttpError } from "http-errors";
 import Cookies from "js-cookie";
 import { Constants } from "./Constants";
 
-const axios = require("axios").default;
+import axios, { AxiosError } from "axios";
 
 class APIService {
   async getAccessToken() {
@@ -236,30 +237,22 @@ class APIService {
   async login(email: string, password: string) {
     const endpoint = `${Constants.API_ADDRESS}/login`;
 
-    const body = JSON.stringify({
-      email: email,
-      password: password,
-    });
-
-    const response = await fetch(endpoint, {
-      method: "post",
+    let config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: body,
-      credentials: "include",
-    });
+    };
 
-    if (!response.ok) {
-      const result = await response.json();
-      throw new Error(result);
-    } else {
-      const result = (await response.json()) as TokensResponse;
-      Cookies.set("refresh-token", result.refreshToken);
-      Cookies.set("access-token", result.accessToken);
+    let params = new URLSearchParams();
+    params.append("email", email);
+    params.append("password", password);
 
-      return result;
-    }
+    const response = await axios.post<TokensResponse>(endpoint, params, config);
+
+    Cookies.set("refresh-token", response.data.refreshToken);
+    Cookies.set("access-token", response.data.accessToken);
+
+    return response;
   }
 
   async logout() {

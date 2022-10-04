@@ -31,5 +31,11 @@ export const modalReducer = (state: ModalReducerType, action: Action) => {
       state.modalType = ModalType.editSession;
       state.session = action.session;
       return state;
+    case ModalType.requestCode:
+      state.modalType = ModalType.requestCode;
+      return state;
+    case ModalType.activateCode:
+      state.modalType = ModalType.activateCode;
+      return state;
   }
 };

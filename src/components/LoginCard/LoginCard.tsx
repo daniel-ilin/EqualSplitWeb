@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
+import axios from "axios";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalType } from "../../types/ModalType";
 
 export const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
@@ -14,6 +17,7 @@ export const LoginCard = () => {
 
   const { setLoginState } = useLoginContext();
   const { setLoader } = useLoader();
+  const { toggleModal } = useModalContext();
 
   const [errorShowing, setErrorShowing] = useState(false);
 
@@ -38,10 +42,17 @@ export const LoginCard = () => {
         const userData = await apiService.getAllUserData();
         setLoader(false);
         setCurrentModel(userData);
-      } catch (error) {
-        console.log(JSON.stringify(error));
+      } catch (error: any) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response &&
+          error.response.status === 403
+        ) {
+          toggleModal({ modalType: ModalType.activateCode });
+        } else {
+          setErrorShowing(true);
+        }
         setLoader(false);
-        setErrorShowing(true);
       }
     }
   };
