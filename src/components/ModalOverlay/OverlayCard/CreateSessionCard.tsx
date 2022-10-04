@@ -19,7 +19,10 @@ export const CreateSessionCard = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
     try {
       if (
         sessionNameRef.current !== null &&
@@ -47,7 +50,7 @@ export const CreateSessionCard = () => {
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <span className={styles["v-group"]}>
           <h2>Create new session</h2>
           <p>Enter new session name</p>
@@ -65,14 +68,16 @@ export const CreateSessionCard = () => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.cancel} onClick={cancelButtonHandler}>
-            Cancel
-          </button>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
-          </button>
+          <input
+            type="button"
+            value="Cancel"
+            className={styles.cancel}
+            onClick={cancelButtonHandler}
+          />
+
+          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
         </span>
-      </div>
+      </form>
     </>
   );
 };

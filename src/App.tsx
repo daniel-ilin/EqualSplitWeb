@@ -9,6 +9,7 @@ import { useLoginContext } from "./context/LoginContext";
 import Cookies from "js-cookie";
 import apiService from "./utilities/APIService";
 import { LoadingContextProvider } from "./context/LoadingContext";
+import { ToastContextProvider } from "./context/ToastContext";
 
 function App() {
   const { getLoginState, setLoginState } = useLoginContext();
@@ -46,20 +47,22 @@ function App() {
         <SessionContextProvider>
           <UserDataModelContextProvider>
             <LoadingContextProvider>
-              <Routes>
-                {getLoginState() === false && (
-                  <Route path="/" element={<Navigate to="/login" />} />
-                )}
-                {getLoginState() === true && (
-                  <Route path="/" element={<Navigate to="/home" />} />
-                )}
-                {getLoginState() === false && (
-                  <Route path="/login" element={<LoginPage />}></Route>
-                )}
-                {getLoginState() === true && (
-                  <Route path="/home" element={<Home />}></Route>
-                )}
-              </Routes>
+              <ToastContextProvider>
+                <Routes>
+                  {getLoginState() === false && (
+                    <Route path="/" element={<Navigate to="/login" />} />
+                  )}
+                  {getLoginState() === true && (
+                    <Route path="/" element={<Navigate to="/home" />} />
+                  )}
+                  {getLoginState() === false && (
+                    <Route path="/login" element={<LoginPage />}></Route>
+                  )}
+                  {getLoginState() === true && (
+                    <Route path="/home" element={<Home />}></Route>
+                  )}
+                </Routes>
+              </ToastContextProvider>
             </LoadingContextProvider>
           </UserDataModelContextProvider>
         </SessionContextProvider>

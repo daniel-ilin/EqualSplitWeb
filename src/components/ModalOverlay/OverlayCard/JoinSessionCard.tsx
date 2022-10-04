@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 import { useSelectSession } from "../../../context/SessionContext";
+import { useToastify } from "../../../context/ToastContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 
 import apiService from "../../../utilities/APIService";
@@ -12,6 +13,7 @@ export const JoinSessionCard = () => {
   const { setLoader } = useLoader();
   const { setActiveSession, setActiveUser } = useSelectSession();
   const { setCurrentModel } = useUserDataModelContext();
+  const { sendAlertToast } = useToastify();
 
   const sessionCodeRef = useRef<HTMLInputElement>(null);
 
@@ -19,7 +21,10 @@ export const JoinSessionCard = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
     try {
       if (sessionCodeRef.current !== null) {
         setLoader(true);
@@ -35,15 +40,15 @@ export const JoinSessionCard = () => {
         setActiveSession(response.sessionid);
         setActiveUser(response.userid);
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoader(false);
-      console.log(error);
+      sendAlertToast({ title: error.message });
     }
   };
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <span className={styles["v-group"]}>
           <h2>Join session</h2>
           <p>Enter session code</p>
@@ -61,14 +66,16 @@ export const JoinSessionCard = () => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.cancel} onClick={cancelButtonHandler}>
-            Cancel
-          </button>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
-          </button>
+          <input
+            type="button"
+            value="Cancel"
+            className={styles.cancel}
+            onClick={cancelButtonHandler}
+          />
+
+          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
         </span>
-      </div>
+      </form>
     </>
   );
 };

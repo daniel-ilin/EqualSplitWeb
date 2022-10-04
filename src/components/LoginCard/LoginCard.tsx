@@ -23,7 +23,10 @@ export const LoginCard = () => {
 
   const navigate = useNavigate();
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
     if (
       emailRef.current?.value !== undefined &&
       passwordRef.current?.value !== undefined
@@ -63,7 +66,7 @@ export const LoginCard = () => {
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <img src={logoPath} width={78} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
           <h2>Welcome Back</h2>
@@ -109,16 +112,18 @@ export const LoginCard = () => {
           </p>
         )}
         <span className={styles["h-group"]}>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Login
-          </button>
+          <input
+            type={"submit"}
+            className={styles.confirm}
+            value={"Login"}
+          ></input>
         </span>
         <div className={styles.centerblock}>
           <button className={styles.bottomText} onClick={getCodeHandler}>
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

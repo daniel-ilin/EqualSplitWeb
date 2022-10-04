@@ -18,7 +18,11 @@ export const ProfileCard = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
     try {
       if (profileNameRef.current !== null) {
         setLoader(true);
@@ -43,7 +47,7 @@ export const ProfileCard = () => {
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <span className={styles["v-group"]}>
           <h2>Profile</h2>
           <p>Your profile information</p>
@@ -69,14 +73,16 @@ export const ProfileCard = () => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.cancel} onClick={cancelButtonHandler}>
-            Cancel
-          </button>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
-          </button>
+          <input
+            type="button"
+            value="Cancel"
+            className={styles.cancel}
+            onClick={cancelButtonHandler}
+          />
+
+          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
         </span>
-      </div>
+      </form>
     </>
   );
 };

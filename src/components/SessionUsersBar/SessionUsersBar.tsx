@@ -3,15 +3,14 @@ import { useSelectSession } from "../../context/SessionContext";
 import styles from "./SessionUsersBar.module.scss";
 import { UserTab } from ".././UserTab/UserTab";
 import { useUserDataModelContext } from "../../context/UserDataModelContext";
-
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useToastify } from "../../context/ToastContext";
 
 type SessionUserBarProps = {};
 
 export const SessionUsersBar = (props: SessionUserBarProps) => {
   const { getCurrentModel } = useUserDataModelContext();
   const { sessions } = getCurrentModel();
+  const { sendInfoToast, sendAlertToast } = useToastify();
 
   const [selectedSessionUsers, setSelectedSessionUsers] = useState<User[]>();
 
@@ -23,8 +22,9 @@ export const SessionUsersBar = (props: SessionUserBarProps) => {
   const copyTextHandler = () => {
     if (currentSession?.sessioncode) {
       navigator.clipboard.writeText(currentSession?.sessioncode);
-      // alert("Copied the text: " + currentSession?.sessioncode);
-      toast("Copied the text: " + currentSession?.sessioncode);
+      sendInfoToast({
+        title: "Copied the text: " + currentSession?.sessioncode,
+      });
     }
   };
 
@@ -57,17 +57,6 @@ export const SessionUsersBar = (props: SessionUserBarProps) => {
           </div>
         )}
       </div>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={2000}
-        hideProgressBar={true}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover={false}
-      />
     </>
   );
 };

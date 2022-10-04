@@ -70,6 +70,9 @@
     border: 1.4px solid $line3;
     background-color: $background2-3;
     color: $secondary-title;
+    width: 48%;
+    height: 36px;
+    border-radius: 8px;
 }
 
 .cancel:hover {
@@ -80,6 +83,9 @@
     background-color: $button-blue;
     color: white;
     border: none;
+    width: 48%;
+    height: 36px;
+    border-radius: 8px;
 }
 
 .confirm:hover {
