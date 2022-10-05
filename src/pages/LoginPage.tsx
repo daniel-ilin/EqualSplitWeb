@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { LoginCard } from "../components/LoginCard/LoginCard";
 import { RegisterCard } from "../components/RegisterCard/RegisterCard";
 import { ReactComponent as BacksplashVector } from "../imgs/back-vector.svg";
@@ -7,10 +7,18 @@ import styles from "./LoginPage.module.scss";
 import { ToggleSwitch } from "../components/LoginCard/ToggleSwitch/ToggleSwitch";
 import { ModalOverlay } from "../components/ModalOverlay/ModalOverlay";
 import { useModalContext } from "../context/ModalContext";
+import { useLoginContext } from "../context/LoginContext";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage = () => {
   const [registerShowing, setRegisterShowing] = useState(false);
   const { getModalState } = useModalContext();
+  const { getLoginState } = useLoginContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    getLoginState() && navigate("/home");
+  }, []);
 
   return (
     <>

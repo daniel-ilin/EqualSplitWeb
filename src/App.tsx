@@ -49,16 +49,9 @@ function App() {
             <LoadingContextProvider>
               <ToastContextProvider>
                 <Routes>
-                  {getLoginState() === false && (
-                    <Route path="/" element={<Navigate to="/login" />} />
-                  )}
-                  {getLoginState() === true && (
-                    <Route path="/" element={<Navigate to="/home" />} />
-                  )}
-                  {getLoginState() === false && (
-                    <Route path="/login" element={<LoginPage />}></Route>
-                  )}
-                  {getLoginState() === true && (
+                  <Route path="/" element={<Navigate to="/login" />} />
+                  <Route path="/login" element={<LoginPage />}></Route>
+                  {getLoginState() && (
                     <Route path="/home" element={<Home />}></Route>
                   )}
                 </Routes>
