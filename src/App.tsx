@@ -46,16 +46,8 @@ function App() {
                 <Routes>
                   <Route path="/login" element={<LoginPage />}></Route>
                   <Route path="/home" element={<Home />}></Route>
-                  <Route
-                    path="/"
-                    element={
-                      !getLoginState() ? (
-                        <Navigate to="/login" />
-                      ) : (
-                        <Navigate to="/home" />
-                      )
-                    }
-                  />
+                  <Route path="/*" element={<LoginPage />} />
+                  <Route path="/" element={<LoginPage />} />
                 </Routes>
               </ToastContextProvider>
             </LoadingContextProvider>
