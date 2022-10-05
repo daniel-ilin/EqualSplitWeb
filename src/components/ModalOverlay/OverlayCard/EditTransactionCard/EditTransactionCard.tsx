@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
+import { useToastify } from "../../../../context/ToastContext";
+import { useUserDataModelContext } from "../../../../context/UserDataModelContext";
 import apiService from "../../../../utilities/APIService";
 import { CurrencyInputField } from "../../../CurrencyInputField/CurrencyInputField";
 import styles from "../OverlayCards.module.scss";
@@ -9,7 +11,9 @@ export const EditTransactionCard = () => {
   const { toggleModal, getModalState } = useModalContext();
   const [moneyAmount, setMoneyAmount] = useState(0);
   const { setLoader } = useLoader();
+  const { setCurrentModel } = useUserDataModelContext();
   const descriptionRef = useRef<HTMLInputElement>(null);
+  const { sendAlertToast } = useToastify();
 
   const cancelButtonHandler = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
@@ -19,7 +23,10 @@ export const EditTransactionCard = () => {
     setMoneyAmount(amount);
   };
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
     try {
       let id = getModalState().modalState.transaction?.id;
       if (
@@ -34,19 +41,24 @@ export const EditTransactionCard = () => {
           descriptionRef.current.value
         );
 
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setLoader(false);
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <span className={styles["v-group"]}>
           <h2>Edit transaction</h2>
           <p>Enter transaction data</p>
@@ -75,14 +87,16 @@ export const EditTransactionCard = () => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.cancel} onClick={cancelButtonHandler}>
-            Cancel
-          </button>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
-          </button>
+          <input
+            type="button"
+            value="Cancel"
+            className={styles.cancel}
+            onClick={cancelButtonHandler}
+          />
+
+          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
         </span>
-      </div>
+      </form>
     </>
   );
 };

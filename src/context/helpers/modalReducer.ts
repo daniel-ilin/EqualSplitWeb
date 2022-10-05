@@ -4,12 +4,14 @@ type ModalReducerType = {
   modalType: ModalType | null;
   session?: Session;
   transaction?: Transaction;
+  email?: string;
 };
 
 type Action = {
   type: ModalType;
   session?: Session;
   transaction?: Transaction;
+  email?: string;
 };
 
 export const modalReducer = (state: ModalReducerType, action: Action) => {
@@ -30,6 +32,14 @@ export const modalReducer = (state: ModalReducerType, action: Action) => {
     case ModalType.editSession:
       state.modalType = ModalType.editSession;
       state.session = action.session;
+      return state;
+    case ModalType.requestReset:
+      state.modalType = ModalType.requestReset;
+      state.email = action.email;
+      return state;
+    case ModalType.activateCode:
+      state.modalType = ModalType.activateCode;
+      state.email = action.email;
       return state;
   }
 };

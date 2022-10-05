@@ -1,6 +1,7 @@
 import { formatCurrency } from "../../utilities/formatCurrency";
 import styles from "./SessionTab.module.scss";
 import personIcon from "../../imgs/person-icon.png"; // relative path to image
+import { ReactComponent as PersonImage } from "../../imgs/person-icon.svg";
 import { useSelectSession } from "../../context/SessionContext";
 import arrowsStyles from ".././arrows/Arrow.module.css";
 import { useState } from "react";
@@ -74,21 +75,8 @@ export const SessionTab = (props: SessionTabProps) => {
         >
           <div style={{ width: "80%", overflow: "hidden" }}>
             <h1>{session.name}</h1>
-
             <div className={styles["session-info"]}>
-              <span>
-                <img
-                  src={personIcon}
-                  style={{
-                    width: "13px",
-                    height: "16px",
-                    objectFit: "fill",
-                    marginTop: "-25%",
-                    marginRight: "0.3rem",
-                  }}
-                  alt="People:"
-                ></img>
-              </span>
+              <PersonImage width="16px" height="16px" style={{marginBottom: "15px"}}/>
               <span className={styles["session-info-item"]}>
                 <p>{session.users.length}</p>
               </span>

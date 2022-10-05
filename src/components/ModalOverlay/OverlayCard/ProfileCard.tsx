@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
+import { useToastify } from "../../../context/ToastContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 import apiService from "../../../utilities/APIService";
 import styles from "./OverlayCards.module.scss";
@@ -8,17 +9,22 @@ import styles from "./OverlayCards.module.scss";
 export const ProfileCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
-  const { getCurrentModel } = useUserDataModelContext();
+  const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
 
   const userDataModel = getCurrentModel().activeUser;
 
   const profileNameRef = useRef<HTMLInputElement>(null);
+  const { sendAlertToast } = useToastify();
 
   const cancelButtonHandler = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
   };
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
     try {
       if (profileNameRef.current !== null) {
         setLoader(true);
@@ -26,19 +32,24 @@ export const ProfileCard = () => {
           profileNameRef.current.value
         );
 
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+
         toggleModal({ modalType: getModalState().modalState.modalType });
         if (response.error !== undefined) {
           return;
         }
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      setLoader(false);
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <span className={styles["v-group"]}>
           <h2>Profile</h2>
           <p>Your profile information</p>
@@ -57,21 +68,23 @@ export const ProfileCard = () => {
           <input
             style={{
               pointerEvents: "none",
-              marginTop: "0.8rem",
+              marginTop: "13px",
               color: "#747474",
             }}
             defaultValue={userDataModel.email}
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.cancel} onClick={cancelButtonHandler}>
-            Cancel
-          </button>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Confirm
-          </button>
+          <input
+            type="button"
+            value="Cancel"
+            className={styles.cancel}
+            onClick={cancelButtonHandler}
+          />
+
+          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
         </span>
-      </div>
+      </form>
     </>
   );
 };

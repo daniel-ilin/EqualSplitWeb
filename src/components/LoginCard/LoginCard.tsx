@@ -5,19 +5,28 @@ import styles from "./LoginCard.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
+import { useUserDataModelContext } from "../../context/UserDataModelContext";
+import axios from "axios";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalType } from "../../types/ModalType";
 
 export const LoginCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const { setCurrentModel } = useUserDataModelContext();
 
   const { setLoginState } = useLoginContext();
   const { setLoader } = useLoader();
+  const { toggleModal } = useModalContext();
 
   const [errorShowing, setErrorShowing] = useState(false);
 
   const navigate = useNavigate();
 
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
     if (
       emailRef.current?.value !== undefined &&
       passwordRef.current?.value !== undefined
@@ -32,15 +41,35 @@ export const LoginCard = () => {
         setErrorShowing(false);
         setLoginState(true);
         navigate("/home");
-      } catch (error) {
-        setErrorShowing(true);
+
+        const userData = await apiService.getAllUserData();
+        setLoader(false);
+        setCurrentModel(userData);
+      } catch (error: any) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response &&
+          error.response.status === 403
+        ) {
+          toggleModal({
+            modalType: ModalType.activateCode,
+            email: emailRef.current.value,
+          });
+        } else {
+          setErrorShowing(true);
+        }
+        setLoader(false);
       }
     }
   };
 
+  const getCodeHandler = () => {
+    toggleModal({ modalType: ModalType.requestReset });
+  };
+
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <img src={logoPath} width={78} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
           <h2>Welcome Back</h2>
@@ -50,7 +79,7 @@ export const LoginCard = () => {
             onKeyPress={(event) => {
               if (
                 emailRef.current?.value !== undefined &&
-                emailRef.current?.value.length > 30
+                emailRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -63,7 +92,7 @@ export const LoginCard = () => {
             onKeyPress={(event) => {
               if (
                 passwordRef.current?.value !== undefined &&
-                passwordRef.current?.value.length > 30
+                passwordRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -73,12 +102,12 @@ export const LoginCard = () => {
         {errorShowing && (
           <p
             style={{
-              color: "pink",
+              color: "#ffa7a2",
               fontSize: "11px",
               position: "relative",
               height: "0px",
               margin: "0",
-              bottom: "10px",
+              bottom: "12px",
               padding: "0",
             }}
           >
@@ -86,16 +115,22 @@ export const LoginCard = () => {
           </p>
         )}
         <span className={styles["h-group"]}>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Login
-          </button>
+          <input
+            type={"submit"}
+            className={styles.confirm}
+            value={"Login"}
+          ></input>
         </span>
         <div className={styles.centerblock}>
-          <button className={styles.bottomText}>
+          <button
+            type="button"
+            className={styles.bottomText}
+            onClick={getCodeHandler}
+          >
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

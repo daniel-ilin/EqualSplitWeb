@@ -13,8 +13,8 @@
   border-bottom: 1px solid $line1;
   border-right: 1px solid $line1;
   color: $primary-title;
-  padding: 0.4rem 0 0rem 1rem;
-  margin-left: -2rem;
+  padding: 6px 0 0 16px;
+  margin-left: -32px;
   cursor: pointer;
   transition: background-color 150ms;
 }
@@ -52,13 +52,13 @@
 
 .user-tab h2 {
   background-color: transparent;
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 5px 0;
   font-size: medium;
 }
 
 .user-tab h5 {
   background-color: transparent;
-  margin: 0.1rem 0rem 0rem 0.3rem;
+  margin: 2px 0 0 5px;
   color: $secondary-title;
   font-weight: 400;
   font-size: smaller;
@@ -66,10 +66,10 @@
 
 .user-tab p {
   background-color: transparent;
-  margin: 0 0 0.3rem 0;
+  margin: 0 0 5px 0;
   color: $secondary-title;
   font-weight: "400";
-  font-size: "0.9rem";
+  font-size: medium;
 }
 
 .user-info {
@@ -84,11 +84,11 @@
 
 .user-info-item {
   background-color: none;
-  margin: 0 0.8rem 0 0;
+  margin: 0 13px 0 0;
 }
 
 .itemarrow {
-  margin-right: 1.4rem;
+  margin-right: 18px;
   margin-top: 0;
   display: flex;
   flex-direction: column;

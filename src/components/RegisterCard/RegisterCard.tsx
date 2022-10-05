@@ -1,47 +1,79 @@
-import { useRef, useState } from "react";
-import { useLoginContext } from "../../context/LoginContext";
+import { ChangeEvent, useRef, useState } from "react";
 import apiService from "../../utilities/APIService";
 import styles from "../LoginCard/LoginCard.module.scss";
-import { useNavigate } from "react-router-dom";
 import { useLoader } from "../../context/LoadingContext";
 import logoPath from "../../imgs/equalsplit-logo.png";
+import { useModalContext } from "../../context/ModalContext";
+import { ModalType } from "../../types/ModalType";
+import { useToastify } from "../../context/ToastContext";
 
 export const RegisterCard = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const usernameRef = useRef<HTMLInputElement>(null);
+  const [emailValid, setEmailValid] = useState(false);
 
-  const { setLoginState } = useLoginContext();
+  const { sendAlertToast } = useToastify();
   const { setLoader } = useLoader();
+  const { toggleModal } = useModalContext();
 
-  const [errorShowing, setErrorShowing] = useState(false);
-
-  const navigate = useNavigate();
-
-  const confirmButtonHandler = async () => {
+  const confirmButtonHandler = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+    if (!emailValid) {
+      sendAlertToast({
+        title: "Incorrect email format",
+      });
+      return;
+    }
     if (
-      emailRef.current?.value !== undefined &&
-      passwordRef.current?.value !== undefined
+      emailRef.current?.value &&
+      passwordRef.current?.value &&
+      usernameRef.current?.value
     ) {
       try {
         setLoader(true);
-        await apiService.login(
+        await apiService.register(
+          usernameRef.current?.value,
           emailRef.current?.value,
           passwordRef.current?.value
         );
-
-        setErrorShowing(false);
-        setLoginState(true);
-        navigate("/home");
-      } catch (error) {
-        setErrorShowing(true);
+        toggleModal({
+          modalType: ModalType.activateCode,
+          email: emailRef.current.value,
+        });
+      } catch (error: any) {
+        sendAlertToast({
+          title: `${error.message} Perhaps this email is taken` ?? "Error",
+        });
       }
+    } else {
+      sendAlertToast({
+        title: "Please fill out the form",
+      });
+    }
+  };
+
+  const getCodeHandler = () => {
+    toggleModal({ modalType: ModalType.requestReset });
+  };
+
+  function isValidEmail(email: string) {
+    return /\S+@\S+\.\S+/.test(email);
+  }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    if (!isValidEmail(event.target.value)) {
+      setEmailValid(false);
+    } else {
+      setEmailValid(true);
     }
   };
 
   return (
     <>
-      <div className={styles.card}>
+      <form className={styles.card} onSubmit={confirmButtonHandler}>
         <img src={logoPath} width={78} alt={"Logo"}></img>
         <span className={styles["v-group"]}>
           <h2>Sign Up</h2>
@@ -51,11 +83,12 @@ export const RegisterCard = () => {
             onKeyPress={(event) => {
               if (
                 emailRef.current?.value !== undefined &&
-                emailRef.current?.value.length > 30
+                emailRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
             }}
+            onChange={handleChange}
           />
           <input
             type="password"
@@ -64,7 +97,7 @@ export const RegisterCard = () => {
             onKeyPress={(event) => {
               if (
                 passwordRef.current?.value !== undefined &&
-                passwordRef.current?.value.length > 30
+                passwordRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -77,7 +110,7 @@ export const RegisterCard = () => {
             onKeyPress={(event) => {
               if (
                 passwordRef.current?.value !== undefined &&
-                passwordRef.current?.value.length > 30
+                passwordRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -85,28 +118,22 @@ export const RegisterCard = () => {
           />
         </span>
         <span className={styles["h-group"]}>
-          <button className={styles.confirm} onClick={confirmButtonHandler}>
-            Sign Up
-          </button>
+          <input
+            type={"submit"}
+            className={styles.confirm}
+            value={"Sign Up"}
+          ></input>
         </span>
         <div className={styles.centerblock}>
-          {errorShowing && (
-            <p
-              style={{
-                color: "red",
-                fontSize: "0.6rem",
-                position: "fixed",
-                marginTop: "-1.8rem",
-              }}
-            >
-              Wrong email/password
-            </p>
-          )}
-          <button className={styles.bottomText}>
+          <button
+            type="button"
+            className={styles.bottomText}
+            onClick={getCodeHandler}
+          >
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>
-      </div>
+      </form>
     </>
   );
 };

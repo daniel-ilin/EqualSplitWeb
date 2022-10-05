@@ -1,18 +1,88 @@
 @import "../../styles/variables.scss";
 
+.header {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  display: flex;
+  top: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-right: 1px solid $line2;
+  border-bottom: 1px solid $line1;
+  background-color: $background2-3;
+  z-index: 9;
+  p {
+    color: $tertiary-title;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+
+    &.sessionTitle {
+      color: $primary-title;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
 .sidebar {
+  padding-top: 40px;
   width: 100%;
   height: 100%;
   background-color: $background2-3;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .sidebar-bottom {
   border-right: 1px solid $line2;
   height: 100%;
   min-height: 100px;
-  margin-top: -1rem;
+  margin-top: -16px;
   display: flex;
   flex-direction: column;
+}
+
+.bottomButton {
+  background: none;
+  border: 2px solid $line2;
+  color: $primary-title;
+  font-size: 15px;
+  padding: 4px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 8px;
+  width: auto;
+  align-self: center;
+
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.vContainer {
+  background-color: $background2-3;
+  display: flex;
+  position: absolute;
+  padding-bottom: 20px;
+  bottom: 0;
+  flex-direction: column;
+  align-self: center;
+  align-items: center;
+  width: 99%;
+
+  p {
+    color: $tertiary-title;
+    margin: 0;
+    margin-bottom: 4px;
+  }
 }

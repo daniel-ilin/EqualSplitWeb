@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useLoader } from "../../context/LoadingContext";
 import { useSelectSession } from "../../context/SessionContext";
+import { useUserDataModelContext } from "../../context/UserDataModelContext";
 import apiService from "../../utilities/APIService";
 import { CurrencyInputField } from "../CurrencyInputField/CurrencyInputField";
 
@@ -9,6 +10,7 @@ import styles from "./MessageInput.module.scss";
 export const MessageInput = () => {
   const { setLoader } = useLoader();
   const { getActiveSession, getActiveUser } = useSelectSession();
+  const { setCurrentModel } = useUserDataModelContext();
 
   const descriptionRef = useRef<HTMLInputElement>(null);
   const [moneyAmount, setMoneyAmount] = useState(0);
@@ -27,17 +29,18 @@ export const MessageInput = () => {
     const activeUser = getActiveUser();
     try {
       setLoader(true);
-      const response = await apiService.addTransaction(
+      await apiService.addTransaction(
         sessionid,
         description,
         money,
         activeUser
       );
 
-      if (response.error !== undefined) {
-        return;
-      }
+      const userData = await apiService.getAllUserData();
+      setLoader(false);
+      setCurrentModel(userData);
     } catch (error) {
+      setLoader(false);
       console.log(error);
     }
   };

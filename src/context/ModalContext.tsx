@@ -12,12 +12,14 @@ interface UseModalArgs {
   modalType: ModalType | null;
   session?: Session;
   transaction?: Transaction;
+  email?: string;
 }
 
 type ModalReducerType = {
   modalType: ModalType | null;
   session?: Session;
   transaction?: Transaction;
+  email?: string;
 };
 
 type ModalContextType = {
@@ -53,6 +55,7 @@ export const ModalContextProvider = (props: ModalContextProvideProps) => {
           type: payload.modalType,
           session: payload.session,
           transaction: payload.transaction,
+          email: payload.email,
         });
       }
       return !prev;

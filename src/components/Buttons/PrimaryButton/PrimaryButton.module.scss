@@ -1,0 +1,20 @@
+@import "../../../styles/variables.scss";
+
+.primaryButton {
+    padding: 10px;
+    padding-left: 42px;
+    padding-right: 42px;
+    margin: 0;
+    background-color: $button-blue;
+    color: $primary-title;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    width: auto;
+    height: auto;    
+    border-radius: 16px;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}

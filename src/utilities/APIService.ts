@@ -1,7 +1,8 @@
+import createHttpError, { HttpError } from "http-errors";
 import Cookies from "js-cookie";
 import { Constants } from "./Constants";
 
-const axios = require("axios").default;
+import axios, { AxiosError } from "axios";
 
 class APIService {
   async getAccessToken() {
@@ -19,7 +20,9 @@ class APIService {
     if (result.data.error !== undefined) {
       throw new Error(result.data.error || "Could not get the token");
     }
-    Cookies.set("access-token", result.data.accessToken);
+    Cookies.set("access-token", result.data.accessToken, {
+      sameSite: "strict",
+    });
     return;
   }
 
@@ -236,30 +239,26 @@ class APIService {
   async login(email: string, password: string) {
     const endpoint = `${Constants.API_ADDRESS}/login`;
 
-    const body = JSON.stringify({
-      email: email,
-      password: password,
-    });
-
-    const response = await fetch(endpoint, {
-      method: "post",
+    let config = {
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: body,
-      credentials: "include",
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+    params.append("password", password);
+
+    const response = await axios.post<TokensResponse>(endpoint, params, config);
+
+    Cookies.set("refresh-token", response.data.refreshToken, {
+      sameSite: "strict",
+    });
+    Cookies.set("access-token", response.data.accessToken, {
+      sameSite: "strict",
     });
 
-    if (!response.ok) {
-      const result = (await response.json()) as ApiReponse;
-      throw new Error(result.error || "Could not login");
-    } else {
-      const result = (await response.json()) as TokensResponse;
-      Cookies.set("refresh-token", result.refreshToken);
-      Cookies.set("access-token", result.accessToken);
-
-      return result;
-    }
+    return response;
   }
 
   async logout() {
@@ -274,8 +273,12 @@ class APIService {
       credentials: "include",
     });
 
-    Cookies.remove("access-token");
-    Cookies.remove("refresh-token");
+    Cookies.remove("access-token", {
+      sameSite: "strict",
+    });
+    Cookies.remove("refresh-token", {
+      sameSite: "strict",
+    });
 
     if (!response.ok) {
       const result = (await response.json()) as ApiReponse;
@@ -329,8 +332,8 @@ class APIService {
     const endpoint = `${Constants.API_ADDRESS}/register`;
 
     const body = JSON.stringify({
-      name: name,
       email: email,
+      name: name,
       password: password,
     });
 
@@ -519,6 +522,55 @@ class APIService {
 
     const result = (await response.json()) as ApiReponse;
     return result;
+  }
+
+  async requestActivationCode(email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/mail/code`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+
+    const response = await axios.post(endpoint, params, config);
+    return response;
+  }
+
+  async activateUser(code: string, email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/activateuser`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+    params.append("code", code);
+
+    const response = await axios.put(endpoint, params, config);
+    return response;
+  }
+
+  async sendResetPasswordLink(email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/mail/resetpassword`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+
+    const response = await axios.post(endpoint, params, config);
+    return response;
   }
 }
 

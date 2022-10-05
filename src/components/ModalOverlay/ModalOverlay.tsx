@@ -3,8 +3,10 @@ import styles from "./ModalOverlay.module.css";
 import { CreateSessionCard } from "./OverlayCard/CreateSessionCard";
 import { EditSessionCard } from "./OverlayCard/EditSessionCard/EditSessionCard";
 import { EditTransactionCard } from "./OverlayCard/EditTransactionCard/EditTransactionCard";
+import { EnterActivationCode } from "./OverlayCard/EnterActivationCode/EnterActivationCode";
 import { JoinSessionCard } from "./OverlayCard/JoinSessionCard";
 import { ProfileCard } from "./OverlayCard/ProfileCard";
+import { RequestPasswordReset } from "./OverlayCard/RequestPasswordReset/RequestPasswordReset";
 
 const MODAL_STATES = {
   0: <CreateSessionCard />,
@@ -12,6 +14,8 @@ const MODAL_STATES = {
   2: <ProfileCard />,
   3: <EditTransactionCard />,
   4: <EditSessionCard />,
+  5: <RequestPasswordReset />,
+  6: <EnterActivationCode />,
 };
 
 export const ModalOverlay = () => {
