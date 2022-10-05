@@ -70,13 +70,13 @@ export const InfoSection = (props: InfoSectionProps) => {
               {data.sessions !== undefined &&
                 data.sessions.find((session) => session.id === sessionId)?.name}
             </h4>
-            <h4 style={{ fontWeight: "500" }}>
+            {/* <h4 style={{ fontWeight: "500" }}>
               {data.sessions !== undefined &&
                 `${
                   data.sessions.find((session) => session.id === sessionId)
                     ?.sessioncode
                 }`}
-            </h4>
+            </h4> */}
           </span>
         </span>
       </div>

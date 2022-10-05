@@ -14,28 +14,23 @@ import { ToastContextProvider } from "./context/ToastContext";
 function App() {
   const { getLoginState, setLoginState } = useLoginContext();
 
-  const navigate = useNavigate();
-
   const checkLoginState = useCallback(async () => {
     if (!Cookies.get("refresh-token")) {
       setLoginState(false);
-      navigate("/login");
     } else {
       try {
         await apiService.getAccessToken();
         setLoginState(true);
-        navigate("/home");
       } catch {
         try {
           apiService.logout();
           setLoginState(false);
-          navigate("/login");
         } catch (error) {
           console.log(error);
         }
       }
     }
-  }, [navigate, setLoginState]);
+  }, [setLoginState]);
 
   useEffect(() => {
     checkLoginState();
