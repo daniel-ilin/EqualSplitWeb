@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
+import { useToastify } from "../../../context/ToastContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 import apiService from "../../../utilities/APIService";
 import styles from "./OverlayCards.module.scss";
@@ -13,6 +14,7 @@ export const ProfileCard = () => {
   const userDataModel = getCurrentModel().activeUser;
 
   const profileNameRef = useRef<HTMLInputElement>(null);
+  const { sendAlertToast } = useToastify();
 
   const cancelButtonHandler = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
@@ -39,9 +41,9 @@ export const ProfileCard = () => {
           return;
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoader(false);
-      console.log(error);
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 

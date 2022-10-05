@@ -32,10 +32,19 @@ export const SessionUsersBar = (props: SessionUserBarProps) => {
     currentSession && setSelectedSessionUsers(currentSession.users);
   }, [currentSession]);
 
+  // const displaySessionName =
+  //   currentSession?.name.length ?? "".length > 12
+  //     ? `${currentSession?.name.substring(0, 12)}...` ?? ""
+  //     : currentSession?.name ?? "";
+  const displaySessionName = currentSession?.name ?? "";
+
   return (
     <>
       <div className={styles.sidebar}>
-        {/* <SessionHeader /> */}
+        <div className={styles.header}>
+          <p className={styles.sessionTitle}>{displaySessionName} &nbsp;</p>
+          <p>Users:</p>
+        </div>
         <ul>
           {selectedSessionUsers?.map((user) => {
             return (

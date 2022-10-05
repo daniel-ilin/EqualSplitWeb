@@ -42,7 +42,7 @@ export const JoinSessionCard = () => {
       }
     } catch (error: any) {
       setLoader(false);
-      sendAlertToast({ title: error.message });
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 

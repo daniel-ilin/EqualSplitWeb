@@ -1,7 +1,40 @@
 @import "../../styles/variables.scss";
 
+.header {
+  width: 100%;
+  height: 40px;
+  position: absolute;
+  display: flex;
+  top: 0;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-right: 1px solid $line2;
+  border-bottom: 1px solid $line1;
+  background-color: $background2-3;
+  z-index: 9;
+  p {
+    color: $tertiary-title;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+
+    &.sessionTitle {
+      color: $primary-title;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
 
 .sidebar {
+  padding-top: 40px;
   width: 100%;
   height: 100%;
   background-color: $background2-3;

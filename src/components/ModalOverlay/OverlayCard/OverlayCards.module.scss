@@ -86,8 +86,32 @@
     width: 48%;
     height: 36px;
     border-radius: 8px;
+
+    &:not(.disabled):hover {
+        background-color: $selection-blue;
+    }
 }
 
-.confirm:hover {
-    background-color: $selection-blue;
+.secondary {
+    background: none;
+    width: auto;
+    position: relative;
+    border: none;
+    color: $secondary-title;
+    border-radius: 8px;
+    padding: 6px;
+    padding-left: 12px;
+    padding-right: 12px;
+    font-size: 16px;
+    margin-top: 18px;
+    text-align: center;
+    font-weight: normal;
+
+    &:not(.disabled):hover {
+        opacity: 0.6;
+    }
+}
+
+.disabled {
+    opacity: 0.6;
 }

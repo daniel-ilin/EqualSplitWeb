@@ -51,7 +51,10 @@ export const LoginCard = () => {
           error.response &&
           error.response.status === 403
         ) {
-          toggleModal({ modalType: ModalType.activateCode });
+          toggleModal({
+            modalType: ModalType.activateCode,
+            email: emailRef.current.value,
+          });
         } else {
           setErrorShowing(true);
         }
@@ -61,7 +64,7 @@ export const LoginCard = () => {
   };
 
   const getCodeHandler = () => {
-    toggleModal({ modalType: ModalType.requestCode });
+    toggleModal({ modalType: ModalType.requestReset });
   };
 
   return (
@@ -76,7 +79,7 @@ export const LoginCard = () => {
             onKeyPress={(event) => {
               if (
                 emailRef.current?.value !== undefined &&
-                emailRef.current?.value.length > 30
+                emailRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -89,7 +92,7 @@ export const LoginCard = () => {
             onKeyPress={(event) => {
               if (
                 passwordRef.current?.value !== undefined &&
-                passwordRef.current?.value.length > 30
+                passwordRef.current?.value.length >= 255
               ) {
                 event.preventDefault();
               }
@@ -119,7 +122,11 @@ export const LoginCard = () => {
           ></input>
         </span>
         <div className={styles.centerblock}>
-          <button className={styles.bottomText} onClick={getCodeHandler}>
+          <button
+            type="button"
+            className={styles.bottomText}
+            onClick={getCodeHandler}
+          >
             <p className={styles.secondary}>Forgot your password?</p>
           </button>
         </div>

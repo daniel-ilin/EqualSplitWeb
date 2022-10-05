@@ -1,19 +1,18 @@
-import { useRef } from "react";
-import { useLoader } from "../../../../context/LoadingContext";
+import { useEffect, useRef, useState } from "react";
 import { useModalContext } from "../../../../context/ModalContext";
-import { useSelectSession } from "../../../../context/SessionContext";
-import { useUserDataModelContext } from "../../../../context/UserDataModelContext";
+import { useToastify } from "../../../../context/ToastContext";
 
 import apiService from "../../../../utilities/APIService";
 import styles from ".././OverlayCards.module.scss";
 
 export const EnterActivationCode = () => {
   const { getModalState, toggleModal } = useModalContext();
-  //   const { setLoader } = useLoader();
-  //   const { setActiveSession, setActiveUser } = useSelectSession();
-  //   const { setCurrentModel } = useUserDataModelContext();
+  const [allowRequest, setAllowRequest] = useState(true);
+  const [allowSubmit, setAllowSubmit] = useState(false);
 
-  const sessionNameRef = useRef<HTMLInputElement>(null);
+  const { sendAlertToast, sendInfoToast } = useToastify();
+
+  const codeRef = useRef<HTMLInputElement>(null);
 
   const cancelButtonHandler = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
@@ -23,7 +22,61 @@ export const EnterActivationCode = () => {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
+
+    try {
+      const email = getModalState().modalState.email;
+      if (email && codeRef.current?.value) {
+        await apiService.activateUser(codeRef.current?.value, email);
+        toggleModal({ modalType: getModalState().modalState.modalType });
+        sendInfoToast({
+          title: "Succesfully activated the user, try logging in!",
+        });
+      } else {
+        sendAlertToast({
+          title: "An error occured",
+        });
+      }
+    } catch (error: any) {
+      sendAlertToast({
+        title: "Could not activate user",
+      });
+    }
   };
+
+  const requestCodeHandler = async () => {
+    try {
+      if (allowRequest) {
+        const email = getModalState().modalState.email;
+        setAllowRequest(false);
+        if (email) {
+          await apiService.requestActivationCode(email);
+        } else {
+          sendAlertToast({
+            title: "An error occured",
+          });
+        }
+      } else {
+        sendAlertToast({
+          title: "Please wait some time until you can request the code again",
+        });
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!allowRequest) {
+      const interval = setInterval(() => {
+        setAllowRequest(true);
+      }, 30000);
+      return () => clearInterval(interval);
+    }
+  }, [allowRequest]);
+
+  useEffect(() => {
+    requestCodeHandler();
+  }, []);
 
   return (
     <>
@@ -33,26 +86,56 @@ export const EnterActivationCode = () => {
           <p>Check your email for the code</p>
           <input
             placeholder="••••••"
-            ref={sessionNameRef}
+            ref={codeRef}
             onKeyPress={(event) => {
               if (
-                sessionNameRef.current?.value !== undefined &&
-                sessionNameRef.current?.value.length > 30
+                codeRef.current?.value !== undefined &&
+                codeRef.current?.value.length > 5
               ) {
                 event.preventDefault();
+              }
+            }}
+            onChange={(event) => {
+              if (event.target.value.length >= 6) {
+                setAllowSubmit(true);
+              } else {
+                setAllowSubmit(false);
               }
             }}
           />
         </span>
         <span className={styles["h-group"]}>
-          <input
+          <button
             type="button"
-            value="Cancel"
             className={styles.cancel}
             onClick={cancelButtonHandler}
-          />
+          >
+            Cancel
+          </button>
 
-          <input type={"submit"} className={styles.confirm} value={"Confirm"} />
+          <input
+            type={"submit"}
+            className={
+              allowSubmit
+                ? styles.confirm
+                : `${styles["confirm"]} ${styles["disabled"]}`
+            }
+            disabled={!allowSubmit}
+            value={"Confirm"}
+          />
+        </span>
+        <span className={styles["v-group"]}>
+          <button
+            type="button"
+            className={
+              allowRequest
+                ? styles.secondary
+                : `${styles["secondary"]} ${styles["disabled"]}`
+            }
+            onClick={requestCodeHandler}
+          >
+            {allowRequest ? "Resend code" : "Code sent"}
+          </button>
         </span>
       </form>
     </>

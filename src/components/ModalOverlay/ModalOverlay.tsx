@@ -6,7 +6,7 @@ import { EditTransactionCard } from "./OverlayCard/EditTransactionCard/EditTrans
 import { EnterActivationCode } from "./OverlayCard/EnterActivationCode/EnterActivationCode";
 import { JoinSessionCard } from "./OverlayCard/JoinSessionCard";
 import { ProfileCard } from "./OverlayCard/ProfileCard";
-import { RequestActivationCode } from "./OverlayCard/RequestActivationCode/RequestActivationCode";
+import { RequestPasswordReset } from "./OverlayCard/RequestPasswordReset/RequestPasswordReset";
 
 const MODAL_STATES = {
   0: <CreateSessionCard />,
@@ -14,7 +14,7 @@ const MODAL_STATES = {
   2: <ProfileCard />,
   3: <EditTransactionCard />,
   4: <EditSessionCard />,
-  5: <RequestActivationCode />,
+  5: <RequestPasswordReset />,
   6: <EnterActivationCode />,
 };
 

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useLoader } from "../../../context/LoadingContext";
 import { useModalContext } from "../../../context/ModalContext";
 import { useSelectSession } from "../../../context/SessionContext";
+import { useToastify } from "../../../context/ToastContext";
 import { useUserDataModelContext } from "../../../context/UserDataModelContext";
 
 import apiService from "../../../utilities/APIService";
@@ -14,6 +15,8 @@ export const CreateSessionCard = () => {
   const { setCurrentModel } = useUserDataModelContext();
 
   const sessionNameRef = useRef<HTMLInputElement>(null);
+
+  const { sendAlertToast } = useToastify();
 
   const cancelButtonHandler = () => {
     toggleModal({ modalType: getModalState().modalState.modalType });
@@ -42,9 +45,9 @@ export const CreateSessionCard = () => {
         setActiveSession(response.sessionid);
         setActiveUser(response.ownerid);
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoader(false);
-      console.log(error);
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 

@@ -4,6 +4,6 @@ export enum ModalType {
   profile,
   editTransaction,
   editSession,
-  requestCode,
+  requestReset,
   activateCode,
 }

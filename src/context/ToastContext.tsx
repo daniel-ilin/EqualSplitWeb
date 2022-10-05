@@ -47,7 +47,7 @@ export const ToastContextProvider = (props: ToastContextProviderProps) => {
       {props.children}
       <ToastContainer
         position="bottom-left"
-        autoClose={2000}
+        autoClose={4000}
         hideProgressBar={true}
         newestOnTop={false}
         closeOnClick

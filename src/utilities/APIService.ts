@@ -20,7 +20,9 @@ class APIService {
     if (result.data.error !== undefined) {
       throw new Error(result.data.error || "Could not get the token");
     }
-    Cookies.set("access-token", result.data.accessToken);
+    Cookies.set("access-token", result.data.accessToken, {
+      sameSite: "strict",
+    });
     return;
   }
 
@@ -249,8 +251,12 @@ class APIService {
 
     const response = await axios.post<TokensResponse>(endpoint, params, config);
 
-    Cookies.set("refresh-token", response.data.refreshToken);
-    Cookies.set("access-token", response.data.accessToken);
+    Cookies.set("refresh-token", response.data.refreshToken, {
+      sameSite: "strict",
+    });
+    Cookies.set("access-token", response.data.accessToken, {
+      sameSite: "strict",
+    });
 
     return response;
   }
@@ -267,8 +273,12 @@ class APIService {
       credentials: "include",
     });
 
-    Cookies.remove("access-token");
-    Cookies.remove("refresh-token");
+    Cookies.remove("access-token", {
+      sameSite: "strict",
+    });
+    Cookies.remove("refresh-token", {
+      sameSite: "strict",
+    });
 
     if (!response.ok) {
       const result = (await response.json()) as ApiReponse;
@@ -512,6 +522,55 @@ class APIService {
 
     const result = (await response.json()) as ApiReponse;
     return result;
+  }
+
+  async requestActivationCode(email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/mail/code`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+
+    const response = await axios.post(endpoint, params, config);
+    return response;
+  }
+
+  async activateUser(code: string, email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/activateuser`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+    params.append("code", code);
+
+    const response = await axios.put(endpoint, params, config);
+    return response;
+  }
+
+  async sendResetPasswordLink(email: string) {
+    const endpoint = `${Constants.API_ADDRESS}/mail/resetpassword`;
+
+    let config = {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    };
+
+    let params = new URLSearchParams();
+    params.append("email", email);
+
+    const response = await axios.post(endpoint, params, config);
+    return response;
   }
 }
 

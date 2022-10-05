@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useLoader } from "../../../../context/LoadingContext";
 import { useModalContext } from "../../../../context/ModalContext";
+import { useToastify } from "../../../../context/ToastContext";
 import { useUserDataModelContext } from "../../../../context/UserDataModelContext";
 import apiService from "../../../../utilities/APIService";
 import styles from "../OverlayCards.module.scss";
@@ -9,6 +10,7 @@ export const EditSessionCard = () => {
   const { getModalState, toggleModal } = useModalContext();
   const { setLoader } = useLoader();
   const { setCurrentModel } = useUserDataModelContext();
+  const { sendAlertToast } = useToastify();
 
   const sessionNameRef = useRef<HTMLInputElement>(null);
 
@@ -42,9 +44,9 @@ export const EditSessionCard = () => {
           return;
         }
       }
-    } catch (error) {
+    } catch (error: any) {
       setLoader(false);
-      console.log(error);
+      sendAlertToast({ title: error.message ?? "Error" });
     }
   };
 

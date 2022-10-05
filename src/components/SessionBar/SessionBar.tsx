@@ -15,6 +15,9 @@ export const SessionBar = (props: SessionBarProps) => {
 
   return (
     <div className={styles.sidebar}>
+      <div className={styles.header}>
+        <h4>Sessions:</h4>
+      </div>
       <ul>
         {sessions !== undefined &&
           sessions.map((session) => {
