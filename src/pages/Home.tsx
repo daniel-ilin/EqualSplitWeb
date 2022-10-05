@@ -16,11 +16,17 @@ import styles from "./Home.module.scss";
 import { PrimaryButton } from "../components/Buttons/PrimaryButton/PrimaryButton";
 import { SecondaryButton } from "../components/Buttons/SecondaryButton/SecondaryButton";
 import { ModalType } from "../types/ModalType";
+import { useNavigate } from "react-router-dom";
+import { useLoginContext } from "../context/LoginContext";
 
 export const Home = () => {
   const { getCurrentModel, setCurrentModel } = useUserDataModelContext();
 
   const { getActiveSession } = useSelectSession();
+
+  const navigate = useNavigate();
+
+  const { getLoginState } = useLoginContext();
 
   const { getModalState, toggleModal } = useModalContext();
 
@@ -56,6 +62,10 @@ export const Home = () => {
   const createSessionHandler = () => {
     toggleModal({ modalType: ModalType.createSession });
   };
+
+  useEffect(() => {
+    !getLoginState() && navigate("/login");
+  }, []);
 
   return (
     <>
