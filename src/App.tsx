@@ -49,11 +49,18 @@ function App() {
             <LoadingContextProvider>
               <ToastContextProvider>
                 <Routes>
-                  <Route path="/" element={<Navigate to="/login" />} />
                   <Route path="/login" element={<LoginPage />}></Route>
-                  {getLoginState() && (
-                    <Route path="/home" element={<Home />}></Route>
-                  )}
+                  <Route path="/home" element={<Home />}></Route>
+                  <Route
+                    path="/"
+                    element={
+                      !getLoginState() ? (
+                        <Navigate to="/login" />
+                      ) : (
+                        <Navigate to="/home" />
+                      )
+                    }
+                  />
                 </Routes>
               </ToastContextProvider>
             </LoadingContextProvider>
